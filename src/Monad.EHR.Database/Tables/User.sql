@@ -1,0 +1,17 @@
+CREATE TABLE [dbo].[User]
+(
+	[Id] INT Identity(1,1) NOT NULL,
+	[UserName]      NVARCHAR (MAX) NOT NULL,
+	[FirstName] NVARCHAR(255) NULL,
+	[LastName] NVARCHAR(255) NULL,
+	[EmailAddress] NVARCHAR(255) NULL,
+	[Designation] NVARCHAR(255) NULL,
+	[AddressLine1] NVARCHAR(MAX) NULL,
+	[AddressLine2] NVARCHAR(MAX) NULL,
+	[Zip] NVARCHAR(10) NULL,
+	[City] NVARCHAR(255) NULL,
+	[State] NVARCHAR(255) NULL,
+	[ProfilePicture] NVARCHAR (MAX) NULL,
+	CONSTRAINT [PK_User_ID] PRIMARY KEY CLUSTERED ([Id] ASC),
+--	CONSTRAINT [FK_User_AspNetUsers] FOREIGN KEY ([UserName] )  REFERENCES AspNetUsers ([UserName] )  ON DELETE CASCADE,
+)

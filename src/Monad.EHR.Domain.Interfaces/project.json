@@ -1,0 +1,15 @@
+{
+    "version": "1.0.0-*",
+    "description": "Domain.Interfaces",
+    "authors": ["Easy App Builder"],
+    "tags": [""],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "dependencies": {
+        "Monad.EHR.Common": "1.0.0-*",
+        "Monad.EHR.Domain.Entities": "1.0.0-*"
+    },
+    "frameworks": {
+        "dnx451": {}
+    }
+}

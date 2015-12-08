@@ -1,0 +1,16 @@
+CREATE TABLE [dbo].[BP]
+(
+	[BPID] INT Identity(1,1) NOT NULL , 
+	[Systolic] int NOT NULL,
+	[Diastolic] int NOT NULL,
+	[Date] date NOT NULL,
+	[PatientID] INT NOT NULL,
+
+	[CreatedDateUtc] DATETIME  NOT NULL DEFAULT GETUTCDATE(),
+	[LastModifiedDateUtc] DATETIME  NOT NULL DEFAULT GETUTCDATE(),
+	[LastModifiedBy] INT  NOT NULL,
+	CONSTRAINT [PK_BP_BPID] PRIMARY KEY CLUSTERED ([BPID] ASC),
+	   
+	CONSTRAINT [FK_BP_Patient] FOREIGN KEY ([PatientID]) REFERENCES Patient ([PatientID])  ON DELETE CASCADE
+
+)

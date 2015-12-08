@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html ng-app="loginModule">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{title}}</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <!-- Custom styling plus plugins -->
+    <link href="~/css/custom.css" rel="stylesheet">
+    <link href="~/css/icheck/flat/green.css" rel="stylesheet">
+
+    <script src="~/js/jquery.min.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href="lib/angular-loading-bar/build/loading-bar.min.css" rel="stylesheet">
+</head>
+<body style="background:#F7F7F7;" ng-controller="loginController" ng-init="initializeController()" ng-cloak>
+
+    <div class="">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+        <!--<div style="padding-top:20px">
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+                <div ng-bind-html="MessageBox"></div>
+            </alert>
+        </div>-->
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+
+                <section class="login_content">
+                    <form name="loginForm">
+
+                        <h1>Login Form  <i class="fa fa-key" style="font-size:26px;"></i></h1>
+                        <span ng-hide="IsLoginFailed"><p class="duplicate_email">{{failedErrorMessage}}</p></span>
+                        <div>
+                            <input ng-model="UserName" name="email" type="text" class="form-control" placeholder="Username" validator="email" valid-method="blur" />
+
+                        </div>
+                        <div>
+                            <input ng-model="Password" type="password" name="required" class="form-control" placeholder="Password" validator="required" valid-method="blur" ng-keypress="onKeyPress($event)" />
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div>
+                            <a class="btn btn-default submit" ng-click="login(loginForm)"> Log in</a>
+                            <!-- <a class="reset_pass" href="#">Lost your password?</a>-->
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <p class="change_link">
+                                New to site?
+                                <a href="#toregister" class="to_register"> Create Account </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <div>
+                                <p>©2015 All Rights Reserved. Infinite Computer Solutions. Privacy and Terms</p>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </section>
+                <!-- content -->
+            </div>
+
+            <div id="register" class="animate form">
+                <section class="login_content">
+                    <form name="registrationForm">
+                        <h1>Create Account</h1>
+                        <span ng-hide="IsSuccess"><p class="duplicate_email">{{errorMessage}}</p></span>
+                        <div>
+                            <input ng-model="UserName" name="ruserNameWatch" type="text" placeholder="UserName" class="form-control" validator="required,email" style="width: 300px" valid-method="blur" />
+
+                        </div>
+                        <div>
+                            <input ng-model="Password" name="passwordWatch" type="password" placeholder="Password" class="form-control" validator="required" style="width: 300px" valid-method="blur" />
+                        </div>
+                        <div>
+                            <input ng-model="ConfirmPassword" name="ConfirmPasswordWatch" type="password" placeholder="Confirm Password" validator="required,passwordCompare" class="form-control" valid-method="blur" style="width: 300px" ng-keypress="onKeyPress($event)" />
+                        </div>
+                        <!--<div id="divCrtLoginLoading" ng-show="loadingCrtLoginShow"><img src="images/loading_lgn.gif" />&nbsp; <span style="color:Highlight"> Please wait.... </span></div>-->
+                        <div>
+                            <a class="btn btn-default submit" ng-click="register(registrationForm)"> Submit</a>
+                        </div>
+                        <modal visible="showModal"> </modal>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+                            <p class="change_link">
+                                Already a member ?
+                                <a href="#tologin" class="to_register" ng-click="clearFormError()"> Log in </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <div>
+                                <p>©2015 All Rights Reserved. Infinite Computer Solutions. Privacy and Terms</p>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </section>
+                <!-- content -->
+            </div>
+
+        </div>
+    </div>  <!-- this is the last div -->
+
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="~/lib/angular-route/angular-route.js"></script>
+    <script src="~/lib/angular-block-ui/dist/angular-block-ui.min.js"></script>
+    <script src="~/lib/angular-resource/angular-resource.min.js"></script>
+    <script src="~/lib/angular-cookies/angular-cookies.min.js"></script>
+
+    <script src="~/lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="~/lib/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="~/lib/angular-validation/dist/angular-validation.min.js"></script>
+    <script src="~/lib/angular-validation/dist/angular-validation-rule.min.js"></script>
+    <script src="~/lib/angular-ui/build/angular-ui.min.js"></script>
+    <script src="~/lib/angular-confirm-modal/angular-confirm.js"></script>
+    <script src="~/lib/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="~/app/Services/accountsService.js"></script>
+    <script src="~/app/Services/applicationService.js"></script>
+    <script src="~/app/Services/AlertsService.js"></script>
+    <script src="~/app/Services/interceptorService.js"></script>
+    <script src="~/app/Accounts/Controllers/loginController.js"></script>
+
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="~/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="~/js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="~/js/icheck/icheck.min.js"></script>
+    <script src="~/js/custom.js"></script>
+</body>
+</html>

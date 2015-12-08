@@ -1,0 +1,11 @@
+{
+    "AppSettings": {
+        "SiteTitle": "EHR",
+        "ImagePath": "D:\\EAB\\Output\\EHR\\PIC"
+    },
+    "Data": {
+        "DefaultConnection": {
+            "ConnectionString": "Data Source=ICSEAB01\\SQLEXPRESS;Initial Catalog=Monad.EHR.Database;User ID=sa;Password=test123#"
+        }
+    }
+}

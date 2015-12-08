@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0-*",
+    "description": "Services Interface",
+    "authors": ["Easy App Builder"],
+    "tags": [""],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "projectroot": "wwwroot",
+    "webroot": "wwwroot",
+    "dependencies": {
+        "Monad.EHR.Domain.Entities": "1.0.0-*",
+        "Monad.EHR.Domain.Interfaces": "1.0.0-*"
+    },
+    "frameworks": {
+        "dnx451": {}
+    }
+}
