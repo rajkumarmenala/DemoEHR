@@ -12,7 +12,7 @@ namespace Monad.EHR.Web.App.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-         private IUserService _userService;
+        private IUserService _userService;
         private IOptions<AppSettings> _appSettings;
         public UserController(IUserService userService, IOptions<AppSettings> appSettings)
         {
@@ -83,10 +83,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (image.FileName != null)
             {
-			   if (!System.IO.Directory.Exists(_appSettings.Value.ImagePath))
-               {
-                System.IO.Directory.CreateDirectory(_appSettings.Value.ImagePath);
-               }
+                if (!System.IO.Directory.Exists(_appSettings.Value.ImagePath))
+                {
+                    System.IO.Directory.CreateDirectory(_appSettings.Value.ImagePath);
+                }
                 var applicationPath = Path.Combine(_appSettings.Value.ImagePath, image.FileName);
                 if (System.IO.File.Exists(applicationPath))
                 {
@@ -104,7 +104,7 @@ namespace Monad.EHR.Web.App.Controllers
         [Route("GetUploadedImage")]
         public System.Byte[] GetUploadedImage(string imageName)
         {
-		    if (!System.IO.Directory.Exists(_appSettings.Value.ImagePath))
+            if (!System.IO.Directory.Exists(_appSettings.Value.ImagePath))
             {
                 System.IO.Directory.CreateDirectory(_appSettings.Value.ImagePath);
             }
@@ -131,5 +131,5 @@ namespace Monad.EHR.Web.App.Controllers
 
             return bytes;
         }
-  }
+    }
 }

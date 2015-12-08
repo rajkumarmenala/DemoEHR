@@ -2,6 +2,7 @@ using Monad.EHR.Domain.Entities;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Monad.EHR.Domain.Entities.Identity;
+
 namespace Monad.EHR.Infrastructure.Data
 {
     public class CustomDBContext : IdentityDbContext<User>

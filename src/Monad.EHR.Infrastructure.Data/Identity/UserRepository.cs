@@ -9,7 +9,6 @@ namespace Monad.EHR.Infrastructure.Data.Identity
 {
     public class UserRepository : IUserRepository
     {
-
         protected DbSet<User> DbSet;
         private CustomDBContext _dbContext;
 
