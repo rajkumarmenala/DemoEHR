@@ -1,9 +1,5 @@
-
-using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Mvc;
-using Microsoft.Dnx.Runtime;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Microsoft.Framework.OptionsModel;
 using Monad.EHR.Common.Utility;

@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseName>Monad.EHR.Database</TargetDatabaseName>
     <DeployScriptFileName>Monad.EHR.Database.sql</DeployScriptFileName>
-    <TargetConnectionString>Data Source=ICSEAB01\SQLEXPRESS;User ID=sa;Password=test123#;Pooling=False</TargetConnectionString>
-    <ProfileVersionNumber>1</ProfileVersionNumber>
+    <TargetConnectionString>Data Source=ICSEAB01\SQLEXPRESS;Persist Security Info=True;User ID=sa;Pooling=False</TargetConnectionString>
     <ScriptDatabaseOptions>True</ScriptDatabaseOptions>
     <BlockOnPossibleDataLoss>True</BlockOnPossibleDataLoss>
     <CreateNewDatabase>True</CreateNewDatabase>
+    <ProfileVersionNumber>1</ProfileVersionNumber>
   </PropertyGroup>
 </Project>

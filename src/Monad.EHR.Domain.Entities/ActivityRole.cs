@@ -1,14 +1,12 @@
+
 using System;
 
 namespace Monad.EHR.Domain.Entities
 {
-    public class Weight : BaseEntity
+    public class ActivityRole : BaseEntity
     {
-        public DateTime Date { get; set; }
-        public Decimal Wt { get; set; }
-        public int PatientID { get; set; }
-
-
+        public int ActivityID { get; set; }
+        public int RoleID { get; set; }
         public DateTime CreatedDateUtc { get; set; }
         public DateTime LastModifiedDateUtc { get; set; }
         public int LastModifiedBy { get; set; }

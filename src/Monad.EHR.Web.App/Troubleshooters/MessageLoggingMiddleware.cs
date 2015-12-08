@@ -2,11 +2,9 @@ using Monad.EHR.Common.Logger;
 using Microsoft.AspNet.Builder;
 using Microsoft.Framework.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Monad.EHR.Web.App.Troubleshooters
 {

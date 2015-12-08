@@ -6,16 +6,15 @@ using Microsoft.Framework.DependencyInjection;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Logging;
 using System;
-using Microsoft.AspNet.Http;
 using Monad.EHR.Web.App.Troubleshooters;
 using Monad.EHR.Web.App.Filters;
-﻿using Monad.EHR.Common.Logger;
+using Monad.EHR.Common.Logger;
 using Monad.EHR.Common.Utility;
 using Monad.EHR.Infrastructure.DependencyResolver;
 
 namespace Monad.EHR.Web.App
 {
-   public class Startup
+    public class Startup
     {
        private readonly ILogger _logger;
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)

@@ -76,6 +76,10 @@
     <None Include="Tables\BP.sql" />
     <None Include="Tables\PatientHeight.sql" />
     <None Include="Tables\Weight.sql" />
+	 
+    <None Include="Tables\Activity.sql" />
+    <None Include="Tables\UserActivity.sql" />
+    <None Include="Tables\ActivityRole.sql" />
     <PostDeploy Include="Scripts\PostDeployment.sql" />
     <Build Include="Tables\AspNetUsers.sql" />
     <Build Include="Tables\AspNetUserClaims.sql" />
@@ -90,8 +94,13 @@
     <Build Include="Tables\BP.sql" />
     <Build Include="Tables\PatientHeight.sql" />
     <Build Include="Tables\Weight.sql" />
+	<Build Include="Tables\User.sql" />
+	<Build Include="Tables\Activity.sql" />
+    <Build Include="Tables\UserActivity.sql" />
+    <Build Include="Tables\ActivityRole.sql" />
+    <None Include="Monad.EHR.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\User.sql" />
+   
   </ItemGroup>
 </Project>
