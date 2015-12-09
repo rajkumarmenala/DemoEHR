@@ -2,7 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/src/Monad.EHR.Web.App/wwwroot
+/src/Monad.EHR.Web.App/wwwroot/lib
 /src/Monad.EHR.Database/bin
 /src/Monad.EHR.Database/obj
 node_modules

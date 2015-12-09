@@ -1,0 +1,69 @@
+<div class="row" ng-controller="medicationsController" ng-init="initializeController()" ng-cloak>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Edit Medications</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" name="editMedications" data-parsley-validate class="form-horizontal form-label-left" novalidate>
+                            <table style="width:100%">
+                                <tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
+        Name  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="name" validator="required"  ng-model="Name"
+             valid-method="blur" name = "nameWatch"  placeholder="Name" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="quantity">
+        Quantity  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "Number" min="0" id="quantity" validator="required"  ng-model="Quantity"
+             valid-method="blur" name = "quantityWatch"  placeholder="Quantity" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="beginDate">
+        Begin Date  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="beginDate" validator="required"  ng-model="BeginDate"
+             valid-method="blur" name = "beginDateWatch"  placeholder="Begin Date" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="endDate">
+        End Date  
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="endDate"   ng-model="EndDate"
+                placeholder="End Date" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr>
+                            </table>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
+                                    <button class="btn btn-default" ng-click="formCancel()">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="editMedicationsSaved(editMedications)"> OK </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

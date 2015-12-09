@@ -1,0 +1,99 @@
+<div class="row" ng-controller="addressController" ng-init="initializeController()" ng-cloak>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Edit Address</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" name="editAddress" data-parsley-validate class="form-horizontal form-label-left" novalidate>
+                            <table style="width:100%">
+                                <tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="line1">
+        Line1  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="line1" validator="required"  ng-model="Line1"
+             valid-method="blur" name = "line1Watch"  placeholder="Line1" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="line2">
+        Line2  
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="line2"   ng-model="Line2"
+                placeholder="Line2" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">
+        City  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="city" validator="required"  ng-model="City"
+             valid-method="blur" name = "cityWatch"  placeholder="City" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">
+        State  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="state" validator="required"  ng-model="State"
+             valid-method="blur" name = "stateWatch"  placeholder="State" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip">
+        Zip  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="zip" validator="required"  ng-model="Zip"
+             valid-method="blur" name = "zipWatch"  placeholder="Zip" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="beginDate">
+        Begin Date  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="beginDate" validator="required"  ng-model="BeginDate"
+             valid-method="blur" name = "beginDateWatch"  placeholder="Begin Date" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="endDate">
+        End Date  
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="endDate"   ng-model="EndDate"
+                placeholder="End Date" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr>
+                            </table>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
+                                    <button class="btn btn-default" ng-click="formCancel()">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="editAddressSaved(editAddress)"> OK </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

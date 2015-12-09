@@ -1,0 +1,110 @@
+<div class="" ng-controller="userController" ng-init="initializeController()" ng-cloak>
+    <div class="clearfix"></div>
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>User Profile</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Edit Profile</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" novalidate>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstName">
+                                    File Upload <span class=""></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" ng-model="file" name="file" base-sixty-four-input onload="onLoad" maxsize="20" accept="image/*">
+                                    <img class="upload_img_pddg" ng-src="data:image/jpeg;base64,{{imageData}}" style="width:75px;height:75px" ng-show="isImagePreview=true" id="photo-id" />
+                                </div>
+                            </div>
+                            <form name="editUserProfile">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstName">
+                                        First Name <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="firstName" validator="noSpecialCharectorForFirstName" Name="firstNameWatch" ng-model="FirstName" class="form-control col-md-7 col-xs-12" valid-method="blur">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastName">
+                                        Last Name <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="lastName" validator="noSpecialCharectorForLastName" Name="lastNameWatch" ng-model="LastName" class="form-control col-md-7 col-xs-12" valid-method="blur">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="designation">
+                                        Designation <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="designation" Name="designationWatch" validator="noSpecialCharectorForUser" valid-method="blur" ng-model="Designation" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="addressLine1">
+                                        AddressLine1 <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="addressLine1" Name="addressLine1" ng-model="AddressLine1" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="addressLine2">
+                                        AddressLine2 <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="addressLine2" Name="addressLine2" ng-model="AddressLine2" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">
+                                        State <span class="required"></span>
+                                    </label>
+                                    <div class="col-lg-3 col-md-1 col-sm-2 col-xs-12">
+                                        <input type="text" id="state" name="state" ng-model="State" class="form-control col-md-3 col-xs-12">
+                                    </div>
+                                    <label class="control-label col-md-1 col-sm-1 col-xs-12" for="city">
+                                        City <span class="required"></span>
+                                    </label>
+                                    <div class="col-lg-2 col-md-1 col-sm-3 col-xs-12">
+                                        <input type="text" id="city" name="city" ng-model="City" class="form-control col-md-3 col-xs-12">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip">
+                                        Zip <span class="required"></span>
+                                    </label>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="zip" name="zipWatch" ng-model="Zip" validator="zipFormatter" valid-method="blur" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
+                                        <button class="btn btn-default" ng-click="editUserProfileCancel()">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="saveUserProfile(editUserProfile)"> OK </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

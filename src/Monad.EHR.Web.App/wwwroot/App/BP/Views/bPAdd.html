@@ -1,0 +1,61 @@
+<div class="row" ng-controller="bPController" ng-init="initializeController()" ng-cloak>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <!-- home form blocks content is added here -->
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Add New BP<!--<small>different form elements</small>--></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" name="AddBP" novalidate>
+                            <table style="width:100%">
+                                <tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="systolic">
+        Systolic  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "Number" min="0" id="systolic" name = "systolicWatch" validator="required"   ng-model="Systolic"
+                        valid-method="blur"  placeholder="Systolic" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="diastolic">
+        Diastolic  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "Number" min="0" id="diastolic" name = "diastolicWatch" validator="required"   ng-model="Diastolic"
+                        valid-method="blur"  placeholder="Diastolic" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">
+        Date  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="date" name = "dateWatch" validator="required"   ng-model="Date"
+                        valid-method="blur"  placeholder="Date" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr>
+                            </table>
+                           
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
+                                    <button class="btn btn-default" ng-click="formCancel()">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="addBP(AddBP)"> OK </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

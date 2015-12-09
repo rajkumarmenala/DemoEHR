@@ -1,0 +1,53 @@
+<div class="row" ng-controller="patientHeightController" ng-init="initializeController()" ng-cloak>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>View PatientHeight</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+
+                    <table st-table="PatientHeightList = $scope.getPatientHeights()" class="table table-striped projects">
+                        <thead>
+                            <tr>
+                                <th> Height </th>
+<th> Date </th>
+
+                                <th>Modified by</th>
+                                <th>Modified date</th>
+                                <th style="width: 12%"> Action   </th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="item in PatientHeightList">
+                                <td>{{item.Height}}</td>
+<td>{{item.Date}}</td>
+
+                                <td>{{item.LastModifiedBy}}</td>
+                                <td>{{item.LastModifiedDateUtc | date}}</td>
+                                <td>
+                                    <a ng-click="viewPatientHeight(item.Id)" style="cursor: pointer"><i class="fa fa-eye control_icons"></i></a>
+                                    <a ng-click="editPatientHeight(item.Id)" style="cursor: pointer"><i class="fa fa-edit control_icons"></i></a>
+                                    <a ng-click="toggleModal(item.Id,item.Name)" style="cursor: pointer"><i class="fa fa-remove control_icons"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-9">
+                        <button class="btn btn-default" ng-click="addNewPatientHeightCancel()"><i class="fa fa-minus-circle "></i> Cancel</button>
+                        <button class="btn btn-primary" ng-click="addNewPatientHeight('addPatientHeight')"><i class="fa fa-plus-circle "></i> ADD NEW</button>
+                    </div>
+                </div>
+                <!-- home form content 2nd line starts here -->
+                <!-- Delete Confirmation -->
+                <modal visible="showModal">
+                    {{deleteDescriptionMessage}}
+                </modal>
+                <!-- End delete confirmation -->
+            </div>
+        </div>
+    </div>
+</div>

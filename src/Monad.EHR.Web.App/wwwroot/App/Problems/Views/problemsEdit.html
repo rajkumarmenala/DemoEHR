@@ -1,0 +1,49 @@
+<div class="row" ng-controller="problemsController" ng-init="initializeController()" ng-cloak>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Edit Problems</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" name="editProblems" data-parsley-validate class="form-horizontal form-label-left" novalidate>
+                            <table style="width:100%">
+                                <tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">
+        Description  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="description" validator="required"  ng-model="Description"
+             valid-method="blur" name = "descriptionWatch"  placeholder="Description" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="date">
+        Date  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="date" validator="required"  ng-model="Date"
+             valid-method="blur" name = "dateWatch"  placeholder="Date" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
+
+</td></tr>
+                            </table>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
+                                    <button class="btn btn-default" ng-click="formCancel()">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="editProblemsSaved(editProblems)"> OK </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
