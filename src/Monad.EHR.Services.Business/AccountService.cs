@@ -8,6 +8,7 @@ using Monad.EHR.Domain.Interfaces;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Services.Interface;
+using System;
 
 namespace Monad.EHR.Services.Business
 {
@@ -61,13 +62,12 @@ namespace Monad.EHR.Services.Business
                 _userService.AddUser(new ApplicationUser() { UserName = user });
 
                 var newUser = UserManager.FindByNameAsync(user).Result;
-                var resultRole = await RoleManager.FindByNameAsync("Clinician");
-                // var resultRole =  await RoleManager.FindByNameAsync("Clinician");
+
                 var userRoleResult = await UserManager.AddToRoleAsync(newUser, "Clinician");
                 if (userRoleResult.Succeeded)
                 {
                     // DONT fire this code if you  dont want activity based security
-                   
+                    var resultRole = await RoleManager.FindByNameAsync("Clinician");
 
                     var activities = _activityService.GetActivitiesByRoleId(resultRole.Id);
                     foreach (var a in activities) // loop doing one by one is slower approach though
@@ -75,7 +75,10 @@ namespace Monad.EHR.Services.Business
                         var userActivity = new UserActivity
                         {
                             ActivityID = a.Id,
-                            UserID = newUser.Id
+                            UserID = newUser.Id,
+                            CreatedDateUtc = DateTime.UtcNow,
+                            LastModifiedBy = -1,
+                            LastModifiedDateUtc =  DateTime.UtcNow
                         };
                         bool ActivityStatus = await _store.AssignActivities(userActivity, _userActivityRepository);
                     }

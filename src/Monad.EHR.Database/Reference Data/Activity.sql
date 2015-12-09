@@ -25,3 +25,14 @@ GO
 INSERT INTO [Activity]([Description],[Value] ,[CreatedDateUtc],[LastModifiedDateUtc],[LastModifiedBy])  VALUES ( N'Weight', N'Weight', GETUTCDATE(), GETUTCDATE(), -1)
 
 GO 
+
+
+--INSERT INTO [dbo].[ActivityRole]
+--           ([ActivityID]
+--           ,[RoleID]
+--           ,[CreatedDateUtc]
+--           ,[LastModifiedDateUtc]
+--           ,[LastModifiedBy])
+
+--select a.ActivityID, r.Id as RoleID, GETUTCDATE() as CreatedDateUtc, 
+--GETUTCDATE() as LastModifiedDateUtc, -1 as LastModifiedBy from Activity a , AspNetRoles r 

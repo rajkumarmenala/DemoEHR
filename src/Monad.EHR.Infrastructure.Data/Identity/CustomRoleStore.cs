@@ -20,11 +20,11 @@ namespace Monad.EHR.Infrastructure.Data.Identity
         public CustomRoleStore(CustomDBContext context, IdentityErrorDescriber describer = null) : base(context, describer) { }
     }
     
-    public class CustomRoleStore< TContext> : RoleStore<Role, TContext, string>
-        where TContext : CustomDBContext
-    {
-        public CustomRoleStore(TContext context, IdentityErrorDescriber describer = null) : base(context, describer) { }
-    }
+    //public class CustomRoleStore< TContext> : RoleStore<Role, TContext, string>
+    //    where TContext : CustomDBContext
+    //{
+    //    public CustomRoleStore(TContext context, IdentityErrorDescriber describer = null) : base(context, describer) { }
+    //}
 
     
     public class CustomRoleStore<TRole, TContext, TKey> :

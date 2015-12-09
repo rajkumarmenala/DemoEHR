@@ -1,8 +1,8 @@
-﻿INSERT INTO [AspNetRoles]([Id],[Name] ,[NormalizedName],[CreatedDateUtc],[LastModifiedDateUtc],[LastModifiedBy])  VALUES ( newid(),'Administrator' ,'Administrator' ,GETUTCDATE(), GETUTCDATE(), -1)
+﻿INSERT INTO [AspNetRoles]([Id],[Name] ,[NormalizedName])  VALUES ( newid(),'Administrator' ,'Administrator' )
 GO 
-INSERT INTO [AspNetRoles]([Id],[Name] ,[NormalizedName],[CreatedDateUtc],[LastModifiedDateUtc],[LastModifiedBy])  VALUES ( newid(),'Clinician' ,'Clinician' ,GETUTCDATE(), GETUTCDATE(), -1)
+INSERT INTO [AspNetRoles]([Id],[Name] ,[NormalizedName])  VALUES ( newid(),'Clinician' ,'Clinician' )
 GO 
-INSERT INTO [AspNetRoles]([Id],[Name] ,[NormalizedName],[CreatedDateUtc],[LastModifiedDateUtc],[LastModifiedBy])  VALUES ( newid(),'Nurse','Nurse' ,GETUTCDATE(), GETUTCDATE(), -1)
+INSERT INTO [AspNetRoles]([Id],[Name] ,[NormalizedName])  VALUES ( newid(),'Nurse','Nurse' )
 
 
 GO

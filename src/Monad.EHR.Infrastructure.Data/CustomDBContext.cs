@@ -5,7 +5,7 @@ using Monad.EHR.Domain.Entities.Identity;
 
 namespace Monad.EHR.Infrastructure.Data
 {
-    public class CustomDBContext : IdentityDbContext<User>
+    public class CustomDBContext : IdentityDbContext<User, Role, string>
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,11 +46,14 @@ namespace Monad.EHR.Infrastructure.Data
             });
 
 
-            //modelBuilder.Entity<Role>(b =>
+           
+            //modelBuilder.Entity<IdentityUser>(b =>
             //{
+            //    b.Table("User");
+            //    b.Property(u => u.Id).HasColumnName("UserID");
             //    b.HasKey(u => u.Id);
-            //    b.Property(u => u.Id).HasColumnName("RoleID");
             //});
+
             modelBuilder.Entity<UserClaim>(b =>
             {
                 b.HasKey(u => u.Id);
