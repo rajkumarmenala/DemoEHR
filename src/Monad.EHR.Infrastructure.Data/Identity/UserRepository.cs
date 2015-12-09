@@ -16,7 +16,6 @@ namespace Monad.EHR.Infrastructure.Data.Identity
         {
             _dbContext = dataContext;
             DbSet = dataContext.Set<User>();
-
         }
 
         public void Create(User entity)

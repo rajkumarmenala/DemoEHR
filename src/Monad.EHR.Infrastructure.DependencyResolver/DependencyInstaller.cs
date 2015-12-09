@@ -45,7 +45,10 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IBPRepository, BPRepository>();
             services.AddTransient<IPatientHeightRepository, PatientHeightRepository>();
             services.AddTransient<IWeightRepository, WeightRepository>();
-           
+            services.AddTransient<IActivityRepository, ActivityRepository>();
+            services.AddTransient<IUserActivityRepository, UserActivityRepository>();
+            services.AddTransient<IActivityRoleRepository, ActivityRoleRepository>();
+            services.AddTransient<IUserActivityRepository, UserActivityRepository>();
         }
 
         private static void InjectDependenciesForBL(IServiceCollection services)
@@ -59,6 +62,8 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IBPService, BPService>();
             services.AddTransient<IPatientHeightService, PatientHeightService>();
             services.AddTransient<IWeightService, WeightService>();
+            services.AddTransient<IActivityService, ActivityService>();
+            services.AddTransient<IRoleService, RoleService>();
         }
     }
 }
