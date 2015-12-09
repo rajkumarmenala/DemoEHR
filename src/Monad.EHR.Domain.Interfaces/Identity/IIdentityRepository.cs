@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace Monad.EHR.Domain.Interfaces.Identity
 {
-    public interface IIdentityRepository : IRepository<User>, IUserStore<User>, IUserPasswordStore<User>,
-         IUserSecurityStampStore<User>
+    public interface IIdentityRepository 
     {
-        Task<bool> AssignRole(UserRole userRole);
-
-        Task<bool> AssignActivities(UserActivity userActivity);
+        Task<bool> AssignActivities(UserActivity userActivity, IUserActivityRepository userActivityRepository);
     }
-}
+} 

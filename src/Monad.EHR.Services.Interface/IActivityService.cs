@@ -12,10 +12,12 @@ namespace Monad.EHR.Services.Interface
         IList<Activity> GetAllActivity();
         Activity GetActivityById(int id);
       
-        bool AddActivity(string activityId, int roleId, string description, string value, string createdBy);
+        bool AddActivity(string activityId, string roleId, string description, string value, string createdBy);
 
-        IList<Activity> GetActivitiesByRoleId(int roleId);
-       
-       IEnumerable<Activity> GetActivitiesByUserId(int userId);
+        IList<Activity> GetActivitiesByRoleId(string roleId);
+       //IList<Activity> GetActivitiesByRoleName(string roleName);
+
+
+        IEnumerable<Activity> GetActivitiesByUserId(string userId);
     }
 }

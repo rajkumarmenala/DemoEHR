@@ -1,10 +1,11 @@
 CREATE TABLE [dbo].[AspNetRoles](
   [Id] [nvarchar](128) NOT NULL,
   [Name] [nvarchar](256) NOT NULL,
-  [Value] [varchar](50) NOT NULL,
+  [ConcurrencyStamp] nvarchar(max),
+  [NormalizedName] nvarchar(max),
   [CreatedDateUtc] DATETIME  NOT NULL DEFAULT GETUTCDATE(),
-	[LastModifiedDateUtc] DATETIME  NOT NULL DEFAULT GETUTCDATE(),
-	[LastModifiedBy] INT  NOT NULL,
+  [LastModifiedDateUtc] DATETIME  NOT NULL DEFAULT GETUTCDATE(),
+  [LastModifiedBy] INT  NOT NULL,
  CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
 (
   [Id] ASC
@@ -12,3 +13,4 @@ CREATE TABLE [dbo].[AspNetRoles](
 )
 
 GO
+

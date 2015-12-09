@@ -10,29 +10,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
-using System.Threading;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Domain.Interfaces.Identity;
-using Monad.EHR.Infrastructure.Data;
+using Monad.EHR.Domain.Interfaces;
 
 namespace Monad.EHR.Infrastructure.Data.Identity
 {
-    public class CustomUserStore : CustomUserStore<IdentityRole, DbContext>
+    public class CustomUserStore : CustomUserStore<CustomDBContext>
     {
-        public CustomUserStore(DbContext context, IdentityErrorDescriber describer = null) : base(context, describer) { }
+        public CustomUserStore(CustomDBContext context, IdentityErrorDescriber describer = null) : base(context, describer) { }
     }
 
 
-    public class CustomUserStore<TRole, TContext> : CustomUserStore<User, TRole, TContext, string>
-        where TRole : IdentityRole<string>, new()
-        where TContext : DbContext
+    public class CustomUserStore< TContext> : CustomUserStore<User, Role, TContext, string>
+        where TContext : CustomDBContext
     {
         public CustomUserStore(TContext context, IdentityErrorDescriber describer = null) : base(context, describer) { }
     }
 
 
-    public class CustomUserStore<TUser, TRole, TContext, TKey> :
+    public class CustomUserStore<TUser, TRole, TContext, TKey> : IIdentityRepository,
         IUserLoginStore<TUser>,
         IUserRoleStore<TUser>,
         IUserClaimStore<TUser>,
@@ -784,6 +782,13 @@ namespace Monad.EHR.Infrastructure.Data.Identity
                 return await query.ToListAsync(cancellationToken);
             }
             return new List<TUser>();
+        }
+
+      
+        public Task<bool> AssignActivities(UserActivity userActivity, IUserActivityRepository userActivityRepository)
+        {
+            userActivityRepository.Create(userActivity);
+            return Task.FromResult<bool>(true);
         }
     }
 }

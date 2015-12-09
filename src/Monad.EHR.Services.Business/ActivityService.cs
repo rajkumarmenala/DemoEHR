@@ -12,9 +12,12 @@ namespace Monad.EHR.Services.Business
     {
 
         private IActivityRepository _repository;
-        public ActivityService(IActivityRepository repository)
+        private IActivityRoleRepository _activityRoleRepository;
+
+        public ActivityService(IActivityRepository repository, IActivityRoleRepository activityRoleRepository)
         {
             _repository = repository;
+            _activityRoleRepository = activityRoleRepository;
         }
 
         public void AddActivity(Activity activity)
@@ -25,7 +28,7 @@ namespace Monad.EHR.Services.Business
             _repository.Create(activity);
         }
 
-        public bool AddActivity(string activityId, int roleId, string description, string value, string createdBy)
+        public bool AddActivity(string activityId, string roleId, string description, string value, string createdBy)
         {
             throw new NotImplementedException();
         }
@@ -43,12 +46,27 @@ namespace Monad.EHR.Services.Business
             _repository.Update(activity);
         }
 
-        public IList<Activity> GetActivitiesByRoleId(int roleId)
+        //public IList<Activity> GetActivitiesByRoleName(string roleName)
+        //{
+        //    var query = from r in _roleRepository.GetAll()
+        //                join arr in _activityRoleRepository.GetAll() on r.Id equals arr.RoleID
+        //                join a in _repository.GetAll() on arr.ActivityID equals a.Id
+        //                where string.Equals(r.Name, roleName)
+        //                select a;
+        //    return query.ToList();
+        //}
+
+
+        public IList<Activity> GetActivitiesByRoleId(string roleId)
         {
-            throw new NotImplementedException();
+            var query = from arr in _activityRoleRepository.GetAll()
+            join a in _repository.GetAll() on arr.ActivityID equals a.Id
+            where string.Equals(arr.RoleID, roleId)
+            select a;
+            return query.ToList();
         }
 
-        public IEnumerable<Activity> GetActivitiesByUserId(int userId)
+        public IEnumerable<Activity> GetActivitiesByUserId(string userId)
         {
             throw new NotImplementedException();
         }

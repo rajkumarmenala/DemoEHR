@@ -11,6 +11,7 @@ using Monad.EHR.Infrastructure.Data;
 using Monad.EHR.Infrastructure.Data.Identity;
 using Monad.EHR.Services.Business;
 using Monad.EHR.Services.Interface;
+using Monad.EHR.Domain.Interfaces.Identity;
 
 namespace Monad.EHR.Infrastructure.DependencyResolver
 {
@@ -29,12 +30,12 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
               .AddSqlServer()
               .AddDbContext<CustomDBContext>(options => options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"]));
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, Role>()
                    .AddEntityFrameworkStores<CustomDBContext>()
                    .AddDefaultTokenProviders();
 
             services.AddTransient<IUserStore<User>, CustomUserStore>();
-            services.AddTransient<IRoleRepository, RoleRepository>();
+           // services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IUserClaimRepository, UserClaimRepository>();
             services.AddTransient<IApplicationUserRepository, ApplicationUserRepository>();
 
@@ -49,6 +50,8 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IUserActivityRepository, UserActivityRepository>();
             services.AddTransient<IActivityRoleRepository, ActivityRoleRepository>();
             services.AddTransient<IUserActivityRepository, UserActivityRepository>();
+            services.AddTransient<IIdentityRepository, CustomUserStore>();
+
         }
 
         private static void InjectDependenciesForBL(IServiceCollection services)
@@ -63,7 +66,7 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IPatientHeightService, PatientHeightService>();
             services.AddTransient<IWeightService, WeightService>();
             services.AddTransient<IActivityService, ActivityService>();
-            services.AddTransient<IRoleService, RoleService>();
+            //services.AddTransient<IRoleService, RoleService>();
         }
     }
 }
