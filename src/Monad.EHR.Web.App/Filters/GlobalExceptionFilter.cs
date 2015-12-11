@@ -1,5 +1,5 @@
 using Microsoft.AspNet.Mvc;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNet.Mvc.Filters;
 using Monad.EHR.Common.Logger;
 

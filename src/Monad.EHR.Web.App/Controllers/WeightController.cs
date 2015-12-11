@@ -3,18 +3,19 @@ using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    public class WeightController:Controller
+    public class WeightController : Controller
     {
         private IWeightService _weightService;
         public WeightController(IWeightService weightService)
         {
             _weightService = weightService;
         }
-       
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -26,8 +27,8 @@ namespace Monad.EHR.Web.App.Controllers
                 var weight = new Weight
                 {
                     Date = model.Date,
-Wt = model.Wt,
-PatientID = model.PatientID,
+                    Wt = model.Wt,
+                    PatientID = model.PatientID,
 
                     CreatedDateUtc = System.DateTime.UtcNow,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
@@ -48,12 +49,12 @@ PatientID = model.PatientID,
             {
                 var weight = new Weight
                 {
-                    Id = model.Id,   
-					Date = model.Date,
-Wt = model.Wt,
-PatientID = model.PatientID,
+                    Id = model.Id,
+                    Date = model.Date,
+                    Wt = model.Wt,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -72,11 +73,11 @@ PatientID = model.PatientID,
                 var weight = new Weight
                 {
                     Id = model.Id,
-                   	Date = model.Date,
-Wt = model.Wt,
-PatientID = model.PatientID,
+                    Date = model.Date,
+                    Wt = model.Wt,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -85,7 +86,7 @@ PatientID = model.PatientID,
             return new HttpStatusCodeResult(200);
         }
 
-		[HttpGet]
+        [HttpGet]
         [Route("GetAllWeights")]
         public IEnumerable<Weight> GetAllWeights()
         {
@@ -99,8 +100,8 @@ PatientID = model.PatientID,
             return _weightService.GetWeightById(weightId);
         }
 
-		
-		[HttpGet]
+
+        [HttpGet]
         [Route("GetWeightForPatient")]
         public IEnumerable<Weight> GetWeightForPatient(int patientId)
         {

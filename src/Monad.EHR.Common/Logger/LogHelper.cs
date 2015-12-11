@@ -1,4 +1,4 @@
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace Monad.EHR.Common.Logger
 {

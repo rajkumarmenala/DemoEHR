@@ -1,6 +1,6 @@
 using Monad.EHR.Common.Logger;
 using Microsoft.AspNet.Builder;
-using Microsoft.Framework.Logging;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
 using System.Linq;

@@ -3,18 +3,19 @@ using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    public class ProblemsController:Controller
+    public class ProblemsController : Controller
     {
         private IProblemsService _problemsService;
         public ProblemsController(IProblemsService problemsService)
         {
             _problemsService = problemsService;
         }
-       
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -26,8 +27,8 @@ namespace Monad.EHR.Web.App.Controllers
                 var problems = new Problems
                 {
                     Description = model.Description,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
                     CreatedDateUtc = System.DateTime.UtcNow,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
@@ -48,12 +49,12 @@ PatientID = model.PatientID,
             {
                 var problems = new Problems
                 {
-                    Id = model.Id,   
-					Description = model.Description,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Id = model.Id,
+                    Description = model.Description,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -72,11 +73,11 @@ PatientID = model.PatientID,
                 var problems = new Problems
                 {
                     Id = model.Id,
-                   	Description = model.Description,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Description = model.Description,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -85,7 +86,7 @@ PatientID = model.PatientID,
             return new HttpStatusCodeResult(200);
         }
 
-		[HttpGet]
+        [HttpGet]
         [Route("GetAllProblemss")]
         public IEnumerable<Problems> GetAllProblemss()
         {
@@ -99,8 +100,8 @@ PatientID = model.PatientID,
             return _problemsService.GetProblemsById(problemsId);
         }
 
-		
-		[HttpGet]
+
+        [HttpGet]
         [Route("GetProblemsForPatient")]
         public IEnumerable<Problems> GetProblemsForPatient(int patientId)
         {

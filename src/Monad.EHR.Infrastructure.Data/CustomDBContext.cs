@@ -62,7 +62,7 @@ namespace Monad.EHR.Infrastructure.Data
 
             modelBuilder.Entity<ApplicationUser>(b =>
             {
-                b.ToSqlServerTable("User");
+                b.ToTable("User");
                 b.HasKey(u => u.Id);
             });
 

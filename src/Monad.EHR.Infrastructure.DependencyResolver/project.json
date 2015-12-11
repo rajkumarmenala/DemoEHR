@@ -5,18 +5,18 @@
     "tags": [""],
     "projectUrl": "",
     "licenseUrl": "",
-    "dependencies": {
-        "Microsoft.AspNet.Mvc": "6.0.0-beta8",
-        "EntityFramework.SqlServer": "7.0.0-beta8",
-        "EntityFramework.Commands": "7.0.0-beta8",
-        "Microsoft.AspNet.Identity": "3.0.0-beta8",
-        "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta8",
-        "Monad.EHR.Domain.Entities": "1.0.0-*",
-        "Monad.EHR.Domain.Interfaces": "1.0.0-*",
-        "Monad.EHR.Infrastructure.Data": "1.0.0-*",
-        "Monad.EHR.Services.Business": "1.0.0-*",
-        "Monad.EHR.Services.Interface": "1.0.0-*"
-    },
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "EntityFramework.Commands": "7.0.0-rc1-final",
+    "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+    "Monad.EHR.Domain.Entities": "1.0.0-*",
+    "Monad.EHR.Domain.Interfaces": "1.0.0-*",
+    "Monad.EHR.Infrastructure.Data": "1.0.0-*",
+    "Monad.EHR.Services.Business": "1.0.0-*",
+    "Monad.EHR.Services.Interface": "1.0.0-*"
+  },
     "frameworks": {
         "dnx451": {}
     }

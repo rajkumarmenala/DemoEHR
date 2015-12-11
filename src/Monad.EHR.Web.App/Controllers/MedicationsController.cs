@@ -3,18 +3,19 @@ using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    public class MedicationsController:Controller
+    public class MedicationsController : Controller
     {
         private IMedicationsService _medicationsService;
         public MedicationsController(IMedicationsService medicationsService)
         {
             _medicationsService = medicationsService;
         }
-       
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -26,10 +27,10 @@ namespace Monad.EHR.Web.App.Controllers
                 var medications = new Medications
                 {
                     Name = model.Name,
-Quantity = model.Quantity,
-BeginDate = model.BeginDate,
-EndDate = model.EndDate,
-PatientID = model.PatientID,
+                    Quantity = model.Quantity,
+                    BeginDate = model.BeginDate,
+                    EndDate = model.EndDate,
+                    PatientID = model.PatientID,
 
                     CreatedDateUtc = System.DateTime.UtcNow,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
@@ -50,14 +51,14 @@ PatientID = model.PatientID,
             {
                 var medications = new Medications
                 {
-                    Id = model.Id,   
-					Name = model.Name,
-Quantity = model.Quantity,
-BeginDate = model.BeginDate,
-EndDate = model.EndDate,
-PatientID = model.PatientID,
+                    Id = model.Id,
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    BeginDate = model.BeginDate,
+                    EndDate = model.EndDate,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -76,13 +77,13 @@ PatientID = model.PatientID,
                 var medications = new Medications
                 {
                     Id = model.Id,
-                   	Name = model.Name,
-Quantity = model.Quantity,
-BeginDate = model.BeginDate,
-EndDate = model.EndDate,
-PatientID = model.PatientID,
+                    Name = model.Name,
+                    Quantity = model.Quantity,
+                    BeginDate = model.BeginDate,
+                    EndDate = model.EndDate,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -91,7 +92,7 @@ PatientID = model.PatientID,
             return new HttpStatusCodeResult(200);
         }
 
-		[HttpGet]
+        [HttpGet]
         [Route("GetAllMedicationss")]
         public IEnumerable<Medications> GetAllMedicationss()
         {
@@ -105,8 +106,8 @@ PatientID = model.PatientID,
             return _medicationsService.GetMedicationsById(medicationsId);
         }
 
-		
-		[HttpGet]
+
+        [HttpGet]
         [Route("GetMedicationsForPatient")]
         public IEnumerable<Medications> GetMedicationsForPatient(int patientId)
         {

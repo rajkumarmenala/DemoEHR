@@ -1,10 +1,8 @@
 
-
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Domain.Interfaces;
 using Monad.EHR.Infrastructure.Data;

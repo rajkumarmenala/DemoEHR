@@ -3,18 +3,19 @@ using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    public class AddressController:Controller
+    public class AddressController : Controller
     {
         private IAddressService _addressService;
         public AddressController(IAddressService addressService)
         {
             _addressService = addressService;
         }
-       
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -26,13 +27,13 @@ namespace Monad.EHR.Web.App.Controllers
                 var address = new Address
                 {
                     Line1 = model.Line1,
-Line2 = model.Line2,
-City = model.City,
-State = model.State,
-Zip = model.Zip,
-BeginDate = model.BeginDate,
-EndDate = model.EndDate,
-PatientID = model.PatientID,
+                    Line2 = model.Line2,
+                    City = model.City,
+                    State = model.State,
+                    Zip = model.Zip,
+                    BeginDate = model.BeginDate,
+                    EndDate = model.EndDate,
+                    PatientID = model.PatientID,
 
                     CreatedDateUtc = System.DateTime.UtcNow,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
@@ -53,17 +54,17 @@ PatientID = model.PatientID,
             {
                 var address = new Address
                 {
-                    Id = model.Id,   
-					Line1 = model.Line1,
-Line2 = model.Line2,
-City = model.City,
-State = model.State,
-Zip = model.Zip,
-BeginDate = model.BeginDate,
-EndDate = model.EndDate,
-PatientID = model.PatientID,
+                    Id = model.Id,
+                    Line1 = model.Line1,
+                    Line2 = model.Line2,
+                    City = model.City,
+                    State = model.State,
+                    Zip = model.Zip,
+                    BeginDate = model.BeginDate,
+                    EndDate = model.EndDate,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -82,16 +83,16 @@ PatientID = model.PatientID,
                 var address = new Address
                 {
                     Id = model.Id,
-                   	Line1 = model.Line1,
-Line2 = model.Line2,
-City = model.City,
-State = model.State,
-Zip = model.Zip,
-BeginDate = model.BeginDate,
-EndDate = model.EndDate,
-PatientID = model.PatientID,
+                    Line1 = model.Line1,
+                    Line2 = model.Line2,
+                    City = model.City,
+                    State = model.State,
+                    Zip = model.Zip,
+                    BeginDate = model.BeginDate,
+                    EndDate = model.EndDate,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -100,7 +101,7 @@ PatientID = model.PatientID,
             return new HttpStatusCodeResult(200);
         }
 
-		[HttpGet]
+        [HttpGet]
         [Route("GetAllAddresss")]
         public IEnumerable<Address> GetAllAddresss()
         {
@@ -114,8 +115,8 @@ PatientID = model.PatientID,
             return _addressService.GetAddressById(addressId);
         }
 
-		
-		[HttpGet]
+
+        [HttpGet]
         [Route("GetAddressForPatient")]
         public IEnumerable<Address> GetAddressForPatient(int patientId)
         {

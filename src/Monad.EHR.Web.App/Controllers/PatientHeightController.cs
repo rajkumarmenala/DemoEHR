@@ -3,18 +3,19 @@ using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    public class PatientHeightController:Controller
+    public class PatientHeightController : Controller
     {
         private IPatientHeightService _patientHeightService;
         public PatientHeightController(IPatientHeightService patientHeightService)
         {
             _patientHeightService = patientHeightService;
         }
-       
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -26,8 +27,8 @@ namespace Monad.EHR.Web.App.Controllers
                 var patientHeight = new PatientHeight
                 {
                     Height = model.Height,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
                     CreatedDateUtc = System.DateTime.UtcNow,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
@@ -48,12 +49,12 @@ PatientID = model.PatientID,
             {
                 var patientHeight = new PatientHeight
                 {
-                    Id = model.Id,   
-					Height = model.Height,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Id = model.Id,
+                    Height = model.Height,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -72,11 +73,11 @@ PatientID = model.PatientID,
                 var patientHeight = new PatientHeight
                 {
                     Id = model.Id,
-                   	Height = model.Height,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Height = model.Height,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -85,7 +86,7 @@ PatientID = model.PatientID,
             return new HttpStatusCodeResult(200);
         }
 
-		[HttpGet]
+        [HttpGet]
         [Route("GetAllPatientHeights")]
         public IEnumerable<PatientHeight> GetAllPatientHeights()
         {
@@ -99,8 +100,8 @@ PatientID = model.PatientID,
             return _patientHeightService.GetPatientHeightById(patientHeightId);
         }
 
-		
-		[HttpGet]
+
+        [HttpGet]
         [Route("GetPatientHeightForPatient")]
         public IEnumerable<PatientHeight> GetPatientHeightForPatient(int patientId)
         {

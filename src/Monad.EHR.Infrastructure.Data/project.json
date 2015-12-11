@@ -6,16 +6,14 @@
   "projectUrl": "",
   "licenseUrl": "",
   "dependencies": {
-    "EntityFramework.SqlServer": "7.0.0-beta8",
-    "Microsoft.AspNet.Identity": "3.0.0-beta8",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta8",
-    "Microsoft.AspNet.Http": "1.0.0-beta8",
+    "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
     "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta8",
-    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta8",
-    "Microsoft.AspNet.Cryptography.KeyDerivation": "1.0.0-beta8",
-    "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-beta8",
-
-    "EntityFramework.Commands": "7.0.0-beta8",
+    "Microsoft.AspNet.Http": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Cryptography.KeyDerivation": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
+    "EntityFramework.Commands": "7.0.0-rc1-final",
     "Monad.EHR.Domain.Entities": "1.0.0-*",
     "Monad.EHR.Domain.Interfaces": "1.0.0-*"
   },

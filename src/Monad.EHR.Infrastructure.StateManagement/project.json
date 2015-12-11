@@ -1,16 +1,15 @@
 {
-    "version": "1.0.0-*",
-    "description": "Monad.EHR.Infrastructure.StateManagement",
-    "authors": ["Easy App Builder"],
-    "tags": [""],
-    "projectUrl": "",
-    "licenseUrl": "",
-    "dependencies": {
-        "Microsoft.AspNet.Session": "1.0.0-beta8",
-        "Microsoft.Framework.Caching.Memory": "1.0.0-beta8",
-        "Monad.EHR.Common": "1.0.0-*"
-    },
-    "frameworks": {
-        "dnx451": {}
-    }
+  "version": "1.0.0-*",
+  "description": "Monad.EHR.Infrastructure.StateManagement",
+  "authors": [ "Easy App Builder" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "Microsoft.AspNet.Session": "1.0.0-rc1-final",
+    "Monad.EHR.Common": "1.0.0-*"
+  },
+  "frameworks": {
+    "dnx451": { }
+  }
 }

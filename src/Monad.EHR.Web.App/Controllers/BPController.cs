@@ -3,18 +3,19 @@ using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    public class BPController:Controller
+    public class BPController : Controller
     {
         private IBPService _bPService;
         public BPController(IBPService bPService)
         {
             _bPService = bPService;
         }
-       
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -26,9 +27,9 @@ namespace Monad.EHR.Web.App.Controllers
                 var bP = new BP
                 {
                     Systolic = model.Systolic,
-Diastolic = model.Diastolic,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Diastolic = model.Diastolic,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
                     CreatedDateUtc = System.DateTime.UtcNow,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
@@ -49,13 +50,13 @@ PatientID = model.PatientID,
             {
                 var bP = new BP
                 {
-                    Id = model.Id,   
-					Systolic = model.Systolic,
-Diastolic = model.Diastolic,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Id = model.Id,
+                    Systolic = model.Systolic,
+                    Diastolic = model.Diastolic,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -74,12 +75,12 @@ PatientID = model.PatientID,
                 var bP = new BP
                 {
                     Id = model.Id,
-                   	Systolic = model.Systolic,
-Diastolic = model.Diastolic,
-Date = model.Date,
-PatientID = model.PatientID,
+                    Systolic = model.Systolic,
+                    Diastolic = model.Diastolic,
+                    Date = model.Date,
+                    PatientID = model.PatientID,
 
-                   // CreatedDateUtc = model.CreatedDateUtc,
+                    // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
                 };
@@ -88,7 +89,7 @@ PatientID = model.PatientID,
             return new HttpStatusCodeResult(200);
         }
 
-		[HttpGet]
+        [HttpGet]
         [Route("GetAllBPs")]
         public IEnumerable<BP> GetAllBPs()
         {
@@ -102,8 +103,8 @@ PatientID = model.PatientID,
             return _bPService.GetBPById(bPId);
         }
 
-		
-		[HttpGet]
+
+        [HttpGet]
         [Route("GetBPForPatient")]
         public IEnumerable<BP> GetBPForPatient(int patientId)
         {

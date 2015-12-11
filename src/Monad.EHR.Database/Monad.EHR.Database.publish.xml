@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
-    <TargetDatabaseName>Monad.EHR.Database</TargetDatabaseName>
+    <TargetDatabaseName>Monad.EHR1.Database</TargetDatabaseName>
     <DeployScriptFileName>Monad.EHR.Database.sql</DeployScriptFileName>
     <TargetConnectionString>Data Source=ICSEAB01\SQLEXPRESS;Persist Security Info=True;User ID=sa;Pooling=False</TargetConnectionString>
     <ScriptDatabaseOptions>True</ScriptDatabaseOptions>

@@ -1,15 +1,15 @@
 {
-    "version": "1.0.0-*",
-    "description": "Entity project",
-    "authors": ["Easy App Builder"],
-    "tags": [""],
-    "projectUrl": "",
-    "licenseUrl": "",
-    "dependencies": {
-        "Microsoft.AspNet.Identity": "3.0.0-beta8",
-        "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta8"
-    },
-    "frameworks": {
-        "dnx451": {}
-    }
+  "version": "1.0.0-*",
+  "description": "Entity project",
+  "authors": [ "Easy App Builder" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "dependencies": {
+    "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final"
+  },
+  "frameworks": {
+    "dnx451": { }
+  }
 }
