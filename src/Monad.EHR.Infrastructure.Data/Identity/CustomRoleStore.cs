@@ -28,8 +28,7 @@ namespace Monad.EHR.Infrastructure.Data.Identity
 
     
     public class CustomRoleStore<TRole, TContext, TKey> :
-        IQueryableRoleStore<TRole>,
-        IRoleClaimStore<TRole>
+        IQueryableRoleStore<TRole>
         where TRole : IdentityRole<TKey>
         where TKey : IEquatable<TKey>
         where TContext : DbContext

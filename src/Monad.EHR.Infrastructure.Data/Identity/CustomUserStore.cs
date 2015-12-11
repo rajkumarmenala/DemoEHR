@@ -33,7 +33,6 @@ namespace Monad.EHR.Infrastructure.Data.Identity
     public class CustomUserStore<TUser, TRole, TContext, TKey> : IIdentityRepository,
         IUserLoginStore<TUser>,
         IUserRoleStore<TUser>,
-        IUserClaimStore<TUser>,
         IUserPasswordStore<TUser>,
         IUserSecurityStampStore<TUser>,
         IUserEmailStore<TUser>,
