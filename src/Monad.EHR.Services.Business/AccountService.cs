@@ -18,13 +18,15 @@ namespace Monad.EHR.Services.Business
         private IIdentityRepository _store;
         private IActivityService _activityService;
         private IUserActivityRepository _userActivityRepository;
+        private ICustomUserTokenProvider _tokenProvider;
         public AccountService(UserManager<User> userManager,
             RoleManager<Role> roleMananager,
             SignInManager<User> signInManager,
             IIdentityRepository store,
             IUserActivityRepository userActivityRepository,
             IActivityService activityService,
-            IUserService userService)
+            IUserService userService, 
+            ICustomUserTokenProvider tokenProvider)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -33,6 +35,8 @@ namespace Monad.EHR.Services.Business
             _userActivityRepository = userActivityRepository;
             _activityService = activityService;
             _userService = userService;
+            _tokenProvider = tokenProvider;
+            UserManager.RegisterTokenProvider("CustomToken", _tokenProvider as IUserTokenProvider<User>);
         }
 
         public UserManager<User> UserManager { get; private set; }
@@ -44,6 +48,18 @@ namespace Monad.EHR.Services.Business
         public async Task<SignInResult> Login(string userName, string password, bool rememberMe)
         {
             return await SignInManager.PasswordSignInAsync(userName, password, rememberMe, lockoutOnFailure: false);
+         
+        }
+
+        public async Task<string> GetLoginToken(string userName, string password)
+        {
+            var user = UserManager.FindByNameAsync(userName).Result;
+            return await UserManager.GenerateUserTokenAsync(user, "CustomToken", "Token Check");
+        }
+
+        public async Task<User> GetUserForLoginToken(string token)
+        {
+            return await _tokenProvider.GetUserFromToken(token, UserManager);
         }
 
         public void LogOff()
@@ -86,5 +102,6 @@ namespace Monad.EHR.Services.Business
             }
             return result;
         }
+
     }
 }

@@ -2,11 +2,11 @@
     'use strict';
     var image = new Object();
     var userModule = angular
-      .module('userModule', ['interceptorServiceModule', 'userServiceModule', 'applicationServiceModule', 'alertsServiceModule', 'naif.base64',
+      .module('userModule', ['interceptorServiceModule','tokenHandlerServiceModule' ,'userServiceModule', 'applicationServiceModule', 'alertsServiceModule', 'naif.base64',
           'ngRoute', 'ngResource', 'ngCookies', 'ngSanitize'
           , 'validation', 'validation.rule']);
 
-    userModule.config(['$routeProvider', '$httpProvider', '$validationProvider', function ($routeProvider, $httpProvider, $validationProvider, interceptorService) {
+    userModule.config(['$routeProvider', '$httpProvider', '$validationProvider', function ($routeProvider, $httpProvider, $validationProvider, interceptorService, tokenHandlerService) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider
             .when("/userProfile", {
@@ -21,6 +21,7 @@
                 publicAccess: true,
                 sessionAccess: true
             })
+        $httpProvider.interceptors.push('tokenHandlerService');
         $httpProvider.interceptors.push('interceptorService');
 
         //Custom validation

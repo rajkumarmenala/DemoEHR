@@ -31,6 +31,8 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddIdentity<User, Role>()
                    .AddEntityFrameworkStores<CustomDBContext>()
                    .AddDefaultTokenProviders();
+
+           
             services.AddTransient<IRoleStore<Role>, CustomRoleStore>();
             services.AddTransient<IUserStore<User>, CustomUserStore>();
      
@@ -67,6 +69,7 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IWeightService, WeightService>();
             services.AddTransient<IActivityService, ActivityService>();
             //services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<ICustomUserTokenProvider, CustomUserTokenProvider>();
         }
     }
 }

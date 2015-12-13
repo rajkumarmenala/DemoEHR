@@ -7,6 +7,7 @@ using Microsoft.AspNet.Authorization;
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize()]
     public class AccountController : Controller
     {
         private IAccountService _accountService;
@@ -31,11 +32,13 @@ namespace Monad.EHR.Web.App.Controllers
 
             if (ModelState.IsValid)
             {
-
                 var result = await _accountService.Login(model.UserName, model.Password, model.RememberMe);
                 if (result.Succeeded)
                 {
+                    var token = await _accountService.GetLoginToken(model.UserName, model.Password);
+                    //var dummyUser = await _accountService.GetUserForLoginToken(token);
                     accountsWebApiModel.User.UserName = model.UserName;
+                    accountsWebApiModel.Token = token;
                     //  FormsAuthentication.SetAuthCookie(user.UserId.ToString(), createPersistentCookie: false);
                      return new ObjectResult(accountsWebApiModel);
                 }

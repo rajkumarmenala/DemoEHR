@@ -16,6 +16,8 @@ namespace Monad.EHR.Web.App.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+       
     }
 
     
@@ -45,6 +47,7 @@ namespace Monad.EHR.Web.App.Models
         {
             User = new User();
         }
+        public string Token { get; set; }
     }
 
 }

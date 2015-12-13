@@ -13,12 +13,13 @@ using Monad.EHR.Web.App.Filters;
 using Monad.EHR.Common.Logger;
 using Monad.EHR.Common.Utility;
 using Monad.EHR.Infrastructure.DependencyResolver;
+using Monad.EHR.Web.App.Middlewares;
 
 namespace Monad.EHR.Web.App
 {
     public class Startup
     {
-       private readonly ILogger _logger;
+        private readonly ILogger _logger;
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
             // Setup configuration sources.
@@ -57,11 +58,12 @@ namespace Monad.EHR.Web.App
             DependencyInstaller.InjectDependencies(services, this.Configuration);
             _logger.LogInformation("Configuring Services");
         }
-        
-         // Configure is called after ConfigureServices is called.
+
+        // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Configure the HTTP request pipeline.
+            app.Use(new TokenReaderMiddleware().Process);
             app.Use(new MessageLoggingMiddleware().Process);
             app.UseSession();
             app.UseStaticFiles()
