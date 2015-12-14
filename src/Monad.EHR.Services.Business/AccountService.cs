@@ -1,6 +1,5 @@
 using Microsoft.AspNet.Identity;
 using System.Linq;
-using System.Collections.Generic;
 
 using System.Threading.Tasks;
 using Monad.EHR.Domain.Interfaces.Identity;
@@ -8,7 +7,6 @@ using Monad.EHR.Domain.Interfaces;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Services.Interface;
-using System;
 
 namespace Monad.EHR.Services.Business
 {
@@ -25,7 +23,7 @@ namespace Monad.EHR.Services.Business
             IIdentityRepository store,
             IUserActivityRepository userActivityRepository,
             IActivityService activityService,
-            IUserService userService, 
+            IUserService userService,
             ICustomUserTokenProvider tokenProvider)
         {
             UserManager = userManager;
@@ -48,7 +46,6 @@ namespace Monad.EHR.Services.Business
         public async Task<SignInResult> Login(string userName, string password, bool rememberMe)
         {
             return await SignInManager.PasswordSignInAsync(userName, password, rememberMe, lockoutOnFailure: false);
-         
         }
 
         public async Task<string> GetLoginToken(string userName, string password)
@@ -84,24 +81,18 @@ namespace Monad.EHR.Services.Business
                 {
                     // DONT fire this code if you  dont want activity based security
                     var resultRole = await RoleManager.FindByNameAsync("Clinician");
-
+                   
+                    var actions = new string [] { "Add{0}", "Edit{0}", "Delete{0}", "GetAll{0}s","Get{0}" };
                     var activities = _activityService.GetActivitiesByRoleId(resultRole.Id);
-                    foreach (var a in activities) // loop doing one by one is slower approach though
-                    {
-                        var userActivity = new UserActivity
-                        {
-                            ActivityID = a.Id,
-                            UserID = newUser.Id,
-                            CreatedDateUtc = DateTime.UtcNow,
-                            LastModifiedBy = -1,
-                            LastModifiedDateUtc =  DateTime.UtcNow
-                        };
-                        bool ActivityStatus = await _store.AssignActivities(userActivity, _userActivityRepository);
-                    }
+                    var formActions = (from activity in activities
+                                 from action in actions
+                                select activity.Value + "." + string.Format( action, activity.Value));
+
+                    // assign claims (activities)  for current role to this user
+                    await UserManager.AddClaimsAsync(newUser, formActions.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
                 }
             }
             return result;
         }
-
     }
 }

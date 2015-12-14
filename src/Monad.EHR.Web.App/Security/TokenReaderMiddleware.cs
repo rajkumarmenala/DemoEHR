@@ -1,8 +1,9 @@
+﻿
 using Monad.EHR.Common.Logger;
 using Microsoft.AspNet.Builder;
 using Microsoft.Extensions.Logging;
 
-namespace Monad.EHR.Web.App.Middlewares
+namespace Monad.EHR.Web.App.Security
 {
     public class TokenReaderMiddleware
     {
@@ -16,7 +17,7 @@ namespace Monad.EHR.Web.App.Middlewares
                 var path = httpContext.Request.Path;
                 if (path.Value.StartsWith("/api/"))
                 {
-                    var tokenValue = request.Headers["authToken"];
+                    httpContext.Items.Add("AuthToken", request.Headers["authToken"]);
                 }
                 await next(httpContext);
             };

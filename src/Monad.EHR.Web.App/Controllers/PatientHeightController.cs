@@ -7,6 +7,7 @@ using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
+
     [Route("api/[controller]")]
     public class PatientHeightController : Controller
     {
@@ -18,8 +19,8 @@ namespace Monad.EHR.Web.App.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("AddPatientHeight")]
+        [Authorize(Policy = "TokenAuth", Roles = "PatientHeight.AddPatientHeight")]
         public IActionResult AddPatientHeight([FromBody]PatientHeightViewModel model)
         {
             if (ModelState.IsValid)
@@ -41,8 +42,8 @@ namespace Monad.EHR.Web.App.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("EditPatientHeight")]
+        [Authorize(Policy = "TokenAuth", Roles = "PatientHeight.EditPatientHeight")]
         public IActionResult EditPatientHeight([FromBody]EditPatientHeightViewModel model)
         {
             if (ModelState.IsValid)
@@ -64,8 +65,8 @@ namespace Monad.EHR.Web.App.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("DeletePatientHeight")]
+        [Authorize(Policy = "TokenAuth", Roles = "PatientHeight.DeletePatientHeight")]
         public IActionResult DeletePatientHeight([FromBody]EditPatientHeightViewModel model)
         {
             if (ModelState.IsValid)
@@ -88,6 +89,7 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAllPatientHeights")]
+        [Authorize(Policy = "TokenAuth", Roles = "PatientHeight.GetAllPatientHeights")]
         public IEnumerable<PatientHeight> GetAllPatientHeights()
         {
             return _patientHeightService.GetAllPatientHeight();
@@ -95,6 +97,8 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetPatientHeight")]
+        [Authorize(Policy = "TokenAuth", Roles = "PatientHeight.GetPatientHeight")]
+
         public PatientHeight GetPatientHeight(int patientHeightId)
         {
             return _patientHeightService.GetPatientHeightById(patientHeightId);
@@ -103,6 +107,7 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetPatientHeightForPatient")]
+        [Authorize(Policy = "TokenAuth", Roles = "PatientHeight.GetPatientHeightForPatient")]
         public IEnumerable<PatientHeight> GetPatientHeightForPatient(int patientId)
         {
             return _patientHeightService.GetAllPatientHeightByPatientId(patientId);

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
+
     [Route("api/[controller]")]
     public class UserController : Controller
     {

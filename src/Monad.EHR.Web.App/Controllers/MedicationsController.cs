@@ -7,6 +7,7 @@ using Microsoft.AspNet.Authorization;
 
 namespace Monad.EHR.Web.App.Controllers
 {
+
     [Route("api/[controller]")]
     public class MedicationsController : Controller
     {
@@ -18,8 +19,8 @@ namespace Monad.EHR.Web.App.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("AddMedications")]
+        [Authorize(Policy = "TokenAuth", Roles = "Medications.AddMedications")]
         public IActionResult AddMedications([FromBody]MedicationsViewModel model)
         {
             if (ModelState.IsValid)
@@ -45,6 +46,7 @@ namespace Monad.EHR.Web.App.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("EditMedications")]
+        [Authorize(Policy = "TokenAuth", Roles = "Medications.EditMedications")]
         public IActionResult EditMedications([FromBody]EditMedicationsViewModel model)
         {
             if (ModelState.IsValid)
@@ -57,7 +59,6 @@ namespace Monad.EHR.Web.App.Controllers
                     BeginDate = model.BeginDate,
                     EndDate = model.EndDate,
                     PatientID = model.PatientID,
-
                     // CreatedDateUtc = model.CreatedDateUtc,
                     LastModifiedDateUtc = System.DateTime.UtcNow,
                     LastModifiedBy = 1
@@ -70,6 +71,7 @@ namespace Monad.EHR.Web.App.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("DeleteMedications")]
+        [Authorize(Policy = "TokenAuth", Roles = "Medications.DeleteMedications")]
         public IActionResult DeleteMedications([FromBody]EditMedicationsViewModel model)
         {
             if (ModelState.IsValid)
@@ -94,6 +96,7 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAllMedicationss")]
+        [Authorize(Policy = "TokenAuth", Roles = "Medications.GetAllMedicationss")]
         public IEnumerable<Medications> GetAllMedicationss()
         {
             return _medicationsService.GetAllMedications();
@@ -101,6 +104,7 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetMedications")]
+        [Authorize(Policy = "TokenAuth", Roles = "Medications.GetMedications")]
         public Medications GetMedications(int medicationsId)
         {
             return _medicationsService.GetMedicationsById(medicationsId);
@@ -109,6 +113,7 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetMedicationsForPatient")]
+        [Authorize(Policy = "TokenAuth", Roles = "Medications.GetMedicationsForPatient")]
         public IEnumerable<Medications> GetMedicationsForPatient(int patientId)
         {
             return _medicationsService.GetAllMedicationsByPatientId(patientId);

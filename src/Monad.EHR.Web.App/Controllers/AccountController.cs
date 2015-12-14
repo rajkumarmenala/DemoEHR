@@ -7,7 +7,6 @@ using Microsoft.AspNet.Authorization;
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize()]
     public class AccountController : Controller
     {
         private IAccountService _accountService;

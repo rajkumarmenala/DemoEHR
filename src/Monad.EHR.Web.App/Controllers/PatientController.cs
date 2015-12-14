@@ -17,9 +17,9 @@ namespace Monad.EHR.Web.App.Controllers
         }
 
 
-        [HttpPost]
-        [AllowAnonymous]
+        [HttpPost]        
         [Route("AddPatient")]
+        [Authorize(Policy = "TokenAuth", Roles = "Patient.AddPatient")]
         public IActionResult AddPatient([FromBody]PatientViewModel model)
         {
             if (ModelState.IsValid)
@@ -44,8 +44,8 @@ namespace Monad.EHR.Web.App.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("EditPatient")]
+        [Authorize(Policy = "TokenAuth", Roles = "Patient.EditPatient")]
         public IActionResult EditPatient([FromBody]EditPatientViewModel model)
         {
             if (ModelState.IsValid)
@@ -70,8 +70,8 @@ namespace Monad.EHR.Web.App.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("DeletePatient")]
+        [Authorize(Policy = "TokenAuth", Roles = "Patient.DeletePatient")]
         public IActionResult DeletePatient([FromBody]EditPatientViewModel model)
         {
             if (ModelState.IsValid)
@@ -97,6 +97,7 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAllPatients")]
+        [Authorize(Policy = "TokenAuth", Roles = "Patient.GetAllPatients")]
         public IEnumerable<Patient> GetAllPatients()
         {
             return _patientService.GetAllPatient();
@@ -104,12 +105,11 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetPatient")]
+        [Authorize(Policy = "TokenAuth", Roles = "Patient.GetPatient")]
         public Patient GetPatient(int patientId)
         {
             return _patientService.GetPatientById(patientId);
         }
-
-
 
     }
 }
