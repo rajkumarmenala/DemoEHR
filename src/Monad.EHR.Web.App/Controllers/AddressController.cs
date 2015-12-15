@@ -8,6 +8,7 @@ using Microsoft.AspNet.Authorization;
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Policy = "TokenAuth")]
     public class AddressController : Controller
     {
         private IAddressService _addressService;
@@ -16,10 +17,8 @@ namespace Monad.EHR.Web.App.Controllers
             _addressService = addressService;
         }
 
-
         [HttpPost]
         [Route("AddAddress")]
-        [Authorize(Policy = "TokenAuth", Roles = "Address.AddAddress")]
         public IActionResult AddAddress([FromBody]AddressViewModel model)
         {
             if (ModelState.IsValid)
@@ -47,7 +46,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]
         [Route("EditAddress")]
-        [Authorize(Policy = "TokenAuth", Roles = "Address.EditAddress")]
         public IActionResult EditAddress([FromBody]EditAddressViewModel model)
         {
             if (ModelState.IsValid)
@@ -75,8 +73,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]
         [Route("DeleteAddress")]
-        [Authorize(Policy = "TokenAuth", Roles = "Address.DeleteAddress")]
-
         public IActionResult DeleteAddress([FromBody]EditAddressViewModel model)
         {
             if (ModelState.IsValid)
@@ -104,7 +100,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAllAddresss")]
-        [Authorize(Policy = "TokenAuth", Roles = "Address.GetAllAddresss")]
         public IEnumerable<Address> GetAllAddresss()
         {
             return _addressService.GetAllAddress();
@@ -112,7 +107,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAddress")]
-        [Authorize(Policy = "TokenAuth", Roles = "Address.GetAddress")]
         public Address GetAddress(int addressId)
         {
             return _addressService.GetAddressById(addressId);
@@ -120,7 +114,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAddressForPatient")]
-        [Authorize(Policy = "TokenAuth", Roles = "Address.GetAddressForPatient")]
         public IEnumerable<Address> GetAddressForPatient(int patientId)
         {
             return _addressService.GetAllAddressByPatientId(patientId);

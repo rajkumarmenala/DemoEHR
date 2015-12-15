@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-namespace Monad.EHR.Web.App.Troubleshooters
+namespace Monad.EHR.Web.App.Middlewares
 {
     public class MessageLoggingMiddleware
     {

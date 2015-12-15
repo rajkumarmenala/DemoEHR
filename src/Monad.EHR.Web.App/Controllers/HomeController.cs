@@ -1,4 +1,3 @@
-using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 
 namespace Monad.EHR.Web.App.Controllers

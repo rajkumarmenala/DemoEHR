@@ -3,7 +3,7 @@ using Monad.EHR.Common.Logger;
 using Microsoft.AspNet.Builder;
 using Microsoft.Extensions.Logging;
 
-namespace Monad.EHR.Web.App.Security
+namespace Monad.EHR.Web.App.Middlewares
 {
     public class TokenReaderMiddleware
     {

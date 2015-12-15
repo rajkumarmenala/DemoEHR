@@ -3,9 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.OptionsModel;
 using Monad.EHR.Domain.Entities.Identity;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -129,7 +127,7 @@ namespace Monad.EHR.Services.Business
                     var purp = reader.ReadString();
                     var stamp = reader.ReadString();
 
-                    var user = manager.FindByNameAsync(userName).Result;
+                    var user = manager.FindByIdAsync(userId).Result;
                     var actualUserId = await manager.GetUserIdAsync(user);
                     if (userId != actualUserId)
                     {
@@ -144,7 +142,7 @@ namespace Monad.EHR.Services.Business
                 }
             }
             // ReSharper disable once EmptyGeneralCatchClause
-            catch
+            catch (Exception ex)
             {
                 return null;
             }

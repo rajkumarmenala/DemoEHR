@@ -9,6 +9,7 @@ namespace Monad.EHR.Web.App.Controllers
 {
 
     [Route("api/[controller]")]
+    [Authorize(Policy = "TokenAuth")]
     public class ProblemsController : Controller
     {
         private IProblemsService _problemsService;
@@ -20,7 +21,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]        
         [Route("AddProblems")]
-        [Authorize(Policy = "TokenAuth", Roles = "Problems.AddProblems")]
         public IActionResult AddProblems([FromBody]ProblemsViewModel model)
         {
             if (ModelState.IsValid)
@@ -44,7 +44,6 @@ namespace Monad.EHR.Web.App.Controllers
         [HttpPost]
         
         [Route("EditProblems")]
-        [Authorize(Policy = "TokenAuth", Roles = "Problems.EditProblems")]
         public IActionResult EditProblems([FromBody]EditProblemsViewModel model)
         {
             if (ModelState.IsValid)
@@ -67,7 +66,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]
         [Route("DeleteProblems")]
-        [Authorize(Policy = "TokenAuth", Roles = "Problems.DeleteProblems")]
         public IActionResult DeleteProblems([FromBody]EditProblemsViewModel model)
         {
             if (ModelState.IsValid)
@@ -90,7 +88,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAllProblemss")]
-        [Authorize(Policy = "TokenAuth", Roles = "Problems.GetAllProblemss")]
         public IEnumerable<Problems> GetAllProblemss()
         {
             return _problemsService.GetAllProblems();
@@ -98,7 +95,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetProblems")]
-        [Authorize(Policy = "TokenAuth", Roles = "Problems.GetProblems")]
         public Problems GetProblems(int problemsId)
         {
             return _problemsService.GetProblemsById(problemsId);
@@ -107,7 +103,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetProblemsForPatient")]
-        [Authorize(Policy = "TokenAuth", Roles = "Problems.GetProblemsForPatient")]
         public IEnumerable<Problems> GetProblemsForPatient(int patientId)
         {
             return _problemsService.GetAllProblemsByPatientId(patientId);

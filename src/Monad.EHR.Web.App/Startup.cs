@@ -6,16 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.Logging;
 
-using System.Collections.Generic;
-using System.Linq;
-
 using System;
-using Monad.EHR.Web.App.Troubleshooters;
 using Monad.EHR.Web.App.Filters;
 using Monad.EHR.Common.Logger;
 using Monad.EHR.Common.Utility;
 using Monad.EHR.Infrastructure.DependencyResolver;
-using Monad.EHR.Web.App.Security;
+using Monad.EHR.Web.App.Middlewares;
+using Monad.EHR.Web.App.Policies;
 
 namespace Monad.EHR.Web.App
 {
@@ -56,15 +53,7 @@ namespace Monad.EHR.Web.App
             {
                 options.Filters.Add(new GlobalExceptionFilter());
             });
-            services.AddTransient<ITokenAuthorizationRequirement, TokenAuthorizationRequirement>();
 
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("UsefulToken", policy =>
-            //    {
-            //        policy.AddRequirements(new TokenAuthorizationRequirement());
-            //    });
-            //});
             services.AddAuthorization(auth =>
             {
                 auth.AddPolicy(TokenAuthOptions.Scheme,
@@ -84,8 +73,8 @@ namespace Monad.EHR.Web.App
             app.Use(new TokenReaderMiddleware().Process);
             app.Use(new MessageLoggingMiddleware().Process);
             app.UseSession();
-            app.UseStaticFiles()
-         .UseIdentity()
+            app.UseStaticFiles();
+            app.UseIdentity()
           .UseMvc(routes =>
          {
              routes.MapRoute(

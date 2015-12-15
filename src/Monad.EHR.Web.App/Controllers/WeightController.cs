@@ -9,6 +9,8 @@ namespace Monad.EHR.Web.App.Controllers
 {
 
     [Route("api/[controller]")]
+    [Authorize(Policy = "TokenAuth")]
+
     public class WeightController : Controller
     {
         private IWeightService _weightService;
@@ -20,7 +22,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]        
         [Route("AddWeight")]
-        [Authorize(Policy = "TokenAuth", Roles = "Weight.AddWeight")]
         public IActionResult AddWeight([FromBody]WeightViewModel model)
         {
             if (ModelState.IsValid)
@@ -43,7 +44,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]
         [Route("EditWeight")]
-        [Authorize(Policy = "TokenAuth", Roles = "Weight.EditWeight")]
         public IActionResult EditWeight([FromBody]EditWeightViewModel model)
         {
             if (ModelState.IsValid)
@@ -66,7 +66,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]
         [Route("DeleteWeight")]
-        [Authorize(Policy = "TokenAuth", Roles = "Weight.DeleteWeight")]
         public IActionResult DeleteWeight([FromBody]EditWeightViewModel model)
         {
             if (ModelState.IsValid)
@@ -89,7 +88,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAllWeights")]
-        [Authorize(Policy = "TokenAuth", Roles = "Weight.GetAllWeights")]
         public IEnumerable<Weight> GetAllWeights()
         {
             return _weightService.GetAllWeight();
@@ -97,7 +95,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetWeight")]
-        [Authorize(Policy = "TokenAuth", Roles = "Weight.GetWeight")]
         public Weight GetWeight(int weightId)
         {
             return _weightService.GetWeightById(weightId);
@@ -106,7 +103,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetWeightForPatient")]
-        [Authorize(Policy = "TokenAuth", Roles = "Weight.GetWeightForPatient")]
         public IEnumerable<Weight> GetWeightForPatient(int patientId)
         {
             return _weightService.GetAllWeightByPatientId(patientId);

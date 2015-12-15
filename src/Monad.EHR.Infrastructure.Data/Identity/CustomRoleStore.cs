@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Monad.EHR.Domain.Entities;
 using Monad.EHR.Domain.Entities.Identity;
 
 namespace Monad.EHR.Infrastructure.Data.Identity
 {
-    
+
     public class CustomRoleStore : CustomRoleStore<Role, CustomDBContext, string>
     {
         public CustomRoleStore(CustomDBContext context, IdentityErrorDescriber describer = null) : base(context, describer) { }

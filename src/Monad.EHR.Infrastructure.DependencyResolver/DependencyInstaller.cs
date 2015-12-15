@@ -35,10 +35,9 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
            
             services.AddTransient<IRoleStore<Role>, CustomRoleStore>();
             services.AddTransient<IUserStore<User>, CustomUserStore>();
-     
 
             // services.AddTransient<IRoleRepository, RoleRepository>();
-            services.AddTransient<IUserClaimRepository, UserClaimRepository>();
+            // services.AddTransient<IUserClaimRepository, UserClaimRepository>();
             services.AddTransient<IApplicationUserRepository, ApplicationUserRepository>();
 
             services.AddTransient<IPatientRepository, PatientRepository>();

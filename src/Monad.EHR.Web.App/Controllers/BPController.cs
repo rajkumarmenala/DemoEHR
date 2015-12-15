@@ -9,6 +9,8 @@ namespace Monad.EHR.Web.App.Controllers
 {
 
     [Route("api/[controller]")]
+    [Authorize(Policy = "TokenAuth")]
+
     public class BPController : Controller
     {
         private IBPService _bPService;
@@ -17,11 +19,8 @@ namespace Monad.EHR.Web.App.Controllers
             _bPService = bPService;
         }
 
-
         [HttpPost]
         [Route("AddBP")]
-        [Authorize(Policy = "TokenAuth", Roles = "BP.AddBP")]
-
         public IActionResult AddBP([FromBody]BPViewModel model)
         {
             if (ModelState.IsValid)
@@ -45,7 +44,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]
         [Route("EditBP")]
-        [Authorize(Policy = "TokenAuth", Roles = "BP.EditBP")]
         public IActionResult EditBP([FromBody]EditBPViewModel model)
         {
             if (ModelState.IsValid)
@@ -69,7 +67,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpPost]
         [Route("DeleteBP")]
-        [Authorize(Policy = "TokenAuth", Roles = "BP.DeleteBP")]
         public IActionResult DeleteBP([FromBody]EditBPViewModel model)
         {
             if (ModelState.IsValid)
@@ -93,7 +90,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetAllBPs")]
-        [Authorize(Policy = "TokenAuth", Roles = "BP.GetAllBPs")]
         public IEnumerable<BP> GetAllBPs()
         {
             return _bPService.GetAllBP();
@@ -101,7 +97,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetBP")]
-        [Authorize(Policy = "TokenAuth", Roles = "BP.GetBP")]
         public BP GetBP(int bPId)
         {
             return _bPService.GetBPById(bPId);
@@ -109,7 +104,6 @@ namespace Monad.EHR.Web.App.Controllers
 
         [HttpGet]
         [Route("GetBPForPatient")]
-        [Authorize(Policy = "TokenAuth", Roles = "BP.GetBPForPatient")]
         public IEnumerable<BP> GetBPForPatient(int patientId)
         {
             return _bPService.GetAllBPByPatientId(patientId);

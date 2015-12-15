@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Monad.EHR.Domain.Entities;
-using Monad.EHR.Domain.Entities.Identity;
+﻿using Monad.EHR.Domain.Entities;
 using System.Threading.Tasks;
 
 namespace Monad.EHR.Domain.Interfaces.Identity

@@ -1,10 +1,3 @@
-
-using System;
-using Monad.EHR.Domain.Entities.Identity;
-using Monad.EHR.Domain.Interfaces.Identity;
-using Microsoft.Data.Entity;
-using System.Linq;
-
 namespace Monad.EHR.Infrastructure.Data.Identity
 {
     //public class UserRepository : IUserRepository
