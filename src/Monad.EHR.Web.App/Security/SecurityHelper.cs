@@ -3,7 +3,6 @@ using Microsoft.AspNet.Identity;
 using Monad.EHR.Common.StateManagement;
 using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Services.Business;
-using System.Threading.Tasks;
 
 namespace Monad.EHR.Web.App.Security
 {

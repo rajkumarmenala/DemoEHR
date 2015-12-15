@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Mvc;
 using Monad.EHR.Web.App.Security;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 
 namespace Monad.EHR.Web.App.Policies
@@ -29,7 +30,7 @@ namespace Monad.EHR.Web.App.Policies
             if (TokenAuthIdentities == null ||
                 (string.Compare(retrievedUser.NormalizedUserName, context.User.Identity.Name.ToUpper()) > 0))
             {
-                context.Fail();
+                RespondUnauthorized(context, requirement);
                 return;
             }
 
@@ -38,7 +39,7 @@ namespace Monad.EHR.Web.App.Policies
             var uriClaim = context.User.Claims.Where(x => x.Type == ClaimTypes.Uri).FirstOrDefault();
             if (uriClaim == null || authHeaderClaim == null)
             {
-                context.Fail();
+                RespondUnauthorized(context, requirement);
                 return;
             }
 
@@ -53,7 +54,15 @@ namespace Monad.EHR.Web.App.Policies
             if (permission.ToUpper() == "ALLOWED")
                 context.Succeed(requirement);
             else
-                context.Fail();
+                RespondUnauthorized(context, requirement);
+        }
+
+        private void RespondUnauthorized(AuthorizationContext context, TokenAuthRequirement requirement)
+        {
+            var actionContext = context.Resource as ActionContext;
+            var httpContext = actionContext.HttpContext;
+            httpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            context.Fail();
         }
     }
 }
