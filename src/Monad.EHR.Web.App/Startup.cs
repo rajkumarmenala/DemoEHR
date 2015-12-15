@@ -69,8 +69,8 @@ namespace Monad.EHR.Web.App
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Configure the HTTP request pipeline.
-            app.UseTokenAuthAuthentication();
             app.Use(new TokenReaderMiddleware().Process);
+            app.UseTokenAuthAuthentication();
             app.Use(new MessageLoggingMiddleware().Process);
             app.UseSession();
             app.UseStaticFiles();

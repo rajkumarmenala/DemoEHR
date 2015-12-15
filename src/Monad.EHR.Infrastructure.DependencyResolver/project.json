@@ -15,7 +15,9 @@
     "Monad.EHR.Domain.Interfaces": "1.0.0-*",
     "Monad.EHR.Infrastructure.Data": "1.0.0-*",
     "Monad.EHR.Services.Business": "1.0.0-*",
-    "Monad.EHR.Services.Interface": "1.0.0-*"
+    "Monad.EHR.Services.Interface": "1.0.0-*",
+    "Monad.EHR.Infrastructure.StateManagement": "1.0.0-*"
+
   },
     "frameworks": {
         "dnx451": {}

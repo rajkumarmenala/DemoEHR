@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Http.Authentication;
+using Monad.EHR.Common.StateManagement;
 using Monad.EHR.Web.App.Security;
 using System.Net;
 using System.Security.Claims;
@@ -19,7 +20,8 @@ namespace Monad.EHR.Web.App.Policies
             if (!authenticationRequired)
                 return GetSuccessfulResult(authHeader, path);
 
-            var retrievedUser = SecurityHelper.GetUser(this.Context);
+            var retrievedUser = SecurityHelper.GetUser(this.Context); // get the cached object
+
             if (retrievedUser == null)
             {
                 this.Context.Response.StatusCode = (int)HttpStatusCode.Forbidden;

@@ -10,6 +10,8 @@ using Monad.EHR.Infrastructure.Data.Identity;
 using Monad.EHR.Services.Business;
 using Monad.EHR.Services.Interface;
 using Monad.EHR.Domain.Interfaces.Identity;
+using Monad.EHR.Common.StateManagement;
+using Monad.EHR.Infrastructure.StateManagement.Cache.Providers;
 
 namespace Monad.EHR.Infrastructure.DependencyResolver
 {
@@ -19,6 +21,7 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
         {
             InjectDependenciesForDAL(services, configuration);
             InjectDependenciesForBL(services);
+            services.AddSingleton<ICacheProvider, InMemoryCache>();
         }
 
         private static void InjectDependenciesForDAL(IServiceCollection services, IConfiguration configuration)

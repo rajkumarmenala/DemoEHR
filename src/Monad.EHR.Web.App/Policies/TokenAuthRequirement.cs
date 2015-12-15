@@ -26,12 +26,12 @@ namespace Monad.EHR.Web.App.Policies
 
             // grab the identity for the TokenAuth authentication
             var TokenAuthIdentities = context.User.Identities.Where(x => x.AuthenticationType == TokenAuthOptions.Scheme).FirstOrDefault();
-            //if (TokenAuthIdentities == null ||
-            //    (string.Compare(retrievedUser.Result.NormalizedUserName, context.User.Identity.Name.ToUpper()) > 0))
-            //{
-            //    context.Fail();
-            //    return;
-            //}
+            if (TokenAuthIdentities == null ||
+                (string.Compare(retrievedUser.NormalizedUserName, context.User.Identity.Name.ToUpper()) > 0))
+            {
+                context.Fail();
+                return;
+            }
 
             // grab the authentication header and uri types for our identity
             var authHeaderClaim = TokenAuthIdentities.Claims.Where(x => x.Type == ClaimTypes.Authentication).FirstOrDefault();
