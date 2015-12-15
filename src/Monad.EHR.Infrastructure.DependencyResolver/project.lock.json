@@ -899,6 +899,27 @@
           "lib/net451/Microsoft.AspNet.Routing.dll": {}
         }
       },
+      "Microsoft.AspNet.Session/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.AspNet.Session.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.AspNet.Session.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -1044,6 +1065,46 @@
         },
         "runtime": {
           "lib/net451/Microsoft.Extensions.Caching.Memory.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.Redis/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "StackExchange.Redis.StrongName": "1.0.333"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.Extensions.Caching.Redis.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.Caching.Redis.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.SqlServer/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Data"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.Extensions.Caching.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.Caching.SqlServer.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration/1.0.0-rc1-final": {
@@ -1410,6 +1471,17 @@
           "Monad.EHR.Domain.Interfaces": "1.0.0"
         }
       },
+      "Monad.EHR.Infrastructure.StateManagement/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "Microsoft.AspNet.Session": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Redis": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.SqlServer": "1.0.0-rc1-final",
+          "Monad.EHR.Common": "1.0.0"
+        }
+      },
       "Monad.EHR.Services.Business/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
@@ -1445,6 +1517,15 @@
         },
         "runtime": {
           "lib/net45/Remotion.Linq.dll": {}
+        }
+      },
+      "StackExchange.Redis.StrongName/1.0.333": {
+        "type": "package",
+        "compile": {
+          "lib/net45/StackExchange.Redis.StrongName.dll": {}
+        },
+        "runtime": {
+          "lib/net45/StackExchange.Redis.StrongName.dll": {}
         }
       },
       "System.Collections/4.0.0": {
@@ -2547,6 +2628,27 @@
           "lib/net451/Microsoft.AspNet.Routing.dll": {}
         }
       },
+      "Microsoft.AspNet.Session/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.AspNet.Session.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.AspNet.Session.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -2692,6 +2794,46 @@
         },
         "runtime": {
           "lib/net451/Microsoft.Extensions.Caching.Memory.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.Redis/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "StackExchange.Redis.StrongName": "1.0.333"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.Extensions.Caching.Redis.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.Caching.Redis.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.SqlServer/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Data"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.Extensions.Caching.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.Caching.SqlServer.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration/1.0.0-rc1-final": {
@@ -3058,6 +3200,17 @@
           "Monad.EHR.Domain.Interfaces": "1.0.0"
         }
       },
+      "Monad.EHR.Infrastructure.StateManagement/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "Microsoft.AspNet.Session": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Redis": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.SqlServer": "1.0.0-rc1-final",
+          "Monad.EHR.Common": "1.0.0"
+        }
+      },
       "Monad.EHR.Services.Business/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
@@ -3093,6 +3246,15 @@
         },
         "runtime": {
           "lib/net45/Remotion.Linq.dll": {}
+        }
+      },
+      "StackExchange.Redis.StrongName/1.0.333": {
+        "type": "package",
+        "compile": {
+          "lib/net45/StackExchange.Redis.StrongName.dll": {}
+        },
+        "runtime": {
+          "lib/net45/StackExchange.Redis.StrongName.dll": {}
         }
       },
       "System.Collections/4.0.0": {
@@ -4195,6 +4357,27 @@
           "lib/net451/Microsoft.AspNet.Routing.dll": {}
         }
       },
+      "Microsoft.AspNet.Session/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.AspNet.Session.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.AspNet.Session.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {
         "type": "package",
         "dependencies": {
@@ -4340,6 +4523,46 @@
         },
         "runtime": {
           "lib/net451/Microsoft.Extensions.Caching.Memory.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.Redis/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+          "StackExchange.Redis.StrongName": "1.0.333"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.Extensions.Caching.Redis.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.Caching.Redis.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.SqlServer/1.0.0-rc1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0-rc1-final",
+          "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Data"
+        ],
+        "compile": {
+          "lib/net451/Microsoft.Extensions.Caching.SqlServer.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Microsoft.Extensions.Caching.SqlServer.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration/1.0.0-rc1-final": {
@@ -4706,6 +4929,17 @@
           "Monad.EHR.Domain.Interfaces": "1.0.0"
         }
       },
+      "Monad.EHR.Infrastructure.StateManagement/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1",
+        "dependencies": {
+          "Microsoft.AspNet.Session": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.Redis": "1.0.0-rc1-final",
+          "Microsoft.Extensions.Caching.SqlServer": "1.0.0-rc1-final",
+          "Monad.EHR.Common": "1.0.0"
+        }
+      },
       "Monad.EHR.Services.Business/1.0.0": {
         "type": "project",
         "framework": "DNX,Version=v4.5.1",
@@ -4741,6 +4975,15 @@
         },
         "runtime": {
           "lib/net45/Remotion.Linq.dll": {}
+        }
+      },
+      "StackExchange.Redis.StrongName/1.0.333": {
+        "type": "package",
+        "compile": {
+          "lib/net45/StackExchange.Redis.StrongName.dll": {}
+        },
+        "runtime": {
+          "lib/net45/StackExchange.Redis.StrongName.dll": {}
         }
       },
       "System.Collections/4.0.0": {
@@ -4963,6 +5206,10 @@
     "Monad.EHR.Infrastructure.Data/1.0.0": {
       "type": "project",
       "path": "../Monad.EHR.Infrastructure.Data/project.json"
+    },
+    "Monad.EHR.Infrastructure.StateManagement/1.0.0": {
+      "type": "project",
+      "path": "../Monad.EHR.Infrastructure.StateManagement/project.json"
     },
     "Monad.EHR.Services.Business/1.0.0": {
       "type": "project",
@@ -5614,6 +5861,20 @@
         "Microsoft.AspNet.Routing.nuspec"
       ]
     },
+    "Microsoft.AspNet.Session/1.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "nMImkPMx/z4YL/bCBaTywQZD28sg6IvWMRckzY4hMZuhhRWr4z3HHYgORCaKbJQH3nJkfL6rb+TpmWobN9gKpw==",
+      "files": [
+        "lib/dotnet5.4/Microsoft.AspNet.Session.dll",
+        "lib/dotnet5.4/Microsoft.AspNet.Session.xml",
+        "lib/net451/Microsoft.AspNet.Session.dll",
+        "lib/net451/Microsoft.AspNet.Session.xml",
+        "Microsoft.AspNet.Session.1.0.0-rc1-final.nupkg",
+        "Microsoft.AspNet.Session.1.0.0-rc1-final.nupkg.sha512",
+        "Microsoft.AspNet.Session.nuspec"
+      ]
+    },
     "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {
       "type": "package",
       "serviceable": true,
@@ -5744,6 +6005,32 @@
         "Microsoft.Extensions.Caching.Memory.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Caching.Memory.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Caching.Memory.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Caching.Redis/1.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "hglppL4LyCpYoKMsef1f1ONbFv+aHPlvoEXJFWU1TNh16T9GmZqdc4K9Z8F7vsDe3Gtmtd6CWcs3XnNkLlbKcQ==",
+      "files": [
+        "lib/net451/Microsoft.Extensions.Caching.Redis.dll",
+        "lib/net451/Microsoft.Extensions.Caching.Redis.xml",
+        "Microsoft.Extensions.Caching.Redis.1.0.0-rc1-final.nupkg",
+        "Microsoft.Extensions.Caching.Redis.1.0.0-rc1-final.nupkg.sha512",
+        "Microsoft.Extensions.Caching.Redis.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Caching.SqlServer/1.0.0-rc1-final": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "KI0O+mdjUaxt2pQ8JLPgcZTnM2Yjd3qtCQ1R+wr/F1WGchQJj9owVxuAEpllb18aps4UdYgd4iLMdEyd8LUhEA==",
+      "files": [
+        "lib/dotnet5.4/Microsoft.Extensions.Caching.SqlServer.dll",
+        "lib/dotnet5.4/Microsoft.Extensions.Caching.SqlServer.xml",
+        "lib/net451/Microsoft.Extensions.Caching.SqlServer.dll",
+        "lib/net451/Microsoft.Extensions.Caching.SqlServer.xml",
+        "Microsoft.Extensions.Caching.SqlServer.1.0.0-rc1-final.nupkg",
+        "Microsoft.Extensions.Caching.SqlServer.1.0.0-rc1-final.nupkg.sha512",
+        "Microsoft.Extensions.Caching.SqlServer.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration/1.0.0-rc1-final": {
@@ -6075,6 +6362,22 @@
         "Remotion.Linq.2.0.1.nupkg",
         "Remotion.Linq.2.0.1.nupkg.sha512",
         "Remotion.Linq.nuspec"
+      ]
+    },
+    "StackExchange.Redis.StrongName/1.0.333": {
+      "type": "package",
+      "sha512": "x7nznHzVi2+xkQFwyAqbDme1uwfYAsbmA8VYzlF7Ni+HWhYkDTHcy2tF5n0svJlhVb6ya/X77hjJF0TFHlcpTQ==",
+      "files": [
+        "lib/net40/StackExchange.Redis.StrongName.dll",
+        "lib/net40/StackExchange.Redis.StrongName.dll.config",
+        "lib/net40/StackExchange.Redis.StrongName.pdb",
+        "lib/net40/StackExchange.Redis.StrongName.xml",
+        "lib/net45/StackExchange.Redis.StrongName.dll",
+        "lib/net45/StackExchange.Redis.StrongName.pdb",
+        "lib/net45/StackExchange.Redis.StrongName.xml",
+        "StackExchange.Redis.StrongName.1.0.333.nupkg",
+        "StackExchange.Redis.StrongName.1.0.333.nupkg.sha512",
+        "StackExchange.Redis.StrongName.nuspec"
       ]
     },
     "System.Collections/4.0.0": {
@@ -6838,7 +7141,8 @@
       "Monad.EHR.Domain.Interfaces >= 1.0.0-*",
       "Monad.EHR.Infrastructure.Data >= 1.0.0-*",
       "Monad.EHR.Services.Business >= 1.0.0-*",
-      "Monad.EHR.Services.Interface >= 1.0.0-*"
+      "Monad.EHR.Services.Interface >= 1.0.0-*",
+      "Monad.EHR.Infrastructure.StateManagement >= 1.0.0-*"
     ],
     "DNX,Version=v4.5.1": []
   }

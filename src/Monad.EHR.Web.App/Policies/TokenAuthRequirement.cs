@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
+using Monad.EHR.Common.StateManagement;
 using Monad.EHR.Web.App.Security;
 using System.Linq;
 using System.Net;
@@ -15,6 +16,7 @@ namespace Monad.EHR.Web.App.Policies
             var httpContext = actionContext.HttpContext;
             var request = httpContext.Request;
             var path = request.Path;
+            var cacheInstance = httpContext.ApplicationServices.GetService(typeof(ICacheProvider)) as ICacheProvider;
 
             bool authorizationRequired = !(SecurityHelper.SkipRequired(path));
             if (!authorizationRequired)
@@ -43,15 +45,20 @@ namespace Monad.EHR.Web.App.Policies
                 return;
             }
 
-            var claimComponents = uriClaim.Value.Split('/');
-            var controllerName = claimComponents[2];
-            var actionName = claimComponents[3];
+            var claimComponents = uriClaim.Value.Split('/').Skip(2).ToList();
+            var controllerName = claimComponents[0];
+            var actionName = claimComponents[1];
             var tobeMathedClaim = controllerName + "." + actionName;
+            var currentCacheKey = string.Format("User-{0}-{1}", context.User.GetUserId(), tobeMathedClaim);
 
-            var permission = context.User.Claims.Where(x => string.Equals(x.Type, tobeMathedClaim, System.StringComparison.InvariantCultureIgnoreCase))
-                .Select(y => y.Value).SingleOrDefault();
+            if (!cacheInstance.Contains(currentCacheKey))
+            {
+                var permission = context.User.Claims.Where(x => string.Equals(x.Type, tobeMathedClaim, System.StringComparison.InvariantCultureIgnoreCase))
+                                .Select(y => y.Value).SingleOrDefault();
+                cacheInstance.Set<string>(currentCacheKey, permission,300);// set for 5 minutes
+            }
 
-            if (permission.ToUpper() == "ALLOWED")
+            if (cacheInstance.Get<string>(currentCacheKey).ToUpper() == "ALLOWED")
                 context.Succeed(requirement);
             else
                 RespondUnauthorized(context, requirement);

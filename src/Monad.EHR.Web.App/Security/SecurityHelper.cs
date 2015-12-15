@@ -18,7 +18,7 @@ namespace Monad.EHR.Web.App.Security
             var authToken = httpContext.Items["AuthToken"].ToString();
             var userManager = httpContext.ApplicationServices.GetService(typeof(UserManager<User>)) as UserManager<User>;
             var tokenProvider = httpContext.ApplicationServices.GetService(typeof(ICustomUserTokenProvider)) as CustomUserTokenProvider;
-            var userKey = string.Format("User-0", authToken);
+            var userKey = string.Format("User-{0}", authToken);
             if (!cacheInstance.Contains(userKey))
             {
                 var user = tokenProvider.GetUserFromToken(authToken, userManager);
