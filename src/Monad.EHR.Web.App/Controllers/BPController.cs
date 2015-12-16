@@ -4,6 +4,7 @@ using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNet.Authorization;
+using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
@@ -25,17 +26,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bP = new BP
-                {
-                    Systolic = model.Systolic,
-                    Diastolic = model.Diastolic,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    CreatedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var bP = Mapper.Map<BPViewModel, BP>(model);
+                bP.CreatedDateUtc = System.DateTime.UtcNow;
+                bP.LastModifiedDateUtc = System.DateTime.UtcNow;
+                bP.LastModifiedBy = 1;
                 _bPService.AddBP(bP);
             }
             return new HttpStatusCodeResult(200);
@@ -48,18 +42,9 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bP = new BP
-                {
-                    Id = model.Id,
-                    Systolic = model.Systolic,
-                    Diastolic = model.Diastolic,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var bP = Mapper.Map<EditBPViewModel, BP>(model);
+                bP.LastModifiedDateUtc = System.DateTime.UtcNow;
+                bP.LastModifiedBy = 1;
                 _bPService.EditBP(bP);
             }
             return new HttpStatusCodeResult(200);
@@ -71,18 +56,7 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bP = new BP
-                {
-                    Id = model.Id,
-                    Systolic = model.Systolic,
-                    Diastolic = model.Diastolic,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var bP = Mapper.Map<EditBPViewModel, BP>(model);
                 _bPService.DeleteBP(bP);
             }
             return new HttpStatusCodeResult(200);

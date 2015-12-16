@@ -4,6 +4,7 @@ using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNet.Authorization;
+using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
@@ -24,18 +25,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var medications = new Medications
-                {
-                    Name = model.Name,
-                    Quantity = model.Quantity,
-                    BeginDate = model.BeginDate,
-                    EndDate = model.EndDate,
-                    PatientID = model.PatientID,
-
-                    CreatedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var medications = Mapper.Map<MedicationsViewModel, Medications>(model);
+                medications.CreatedDateUtc = System.DateTime.UtcNow;
+                medications.LastModifiedDateUtc = System.DateTime.UtcNow;
+                medications.LastModifiedBy = 1;
                 _medicationsService.AddMedications(medications);
             }
             return new HttpStatusCodeResult(200);
@@ -49,18 +42,9 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var medications = new Medications
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Quantity = model.Quantity,
-                    BeginDate = model.BeginDate,
-                    EndDate = model.EndDate,
-                    PatientID = model.PatientID,
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var medications = Mapper.Map<EditMedicationsViewModel, Medications>(model);
+                medications.LastModifiedDateUtc = System.DateTime.UtcNow;
+                medications.LastModifiedBy = 1;
                 _medicationsService.EditMedications(medications);
             }
             return new HttpStatusCodeResult(200);
@@ -73,19 +57,7 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var medications = new Medications
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Quantity = model.Quantity,
-                    BeginDate = model.BeginDate,
-                    EndDate = model.EndDate,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var medications = Mapper.Map<EditMedicationsViewModel, Medications>(model);
                 _medicationsService.DeleteMedications(medications);
             }
             return new HttpStatusCodeResult(200);

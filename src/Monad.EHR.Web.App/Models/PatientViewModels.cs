@@ -5,12 +5,12 @@ namespace Monad.EHR.Web.App.Models
 {
     public class PatientViewModel
     {
-         public string FirstName { get; set; }
-public string LastName { get; set; }
-public DateTime DOB { get; set; }
-public string SSN { get; set; }
-public string Email { get; set; }
-public string Phone { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime DOB { get; set; }
+        public string SSN { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
 
     }
 

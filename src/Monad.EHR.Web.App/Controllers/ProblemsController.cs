@@ -4,6 +4,7 @@ using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNet.Authorization;
+using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
@@ -25,16 +26,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var problems = new Problems
-                {
-                    Description = model.Description,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    CreatedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var problems = Mapper.Map<ProblemsViewModel, Problems>(model);
+                problems.CreatedDateUtc = System.DateTime.UtcNow;
+                problems.LastModifiedDateUtc = System.DateTime.UtcNow;
+                problems.LastModifiedBy = 1;
                 _problemsService.AddProblems(problems);
             }
             return new HttpStatusCodeResult(200);
@@ -48,17 +43,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var problems = new Problems
-                {
-                    Id = model.Id,
-                    Description = model.Description,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var problems = Mapper.Map<EditProblemsViewModel, Problems>(model);
+                problems.LastModifiedDateUtc = System.DateTime.UtcNow;
+                problems.LastModifiedBy = 1;
+                
                 _problemsService.EditProblems(problems);
             }
             return new HttpStatusCodeResult(200);
@@ -70,17 +58,7 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var problems = new Problems
-                {
-                    Id = model.Id,
-                    Description = model.Description,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var problems = Mapper.Map<EditProblemsViewModel, Problems>(model);
                 _problemsService.DeleteProblems(problems);
             }
             return new HttpStatusCodeResult(200);

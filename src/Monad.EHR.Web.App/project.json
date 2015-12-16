@@ -16,6 +16,7 @@
     "Microsoft.AspNet.Routing": "1.0.0-rc1-final",
     "Microsoft.AspNet.Mvc.WebApiCompatShim": "6.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics": "1.0.0-rc1-final",
+    "AutoMapper": "4.1.1",
     "Monad.EHR.Domain.Entities": "1.0.0-*",
     "Monad.EHR.Domain.Interfaces": "1.0.0-*",
     "Monad.EHR.Services.Interface": "1.0.0-*",

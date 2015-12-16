@@ -81,6 +81,8 @@ namespace Monad.EHR.Web.App
                    name: "default",
                    template: "{controller=Home}/{action=Index}/{id?}");
          });
+
+            AutoMapperBootStrapper.Bootstrap();
         }
     }
 

@@ -4,6 +4,7 @@ using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNet.Authorization;
+using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
@@ -26,16 +27,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var patientHeight = new PatientHeight
-                {
-                    Height = model.Height,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    CreatedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var patientHeight = Mapper.Map<PatientHeightViewModel, PatientHeight>(model);
+                patientHeight.CreatedDateUtc = System.DateTime.UtcNow;
+                patientHeight.LastModifiedDateUtc = System.DateTime.UtcNow;
+                patientHeight.LastModifiedBy = 1;
                 _patientHeightService.AddPatientHeight(patientHeight);
             }
             return new HttpStatusCodeResult(200);
@@ -48,17 +43,9 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var patientHeight = new PatientHeight
-                {
-                    Id = model.Id,
-                    Height = model.Height,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var patientHeight = Mapper.Map<EditPatientHeightViewModel, PatientHeight>(model);
+                patientHeight.LastModifiedDateUtc = System.DateTime.UtcNow;
+                patientHeight.LastModifiedBy = 1;
                 _patientHeightService.EditPatientHeight(patientHeight);
             }
             return new HttpStatusCodeResult(200);
@@ -68,19 +55,10 @@ namespace Monad.EHR.Web.App.Controllers
         [Route("DeletePatientHeight")]
         public IActionResult DeletePatientHeight([FromBody]EditPatientHeightViewModel model)
         {
+
             if (ModelState.IsValid)
             {
-                var patientHeight = new PatientHeight
-                {
-                    Id = model.Id,
-                    Height = model.Height,
-                    Date = model.Date,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var patientHeight = Mapper.Map<EditPatientHeightViewModel, PatientHeight>(model);
                 _patientHeightService.DeletePatientHeight(patientHeight);
             }
             return new HttpStatusCodeResult(200);

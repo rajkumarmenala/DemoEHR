@@ -4,6 +4,7 @@ using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNet.Authorization;
+using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
@@ -26,16 +27,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var weight = new Weight
-                {
-                    Date = model.Date,
-                    Wt = model.Wt,
-                    PatientID = model.PatientID,
-
-                    CreatedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var weight = Mapper.Map<WeightViewModel, Weight>(model);
+                weight.CreatedDateUtc = System.DateTime.UtcNow;
+                weight.LastModifiedDateUtc = System.DateTime.UtcNow;
+                weight.LastModifiedBy = 1;
                 _weightService.AddWeight(weight);
             }
             return new HttpStatusCodeResult(200);
@@ -48,17 +43,9 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var weight = new Weight
-                {
-                    Id = model.Id,
-                    Date = model.Date,
-                    Wt = model.Wt,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var weight = Mapper.Map<EditWeightViewModel, Weight>(model);
+                weight.LastModifiedDateUtc = System.DateTime.UtcNow;
+                weight.LastModifiedBy = 1;
                 _weightService.EditWeight(weight);
             }
             return new HttpStatusCodeResult(200);
@@ -70,17 +57,7 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var weight = new Weight
-                {
-                    Id = model.Id,
-                    Date = model.Date,
-                    Wt = model.Wt,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var weight = Mapper.Map<EditWeightViewModel, Weight>(model);
                 _weightService.DeleteWeight(weight);
             }
             return new HttpStatusCodeResult(200);

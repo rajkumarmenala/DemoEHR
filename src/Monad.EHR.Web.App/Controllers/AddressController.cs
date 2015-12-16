@@ -4,6 +4,7 @@ using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNet.Authorization;
+using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
@@ -23,21 +24,10 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var address = new Address
-                {
-                    Line1 = model.Line1,
-                    Line2 = model.Line2,
-                    City = model.City,
-                    State = model.State,
-                    Zip = model.Zip,
-                    BeginDate = model.BeginDate,
-                    EndDate = model.EndDate,
-                    PatientID = model.PatientID,
-
-                    CreatedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var address = Mapper.Map<AddressViewModel, Address>(model);
+                address.CreatedDateUtc = System.DateTime.UtcNow;
+                address.LastModifiedDateUtc = System.DateTime.UtcNow;
+                address.LastModifiedBy = 1;
                 _addressService.AddAddress(address);
             }
             return new HttpStatusCodeResult(200);
@@ -50,22 +40,9 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var address = new Address
-                {
-                    Id = model.Id,
-                    Line1 = model.Line1,
-                    Line2 = model.Line2,
-                    City = model.City,
-                    State = model.State,
-                    Zip = model.Zip,
-                    BeginDate = model.BeginDate,
-                    EndDate = model.EndDate,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var address = Mapper.Map<EditAddressViewModel, Address>(model);
+                address.LastModifiedDateUtc = System.DateTime.UtcNow;
+                address.LastModifiedBy = 1;
                 _addressService.EditAddress(address);
             }
             return new HttpStatusCodeResult(200);
@@ -77,22 +54,7 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var address = new Address
-                {
-                    Id = model.Id,
-                    Line1 = model.Line1,
-                    Line2 = model.Line2,
-                    City = model.City,
-                    State = model.State,
-                    Zip = model.Zip,
-                    BeginDate = model.BeginDate,
-                    EndDate = model.EndDate,
-                    PatientID = model.PatientID,
-
-                    // CreatedDateUtc = model.CreatedDateUtc,
-                    LastModifiedDateUtc = System.DateTime.UtcNow,
-                    LastModifiedBy = 1
-                };
+                var address = Mapper.Map<EditAddressViewModel, Address>(model);
                 _addressService.DeleteAddress(address);
             }
             return new HttpStatusCodeResult(200);
