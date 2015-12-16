@@ -14,14 +14,11 @@ namespace Monad.EHR.Web.App.Policies
             string authHeader = Request.Headers["Authorization"];
             authHeader = authHeader ?? "";
             string path = Request.Path.ToString() ?? "";
-            bool authenticationRequired = !(SecurityHelper.SkipRequired(path));
 
-            if (!authenticationRequired)
+            if (SecurityHelper.SkipRequired(path))
                 return GetSuccessfulResult(authHeader, path);
 
-            var retrievedUser = SecurityHelper.GetUser(this.Context); // get the cached object
-
-            if (retrievedUser == null)
+            if (SecurityHelper.GetUser(this.Context) == null)
             {
                 this.Context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
                 this.Context.Response.Headers.Add("WWW-Authenticate", string.Format("Bearer realm=\"{0}\"", 0)); //request.RequestUri.DnsSafeHost
