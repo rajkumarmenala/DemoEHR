@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Monad.EHR.Web.App.Policies
 {
-    public class TokenAuthHandler : AuthenticationHandler<TokenAuthOptions>
+    public class TokenAuthenticationHandler : AuthenticationHandler<TokenAuthOptions>
     {
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
         {

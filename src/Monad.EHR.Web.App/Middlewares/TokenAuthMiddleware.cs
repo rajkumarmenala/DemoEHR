@@ -21,7 +21,7 @@ namespace Monad.EHR.Web.App.Middlewares
 
         protected override AuthenticationHandler<TokenAuthOptions> CreateHandler()
         {
-            return new TokenAuthHandler();
+            return new TokenAuthenticationHandler();
         }
     }
 
