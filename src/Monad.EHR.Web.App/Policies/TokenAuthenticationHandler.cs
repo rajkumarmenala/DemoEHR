@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Authentication;
+using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Http.Authentication;
 using Monad.EHR.Web.App.Security;
 using System.Net;

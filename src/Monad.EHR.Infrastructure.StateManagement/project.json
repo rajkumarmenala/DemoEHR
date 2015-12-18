@@ -1,18 +1,24 @@
 {
-  "version": "1.0.0-*",
-  "description": "Monad.EHR.Infrastructure.StateManagement",
-  "authors": [ "Easy App Builder" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "dependencies": {
-    "Microsoft.AspNet.Session": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Caching.Redis": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Caching.SqlServer": "1.0.0-rc1-final",
-    "Monad.EHR.Common": "1.0.0-*"
-  },
-  "frameworks": {
-    "dnx451": { }
-  }
+    "version": "1.0.0-*",
+    "description": "Monad.EHR.Infrastructure.StateManagement",
+    "authors": ["Easy App Builder"],
+    "tags": [""],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "dependencies": {
+        "Microsoft.AspNet.Session": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Caching.Memory": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Caching.SqlServer": "1.0.0-rc1-final",
+        "Monad.EHR.Common": "1.0.0-*"
+    },
+    "frameworks": {
+        "dnx451": {}, "dnxcore50": {
+            "dependencies": {
+                "Microsoft.CSharp": "4.0.1-beta-23516",
+                "System.Linq": "4.0.1-beta-23516",
+                "System.Runtime.Numerics": "4.0.1-beta-23516",
+                "System.Collections": "4.0.10-beta-23019"
+            }
+        }
+    }
 }

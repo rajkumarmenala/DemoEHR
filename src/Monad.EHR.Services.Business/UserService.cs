@@ -1,7 +1,11 @@
 using Monad.EHR.Services.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Monad.EHR.Domain.Entities;
+using Microsoft.AspNet.Identity;
+using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Domain.Interfaces;
 
 

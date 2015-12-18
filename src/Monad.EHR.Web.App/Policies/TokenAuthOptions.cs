@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Authentication;
+using Microsoft.AspNet.Authentication;
 
 namespace Monad.EHR.Web.App.Policies
 {

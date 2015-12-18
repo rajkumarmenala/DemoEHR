@@ -1,16 +1,15 @@
+using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
+using System.Collections.Generic;
+using AutoMapper;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
-using Microsoft.AspNet.Mvc;
-using System.Collections.Generic;
-using Microsoft.AspNet.Authorization;
-using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Policy = "TokenAuth")]
-    public class AddressController : Controller
+    public class AddressController:Controller
     {
         private IAddressService _addressService;
         public AddressController(IAddressService addressService)
@@ -24,15 +23,14 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var address = Mapper.Map<AddressViewModel, Address>(model);
-                address.CreatedDateUtc = System.DateTime.UtcNow;
-                address.LastModifiedDateUtc = System.DateTime.UtcNow;
+				var address = Mapper.Map<AddressViewModel, Address>(model);
+				address.CreatedDateUtc = System.DateTime.UtcNow;
+				address.LastModifiedDateUtc = System.DateTime.UtcNow;
                 address.LastModifiedBy = 1;
                 _addressService.AddAddress(address);
             }
             return new HttpStatusCodeResult(200);
         }
-
 
         [HttpPost]
         [Route("EditAddress")]
@@ -40,8 +38,8 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var address = Mapper.Map<EditAddressViewModel, Address>(model);
-                address.LastModifiedDateUtc = System.DateTime.UtcNow;
+				var address = Mapper.Map<EditAddressViewModel, Address>(model);
+				address.LastModifiedDateUtc = System.DateTime.UtcNow;
                 address.LastModifiedBy = 1;
                 _addressService.EditAddress(address);
             }
@@ -54,13 +52,13 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var address = Mapper.Map<EditAddressViewModel, Address>(model);
+			    var address = Mapper.Map<EditAddressViewModel, Address>(model);
                 _addressService.DeleteAddress(address);
             }
             return new HttpStatusCodeResult(200);
         }
 
-        [HttpGet]
+		[HttpGet]
         [Route("GetAllAddresss")]
         public IEnumerable<Address> GetAllAddresss()
         {
@@ -74,7 +72,8 @@ namespace Monad.EHR.Web.App.Controllers
             return _addressService.GetAddressById(addressId);
         }
 
-        [HttpGet]
+		
+		[HttpGet]
         [Route("GetAddressForPatient")]
         public IEnumerable<Address> GetAddressForPatient(int patientId)
         {

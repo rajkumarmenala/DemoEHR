@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -783,12 +783,6 @@ namespace Monad.EHR.Infrastructure.Data.Identity
             }
             return new List<TUser>();
         }
-
-      
-        public Task<bool> AssignActivities(UserActivity userActivity, IUserActivityRepository userActivityRepository)
-        {
-            userActivityRepository.Create(userActivity);
-            return Task.FromResult<bool>(true);
-        }
+        
     }
 }

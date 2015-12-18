@@ -1,23 +1,25 @@
 {
-  "version": "1.0.0-*",
-  "description": "Monad.EHR.Infrastructure.Data",
-  "authors": [ "Easy App Builder" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "dependencies": {
-    "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
-    "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta8",
-    "Microsoft.AspNet.Http": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Cryptography.KeyDerivation": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-rc1-final",
-    "EntityFramework.Commands": "7.0.0-rc1-final",
-    "Monad.EHR.Domain.Entities": "1.0.0-*",
-    "Monad.EHR.Domain.Interfaces": "1.0.0-*"
-  },
-  "frameworks": {
-    "dnx451": { }
-  }
+    "version": "1.0.0-*",
+    "description": "Monad.EHR.Infrastructure.Data",
+    "authors": ["Easy App Builder"],
+    "tags": [""],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "dependencies": {
+        "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
+        "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+        "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc1-final",
+        "EntityFramework.Commands": "7.0.0-rc1-final",
+        "Monad.EHR.Domain.Entities": "1.0.0-*",
+        "Monad.EHR.Domain.Interfaces": "1.0.0-*"
+    },
+    "frameworks": {
+        "dnx451": {}, "dnxcore50": {
+            "dependencies": {
+                "Microsoft.CSharp": "4.0.1-beta-23516",
+                "System.Linq": "4.0.1-beta-23516",
+                "System.Collections": "4.0.11-beta-23516"
+            }
+        }
+    }
 }

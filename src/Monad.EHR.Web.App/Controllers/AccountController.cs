@@ -35,7 +35,6 @@ namespace Monad.EHR.Web.App.Controllers
                 if (result.Succeeded)
                 {
                     var token = await _accountService.GetLoginToken(model.UserName, model.Password);
-                    //var dummyUser = await _accountService.GetUserForLoginToken(token);
                     accountsWebApiModel.User.UserName = model.UserName;
                     accountsWebApiModel.Token = token;
                     //  FormsAuthentication.SetAuthCookie(user.UserId.ToString(), createPersistentCookie: false);
@@ -90,8 +89,13 @@ namespace Monad.EHR.Web.App.Controllers
                 if (result.Succeeded)
                 {
                     //TO DO 
+                    return new HttpStatusCodeResult(200);
                 }
-                return new HttpStatusCodeResult(200);
+                else
+                {
+                    return new ObjectResult(result.Errors);
+                }
+
             }
             return new HttpStatusCodeResult(204);
         }

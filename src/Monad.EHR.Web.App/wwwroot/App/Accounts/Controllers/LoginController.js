@@ -2,12 +2,14 @@
     'use strict';
 
     angular
-      .module('loginModule', ['interceptorServiceModule','tokenHandlerServiceModule', 'accountServiceModule', 'applicationServiceModule', 'alertsServiceModule',
+      .module('loginModule', ['interceptorServiceModule', 'tokenHandlerServiceModule', 'accountServiceModule', 'applicationServiceModule', 'alertsServiceModule',
           'validation', 'validation.rule', 'angular-loading-bar', 'ngRoute', 'ngResource', 'ngCookies', 'ngSanitize'])
+
     .config(['$httpProvider', '$validationProvider', function ($httpProvider, $validationProvider, interceptorService, tokenHandlerService) {
         $validationProvider.showSuccessMessage = false;
-        $httpProvider.interceptors.push('interceptorService');
+
         $httpProvider.interceptors.push('tokenHandlerService');
+        $httpProvider.interceptors.push('interceptorService');
 
         // custom validator for password and confirmed password comapare
         $validationProvider
@@ -26,7 +28,7 @@
     .controller("loginController", ['$scope', '$injector', '$rootScope', '$resource', 'accountsService', '$cookies', 'applicationService', 'alertsService', '$window', function ($scope, $injector, $rootScope, $resource, accountsService, $cookies, applicationService, alertsService, $window) {
         var $validationProvider = $injector.get('$validation');
 
-        $scope.initializeController = function () {  
+        $scope.initializeController = function () {
             $scope.UserName = "";
             $scope.Password = "";
             $scope.ConfirmPassword = "";
@@ -61,20 +63,18 @@
             accountsService.login(user, $scope.loginCompleted, $scope.loginError);
         }
         $scope.loginFormSubmitError = function () {
+
         }
 
         $scope.loginCompleted = function (response) {
             $scope.failedErrorMessage = "";
-           
             $scope.errorMessage = "";
             if (response.status == 200) {
                 if (response.data === "Invalid username or password.") {
                     $scope.IsLoginFailed = false;
                     $scope.failedErrorMessage = response.data;
                     $cookies.put('authToken', null);
-
                 } else {
-                  
                     $cookies.put('authToken', response.data.Token);
                     $cookies.put('currentUserName', response.data.User.UserName);
                     $cookies.put('isAuthenticated', true);

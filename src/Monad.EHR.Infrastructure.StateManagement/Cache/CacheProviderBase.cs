@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Monad.EHR.Common.StateManagement;
 
 namespace Monad.EHR.Infrastructure.StateManagement.Cache

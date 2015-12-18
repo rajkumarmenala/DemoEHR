@@ -10,6 +10,12 @@
         "Monad.EHR.Domain.Entities": "1.0.0-*"
     },
     "frameworks": {
-        "dnx451": {}
+        "dnx451": {}, "dnxcore50": {
+            "dependencies": {
+                "Microsoft.CSharp": "4.0.1-beta-23516",
+                "System.Linq": "4.0.1-beta-23516",
+                "System.Collections": "4.0.10-beta-23019"
+            }
+        }
     }
 }

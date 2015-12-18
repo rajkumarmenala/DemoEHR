@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -7,7 +7,7 @@
     <Name>Monad.EHR.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{413b7e2b-8f44-4d08-9fc6-079bdf771af8}</ProjectGuid>
+    <ProjectGuid>{5EF9F012-511F-4F6C-87C8-01B866FF07F9}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -63,44 +63,33 @@
     <Folder Include="Reference Data" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tables\AspNetRoles.sql" />
-    <None Include="Tables\AspNetUserClaims.sql" />
-    <None Include="Tables\AspNetUserLogins.sql" />
-    <None Include="Tables\AspNetUserRoles.sql" />
-    <None Include="Tables\AspNetUsers.sql" />
-    <None Include="Tables\User.sql" />
-    <None Include="Tables\Patient.sql" />
-    <None Include="Tables\Address.sql" />
-    <None Include="Tables\Medications.sql" />
-    <None Include="Tables\Problems.sql" />
-    <None Include="Tables\BP.sql" />
-    <None Include="Tables\PatientHeight.sql" />
-    <None Include="Tables\Weight.sql" />
-    <None Include="Tables\Activity.sql" />
-    <None Include="Tables\UserActivity.sql" />
-    <None Include="Tables\ActivityRole.sql" />
     <PostDeploy Include="Scripts\PostDeployment.sql" />
+    <Build Include="Tables\Activity.sql" />
+    <Build Include="Tables\ActivityRole.sql" />
     <Build Include="Tables\AspNetUsers.sql" />
     <Build Include="Tables\AspNetUserClaims.sql" />
     <Build Include="Tables\AspNetUserLogins.sql" />
     <Build Include="Tables\AspNetRoles.sql" />
     <Build Include="Tables\AspNetUserRoles.sql" />
     <Build Include="Tables\User.sql" />
-    <Build Include="Tables\Patient.sql" />
-    <Build Include="Tables\Address.sql" />
-    <Build Include="Tables\Medications.sql" />
-    <Build Include="Tables\Problems.sql" />
-    <Build Include="Tables\BP.sql" />
-    <Build Include="Tables\PatientHeight.sql" />
-    <Build Include="Tables\Weight.sql" />
-    <Build Include="Tables\User.sql" />
-    <Build Include="Tables\Activity.sql" />
-    <Build Include="Tables\UserActivity.sql" />
-    <Build Include="Tables\ActivityRole.sql" />
-    <None Include="Monad.EHR.Database.publish.xml" />
+    <Build Include="Tables\Resource.sql" />
+    <Build Include="Tables\ResourceType.sql" />
+     <Build Include="Tables\Patient.sql" />
+ <Build Include="Tables\Address.sql" />
+ <Build Include="Tables\Medications.sql" />
+ <Build Include="Tables\Problems.sql" />
+ <Build Include="Tables\BP.sql" />
+ <Build Include="Tables\PatientHeight.sql" />
+ <Build Include="Tables\Weight.sql" />
+
   </ItemGroup>
   <ItemGroup>
-    <None Include="Reference Data\Activity.sql" />
-    <None Include="Reference Data\AspNetRoles.sql" />
+    <Build Include="Reference Data\01.AspNetRoles.sql" />
+    <Build Include="Reference Data\02.ResourceType.sql" />
+    <Build Include="Reference Data\03.Resource.sql" />
+    <Build Include="Reference Data\04.Activity.sql" />
+    <Build Include="Reference Data\05.FieldType.sql" />
+    <Build Include="Reference Data\06.FormViewType.sql" />
   </ItemGroup>
+ 
 </Project>

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;

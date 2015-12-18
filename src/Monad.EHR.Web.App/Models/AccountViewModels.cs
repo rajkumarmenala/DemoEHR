@@ -16,8 +16,6 @@ namespace Monad.EHR.Web.App.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
-
-       
     }
 
     
@@ -39,10 +37,9 @@ namespace Monad.EHR.Web.App.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class AccountsApiModel 
+    public class AccountsApiModel
     {
         public User User;
-
         public AccountsApiModel()
         {
             User = new User();

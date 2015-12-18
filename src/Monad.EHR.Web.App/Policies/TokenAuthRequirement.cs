@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using Monad.EHR.Common.StateManagement;
 using Monad.EHR.Web.App.Security;
@@ -57,7 +57,7 @@ namespace Monad.EHR.Web.App.Policies
 
             if (!cacheInstance.Contains(currentCacheKey))
             {
-                var permission = context.User.Claims.Where(x => string.Equals(x.Type, tobeMathedClaim, System.StringComparison.InvariantCultureIgnoreCase))
+                var permission = context.User.Claims.Where(x => string.Equals(x.Type, tobeMathedClaim, System.StringComparison.CurrentCultureIgnoreCase))
                                 .Select(y => y.Value).SingleOrDefault();
                 cacheInstance.Set<string>(currentCacheKey, permission, 300);// set for 5 minutes, change this according to project requirement
             }

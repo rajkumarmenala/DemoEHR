@@ -1,18 +1,15 @@
+using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
+using System.Collections.Generic;
+using AutoMapper;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
-using Microsoft.AspNet.Mvc;
-using System.Collections.Generic;
-using Microsoft.AspNet.Authorization;
-using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
-
     [Route("api/[controller]")]
-    [Authorize(Policy = "TokenAuth")]
-
-    public class BPController : Controller
+    public class BPController:Controller
     {
         private IBPService _bPService;
         public BPController(IBPService bPService)
@@ -26,15 +23,14 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bP = Mapper.Map<BPViewModel, BP>(model);
-                bP.CreatedDateUtc = System.DateTime.UtcNow;
-                bP.LastModifiedDateUtc = System.DateTime.UtcNow;
+				var bP = Mapper.Map<BPViewModel, BP>(model);
+				bP.CreatedDateUtc = System.DateTime.UtcNow;
+				bP.LastModifiedDateUtc = System.DateTime.UtcNow;
                 bP.LastModifiedBy = 1;
                 _bPService.AddBP(bP);
             }
             return new HttpStatusCodeResult(200);
         }
-
 
         [HttpPost]
         [Route("EditBP")]
@@ -42,8 +38,8 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bP = Mapper.Map<EditBPViewModel, BP>(model);
-                bP.LastModifiedDateUtc = System.DateTime.UtcNow;
+				var bP = Mapper.Map<EditBPViewModel, BP>(model);
+				bP.LastModifiedDateUtc = System.DateTime.UtcNow;
                 bP.LastModifiedBy = 1;
                 _bPService.EditBP(bP);
             }
@@ -56,13 +52,13 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var bP = Mapper.Map<EditBPViewModel, BP>(model);
+			    var bP = Mapper.Map<EditBPViewModel, BP>(model);
                 _bPService.DeleteBP(bP);
             }
             return new HttpStatusCodeResult(200);
         }
 
-        [HttpGet]
+		[HttpGet]
         [Route("GetAllBPs")]
         public IEnumerable<BP> GetAllBPs()
         {
@@ -76,7 +72,8 @@ namespace Monad.EHR.Web.App.Controllers
             return _bPService.GetBPById(bPId);
         }
 
-        [HttpGet]
+		
+		[HttpGet]
         [Route("GetBPForPatient")]
         public IEnumerable<BP> GetBPForPatient(int patientId)
         {

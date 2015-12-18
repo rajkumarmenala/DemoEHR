@@ -28,9 +28,9 @@ namespace Monad.EHR.Web.App
               .AddJsonFile("config.json")
               .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
+
             if (env.IsDevelopment())
             {
-                // To do 
             }
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -49,17 +49,16 @@ namespace Monad.EHR.Web.App
                 o.IdleTimeout = TimeSpan.FromSeconds(10);
             });
 
+
             services.AddMvc(options =>
             {
                 options.Filters.Add(new GlobalExceptionFilter());
             });
-
             services.AddAuthorization(auth =>
             {
                 auth.AddPolicy(TokenAuthOptions.Scheme,
                    policy => policy.Requirements.Add(new TokenAuthRequirement()));
             });
-
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             DependencyInstaller.InjectDependencies(services, this.Configuration);
             _logger.LogInformation("Configuring Services");
@@ -75,15 +74,13 @@ namespace Monad.EHR.Web.App
             app.UseSession();
             app.UseStaticFiles();
             app.UseIdentity()
-          .UseMvc(routes =>
+         .UseMvc(routes =>
          {
              routes.MapRoute(
                    name: "default",
                    template: "{controller=Home}/{action=Index}/{id?}");
          });
-
             AutoMapperBootStrapper.Bootstrap();
         }
     }
-
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Caching.Memory;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Monad.EHR.Infrastructure.StateManagement.Cache.Providers
         public override void Clear()
         {
             var keyList = this.GetAll().Select(x => x.Key).ToList();
-            foreach (var key in keyList)
+            foreach (var key in keyList) 
             {
                 Cache.Remove(key);
             }
@@ -62,7 +62,7 @@ namespace Monad.EHR.Infrastructure.StateManagement.Cache.Providers
                   key,
                   value,
                   new MemoryCacheEntryOptions()
-                  .SetSlidingExpiration(TimeSpan.FromMinutes(5))
+                  .SetSlidingExpiration(TimeSpan.FromSeconds(duration))
                   .SetAbsoluteExpiration(DateTimeOffset.UtcNow.AddSeconds(duration)));
         }
 

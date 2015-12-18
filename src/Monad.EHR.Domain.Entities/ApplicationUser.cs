@@ -1,3 +1,5 @@
+using System;
+
 namespace Monad.EHR.Domain.Entities
 {
     public class ApplicationUser : BaseEntity

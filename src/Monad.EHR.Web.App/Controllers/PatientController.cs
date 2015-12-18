@@ -1,16 +1,15 @@
+using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
+using System.Collections.Generic;
+using AutoMapper;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
-using Microsoft.AspNet.Mvc;
-using System.Collections.Generic;
-using Microsoft.AspNet.Authorization;
-using AutoMapper;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Policy = "TokenAuth")]
-    public class PatientController : Controller
+    public class PatientController:Controller
     {
         private IPatientService _patientService;
         public PatientController(IPatientService patientService)
@@ -18,21 +17,20 @@ namespace Monad.EHR.Web.App.Controllers
             _patientService = patientService;
         }
 
-        [HttpPost]        
+        [HttpPost]
         [Route("AddPatient")]
         public IActionResult AddPatient([FromBody]PatientViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var patient = Mapper.Map<PatientViewModel, Patient>(model);
-                patient.CreatedDateUtc = System.DateTime.UtcNow;
-                patient.LastModifiedDateUtc = System.DateTime.UtcNow;
+				var patient = Mapper.Map<PatientViewModel, Patient>(model);
+				patient.CreatedDateUtc = System.DateTime.UtcNow;
+				patient.LastModifiedDateUtc = System.DateTime.UtcNow;
                 patient.LastModifiedBy = 1;
                 _patientService.AddPatient(patient);
             }
             return new HttpStatusCodeResult(200);
         }
-
 
         [HttpPost]
         [Route("EditPatient")]
@@ -40,8 +38,8 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
-                patient.LastModifiedDateUtc = System.DateTime.UtcNow;
+				var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
+				patient.LastModifiedDateUtc = System.DateTime.UtcNow;
                 patient.LastModifiedBy = 1;
                 _patientService.EditPatient(patient);
             }
@@ -54,13 +52,13 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
+			    var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
                 _patientService.DeletePatient(patient);
             }
             return new HttpStatusCodeResult(200);
         }
 
-        [HttpGet]
+		[HttpGet]
         [Route("GetAllPatients")]
         public IEnumerable<Patient> GetAllPatients()
         {
@@ -73,6 +71,8 @@ namespace Monad.EHR.Web.App.Controllers
         {
             return _patientService.GetPatientById(patientId);
         }
+
+		
 
     }
 }

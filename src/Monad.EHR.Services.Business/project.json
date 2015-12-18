@@ -5,14 +5,21 @@
     "tags": [""],
     "projectUrl": "",
     "licenseUrl": "",
-  "dependencies": {
-    "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
-    "Monad.EHR.Domain.Interfaces": "1.0.0-*",
-    "Monad.EHR.Domain.Entities": "1.0.0-*",
-    "Monad.EHR.Services.Interface": "1.0.0-*"
-  },
+    "dependencies": {
+        "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
+        "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+        "Monad.EHR.Domain.Interfaces": "1.0.0-*",
+        "Monad.EHR.Domain.Entities": "1.0.0-*",
+        "Monad.EHR.Services.Interface": "1.0.0-*"
+    },
     "frameworks": {
-        "dnx451": {}
+        "dnx451": {}, "dnxcore50": {
+            "dependencies": {
+                "System.Threading": "4.0.10-beta-23109",
+                "Microsoft.CSharp": "4.0.1-beta-23516",
+                "System.Linq": "4.0.1-beta-23516",
+                "System.Collections": "4.0.11-beta-23409"
+            }
+        }
     }
 }

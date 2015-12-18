@@ -1,16 +1,21 @@
 {
-  "version": "1.0.0-*",
-  "description": "Common Library Project",
-  "authors": [ "Easy App Builder" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-  "dependencies": {
-    "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final"
-  },
-  "frameworks": {
-    "dnx451": { }
-  }
+    "version": "1.0.0-*",
+    "description": "Common Library Project",
+    "authors": ["Easy App Builder"],
+    "tags": [""],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "dependencies": {
+        "Microsoft.AspNet.FileProviders.Physical": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
+        "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final"
+    },
+    "frameworks": {
+        "dnx451": {}, "dnxcore50": {
+            "dependencies": {
+                "Microsoft.CSharp": "4.0.1-beta-23516",
+                "System.Linq": "4.0.1-beta-23516"
+            }
+        }
+    }
 }

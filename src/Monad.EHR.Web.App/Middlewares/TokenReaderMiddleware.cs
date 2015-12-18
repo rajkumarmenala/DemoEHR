@@ -1,4 +1,4 @@
-﻿
+
 using Monad.EHR.Common.Logger;
 using Microsoft.AspNet.Builder;
 using Microsoft.Extensions.Logging;

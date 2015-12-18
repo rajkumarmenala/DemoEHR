@@ -1,4 +1,4 @@
-﻿
+
 using Monad.EHR.Domain.Entities;
 using System.Collections.Generic;
 
@@ -15,7 +15,6 @@ namespace Monad.EHR.Services.Interface
         bool AddActivity(string activityId, string roleId, string description, string value, string createdBy);
 
         IList<Activity> GetActivitiesByRoleId(string roleId);
-       //IList<Activity> GetActivitiesByRoleName(string roleName);
 
 
         IEnumerable<Activity> GetActivitiesByUserId(string userId);

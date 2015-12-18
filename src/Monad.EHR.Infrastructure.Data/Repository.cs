@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Data.Entity;
 using System.Linq;
 using Monad.EHR.Domain.Interfaces;

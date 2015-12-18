@@ -15,13 +15,11 @@ namespace Monad.EHR.Services.Business
         private IUserService _userService;
         private IIdentityRepository _store;
         private IActivityService _activityService;
-        private IUserActivityRepository _userActivityRepository;
         private ICustomUserTokenProvider _tokenProvider;
         public AccountService(UserManager<User> userManager,
             RoleManager<Role> roleMananager,
             SignInManager<User> signInManager,
             IIdentityRepository store,
-            IUserActivityRepository userActivityRepository,
             IActivityService activityService,
             IUserService userService,
             ICustomUserTokenProvider tokenProvider)
@@ -30,7 +28,6 @@ namespace Monad.EHR.Services.Business
             SignInManager = signInManager;
             RoleManager = roleMananager;
             _store = store;
-            _userActivityRepository = userActivityRepository;
             _activityService = activityService;
             _userService = userService;
             _tokenProvider = tokenProvider;
@@ -76,20 +73,20 @@ namespace Monad.EHR.Services.Business
 
                 var newUser = UserManager.FindByNameAsync(user).Result;
 
-                var userRoleResult = await UserManager.AddToRoleAsync(newUser, "Clinician");
+                var userRoleResult = await UserManager.AddToRoleAsync(newUser, "Administrator");
                 if (userRoleResult.Succeeded)
                 {
                     // DONT fire this code if you  dont want activity based security
-                    var resultRole = await RoleManager.FindByNameAsync("Clinician");
-                   
-                    var actions = new string [] { "Add{0}", "Edit{0}", "Delete{0}", "GetAll{0}s","Get{0}" };
-                    var activities = _activityService.GetActivitiesByRoleId(resultRole.Id);
-                    var formActions = (from activity in activities
-                                 from action in actions
-                                select activity.Value + "." + string.Format( action, activity.Value));
+                    var resultRole = await RoleManager.FindByNameAsync("Administrator");
 
-                    // assign claims (activities)  for current role to this user
-                    await UserManager.AddClaimsAsync(newUser, formActions.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
+                    //var actions = new string[] { "Add{0}", "Edit{0}", "Delete{0}", "GetAll{0}s", "Get{0}" };
+                    //var activities = _activityService.GetActivitiesByRoleId(resultRole.Id);
+                    //var formActions = (from activity in activities
+                    //                   from action in actions
+                    //                   select activity.Value + "." + string.Format(action, activity.Value));
+
+                    //// assign claims (activities)  for current role to this user
+                    //await UserManager.AddClaimsAsync(newUser, formActions.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
                 }
             }
             return result;

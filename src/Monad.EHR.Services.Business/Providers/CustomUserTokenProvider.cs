@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.DataProtection;
+using Microsoft.AspNet.DataProtection;
 using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.OptionsModel;
 using Monad.EHR.Domain.Entities.Identity;
@@ -127,8 +127,8 @@ namespace Monad.EHR.Services.Business
                     var purp = reader.ReadString();
                     var stamp = reader.ReadString();
 
-                    var user = manager.FindByIdAsync(userId).Result;
-                    var actualUserId = await manager.GetUserIdAsync(user);
+                    var user = await  manager.FindByIdAsync(userId);
+                    var actualUserId = await  manager.GetUserIdAsync(user);
                     if (userId != actualUserId)
                     {
                         return null;

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Authentication;
+using Microsoft.AspNet.Authentication;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.DataProtection;
 using Microsoft.Extensions.Logging;
@@ -17,7 +17,8 @@ namespace Monad.EHR.Web.App.Middlewares
                     IUrlEncoder urlEncoder,
                     IOptions<TokenAuthOptions> options,
                     ConfigureOptions<TokenAuthOptions> configureOptions)
-              : base(next, options.Value, loggerFactory, urlEncoder) {}
+              : base(next, options.Value, loggerFactory, urlEncoder)
+        { }
 
         protected override AuthenticationHandler<TokenAuthOptions> CreateHandler()
         {
