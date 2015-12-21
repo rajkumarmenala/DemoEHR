@@ -7,7 +7,6 @@ namespace Monad.EHR.Infrastructure.Data
     {
         public MedicationsRepository(CustomDBContext dataContext):base(dataContext)
         {
-
         }
     }
 }

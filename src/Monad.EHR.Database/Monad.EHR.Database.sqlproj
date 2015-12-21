@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -7,7 +7,7 @@
     <Name>Monad.EHR.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{5EF9F012-511F-4F6C-87C8-01B866FF07F9}</ProjectGuid>
+    <ProjectGuid>{5ef9f012-511f-4f6c-87c8-01b866ff07f9}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -74,22 +74,19 @@
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Resource.sql" />
     <Build Include="Tables\ResourceType.sql" />
-     <Build Include="Tables\Patient.sql" />
- <Build Include="Tables\Address.sql" />
- <Build Include="Tables\Medications.sql" />
- <Build Include="Tables\Problems.sql" />
- <Build Include="Tables\BP.sql" />
- <Build Include="Tables\PatientHeight.sql" />
- <Build Include="Tables\Weight.sql" />
-
+    <Build Include="Tables\Patient.sql" />
+    <Build Include="Tables\Address.sql" />
+    <Build Include="Tables\Medications.sql" />
+    <Build Include="Tables\Problems.sql" />
+    <Build Include="Tables\BP.sql" />
+    <Build Include="Tables\PatientHeight.sql" />
+    <Build Include="Tables\Weight.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Reference Data\01.AspNetRoles.sql" />
     <Build Include="Reference Data\02.ResourceType.sql" />
     <Build Include="Reference Data\03.Resource.sql" />
     <Build Include="Reference Data\04.Activity.sql" />
-    <Build Include="Reference Data\05.FieldType.sql" />
-    <Build Include="Reference Data\06.FormViewType.sql" />
+    <Build Include="Tables\RoleRight.sql" />
   </ItemGroup>
- 
 </Project>

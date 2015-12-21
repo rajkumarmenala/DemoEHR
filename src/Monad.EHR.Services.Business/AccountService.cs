@@ -1,6 +1,6 @@
 using Microsoft.AspNet.Identity;
 using System.Linq;
-
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Monad.EHR.Domain.Interfaces.Identity;
 using Monad.EHR.Domain.Interfaces;
@@ -16,13 +16,20 @@ namespace Monad.EHR.Services.Business
         private IIdentityRepository _store;
         private IActivityService _activityService;
         private ICustomUserTokenProvider _tokenProvider;
+        private IRoleRightRepository _roleRightRepository;
+        private IActivityRepository _activityRepository;
+        private IResourceRepository _resourceRepository;
+
         public AccountService(UserManager<User> userManager,
             RoleManager<Role> roleMananager,
             SignInManager<User> signInManager,
             IIdentityRepository store,
             IActivityService activityService,
             IUserService userService,
-            ICustomUserTokenProvider tokenProvider)
+            ICustomUserTokenProvider tokenProvider,
+            IRoleRightRepository roleRightRepository,
+             IActivityRepository activityRepository,
+             IResourceRepository resourceRepository)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -31,6 +38,9 @@ namespace Monad.EHR.Services.Business
             _activityService = activityService;
             _userService = userService;
             _tokenProvider = tokenProvider;
+            _roleRightRepository = roleRightRepository;
+            _activityRepository = activityRepository;
+            _resourceRepository = resourceRepository;
             UserManager.RegisterTokenProvider("CustomToken", _tokenProvider as IUserTokenProvider<User>);
         }
 
@@ -76,17 +86,17 @@ namespace Monad.EHR.Services.Business
                 var userRoleResult = await UserManager.AddToRoleAsync(newUser, "Administrator");
                 if (userRoleResult.Succeeded)
                 {
-                    // DONT fire this code if you  dont want activity based security
                     var resultRole = await RoleManager.FindByNameAsync("Administrator");
+                    // DONT fire this code if you  dont want activity based security
+                    var roleRights = _roleRightRepository.GetAll().Where(x => string.Equals(x.RoleId, resultRole.Id)).ToList();
 
-                    //var actions = new string[] { "Add{0}", "Edit{0}", "Delete{0}", "GetAll{0}s", "Get{0}" };
-                    //var activities = _activityService.GetActivitiesByRoleId(resultRole.Id);
-                    //var formActions = (from activity in activities
-                    //                   from action in actions
-                    //                   select activity.Value + "." + string.Format(action, activity.Value));
+                    var claims = from r in _resourceRepository.GetAll()
+                              join rr in roleRights on r.Id equals rr.ResourceId
+                              join a in _activityRepository.GetAll() on rr.ActivityId equals a.Id
+                              select r.Name+"."+a.Value;
 
                     //// assign claims (activities)  for current role to this user
-                    //await UserManager.AddClaimsAsync(newUser, formActions.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
+                    await UserManager.AddClaimsAsync(newUser, claims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
                 }
             }
             return result;

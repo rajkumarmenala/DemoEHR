@@ -23,7 +23,7 @@
         "Monad.EHR.Infrastructure.DependencyResolver": "1.0.0-*"
     },
     "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:8181",
+        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:9999",
         "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --config hosting.ini"
     },
     "frameworks": {
