@@ -7,7 +7,8 @@
             register: register,
             login: login,
             getUser: getUser,
-            updateUser: updateUser
+            updateUser: updateUser,
+            getUserClaims: getUserClaims
         };
         return service;
         function register(user, successFunction, errorFunction) {
@@ -18,6 +19,10 @@
         }
         function getUser(successFunction, errorFunction) {}
         function updateUser(user, successFunction, errorFunction) {}
-        function authenicateUser(successFunction, errorFunction) {};
+        function authenicateUser(successFunction, errorFunction) { };
+        
+        function getUserClaims(successFunction, errorFunction) {
+            $http.get('/api/account/GetClaims').then(successFunction, errorFunction);
+        }
     }
 })();

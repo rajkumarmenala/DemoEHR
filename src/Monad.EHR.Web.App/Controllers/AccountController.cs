@@ -3,6 +3,8 @@ using Monad.EHR.Web.App.Models;
 using Microsoft.AspNet.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Authorization;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Monad.EHR.Web.App.Controllers
 {
@@ -38,7 +40,7 @@ namespace Monad.EHR.Web.App.Controllers
                     accountsWebApiModel.User.UserName = model.UserName;
                     accountsWebApiModel.Token = token;
                     //  FormsAuthentication.SetAuthCookie(user.UserId.ToString(), createPersistentCookie: false);
-                     return new ObjectResult(accountsWebApiModel);
+                    return new ObjectResult(accountsWebApiModel);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -69,8 +71,8 @@ namespace Monad.EHR.Web.App.Controllers
         [Route("LogOff")]
         public IActionResult LogOff()
         {
-             _accountService.LogOff();
-             return new HttpStatusCodeResult(200);
+            _accountService.LogOff();
+            return new HttpStatusCodeResult(200);
         }
 
         //ForgotPassword
@@ -86,6 +88,7 @@ namespace Monad.EHR.Web.App.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _accountService.Register(model.Email, model.Password);
+
                 if (result.Succeeded)
                 {
                     //TO DO 
@@ -95,9 +98,17 @@ namespace Monad.EHR.Web.App.Controllers
                 {
                     return new ObjectResult(result.Errors);
                 }
-
             }
             return new HttpStatusCodeResult(204);
+        }
+
+        [HttpGet]
+        [Route("GetClaims")]
+        public IList<ClaimViewModel> GetClaims()
+        {
+           // var user = Security.SecurityHelper.GetUser(this.HttpContext);
+            return this.HttpContext.User.Claims.Select(x => new ClaimViewModel { ClaimType = x.Type, ClaimValue = x.Value }).ToList();
+           // return _accountService.GetClaims(user).Result.Select(x => new ClaimViewModel { ClaimType = x.Type, ClaimValue = x.Value }).ToList();
         }
     }
 }

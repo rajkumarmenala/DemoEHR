@@ -7,6 +7,8 @@ using Monad.EHR.Domain.Interfaces;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Services.Interface;
+using System;
+using System.Security.Claims;
 
 namespace Monad.EHR.Services.Business
 {
@@ -73,11 +75,12 @@ namespace Monad.EHR.Services.Business
 
         public async Task<IdentityResult> Register(string user, string password)
         {
+            
             var targetUser = new User { UserName = user, Email = user };
-            var result = await UserManager.CreateAsync(targetUser, password);
+            var createdUser = await UserManager.CreateAsync(targetUser, password);
 
-            if (result.Succeeded)
-            {
+            if (createdUser.Succeeded)
+            { 
                 var code = await UserManager.GenerateEmailConfirmationTokenAsync(targetUser);
                 _userService.AddUser(new ApplicationUser() { UserName = user });
 
@@ -90,16 +93,23 @@ namespace Monad.EHR.Services.Business
                     // DONT fire this code if you  dont want activity based security
                     var roleRights = _roleRightRepository.GetAll().Where(x => string.Equals(x.RoleId, resultRole.Id)).ToList();
 
-                    var claims = from r in _resourceRepository.GetAll()
+                    var tobeAddedClaims = from r in _resourceRepository.GetAll()
                               join rr in roleRights on r.Id equals rr.ResourceId
                               join a in _activityRepository.GetAll() on rr.ActivityId equals a.Id
                               select r.Name+"."+a.Value;
 
                     //// assign claims (activities)  for current role to this user
-                    await UserManager.AddClaimsAsync(newUser, claims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
+                    await UserManager.AddClaimsAsync(newUser, tobeAddedClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
                 }
             }
-            return result;
+           return(createdUser);
         }
+
+        public async Task<IList<Claim>> GetClaims(User user)
+        {
+            return await UserManager.GetClaimsAsync(UserManager.FindByNameAsync(user.Email).Result);
+        }
+
+
     }
 }

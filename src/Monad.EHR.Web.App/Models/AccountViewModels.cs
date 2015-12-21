@@ -18,7 +18,7 @@ namespace Monad.EHR.Web.App.Models
         public bool RememberMe { get; set; }
     }
 
-    
+
     public class RegisterViewModel
     {
         [Required]
@@ -47,4 +47,9 @@ namespace Monad.EHR.Web.App.Models
         public string Token { get; set; }
     }
 
+    public class ClaimViewModel
+    {
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+    }
 }

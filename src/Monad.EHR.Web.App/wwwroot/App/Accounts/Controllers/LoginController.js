@@ -25,7 +25,7 @@
                 }
             });
     }])
-    .controller("loginController", ['$scope', '$injector', '$rootScope', '$resource', 'accountsService', '$cookies', 'applicationService', 'alertsService', '$window', function ($scope, $injector, $rootScope, $resource, accountsService, $cookies, applicationService, alertsService, $window) {
+    .controller("loginController", ['$scope', '$injector', '$rootScope', '$resource', 'accountsService', '$cookies', '$cacheFactory', 'applicationService', 'alertsService', '$window', function ($scope, $injector, $rootScope, $resource, accountsService, $cookies, $cacheFactory, applicationService, alertsService, $window) {
         var $validationProvider = $injector.get('$validation');
 
         $scope.initializeController = function () {
@@ -76,11 +76,22 @@
                     $cookies.put('authToken', null);
                 } else {
                     $cookies.put('authToken', response.data.Token);
+                    console.log(response.data.Token);
+                    accountsService.getUserClaims($scope.claimsFetchCompleted, $scope.claimsFetchError);
                     $cookies.put('currentUserName', response.data.User.UserName);
                     $cookies.put('isAuthenticated', true);
-                    window.location = "/";
+                   // window.location = "/";
                 }
             }
+        }
+
+        $scope.claimsFetchCompleted = function (response) {
+           
+            console.log(response.data);
+           
+        }
+
+        $scope.claimsFetchError = function (response) {
         }
 
         $scope.loginError = function (response) {

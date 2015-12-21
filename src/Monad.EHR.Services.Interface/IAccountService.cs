@@ -1,6 +1,8 @@
 using Monad.EHR.Domain.Entities.Identity;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Monad.EHR.Services.Interface
 {
@@ -10,6 +12,7 @@ namespace Monad.EHR.Services.Interface
         Task<string> GetLoginToken(string userName, string password);
         Task<User> GetUserForLoginToken(string token);
         Task<IdentityResult> Register(string user, string password);
+        Task< IList<Claim>> GetClaims(User user);
         void LogOff();
     }
 }
