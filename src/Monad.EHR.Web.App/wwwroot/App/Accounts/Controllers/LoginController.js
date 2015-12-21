@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-      .module('loginModule', ['interceptorServiceModule', 'tokenHandlerServiceModule', 'accountServiceModule', 'applicationServiceModule', 'alertsServiceModule',
+      .module('loginModule', ['interceptorServiceModule', 'tokenHandlerServiceModule', 'cacheServiceModule','accountServiceModule', 'applicationServiceModule', 'alertsServiceModule',
           'validation', 'validation.rule', 'angular-loading-bar', 'ngRoute', 'ngResource', 'ngCookies', 'ngSanitize'])
 
-    .config(['$httpProvider', '$validationProvider', function ($httpProvider, $validationProvider, interceptorService, tokenHandlerService) {
+    .config(['$httpProvider', '$validationProvider', function ($httpProvider, $validationProvider, interceptorService, tokenHandlerService, cacheService) {
         $validationProvider.showSuccessMessage = false;
 
         $httpProvider.interceptors.push('tokenHandlerService');
@@ -25,7 +25,7 @@
                 }
             });
     }])
-    .controller("loginController", ['$scope', '$injector', '$rootScope', '$resource', 'accountsService', '$cookies', '$cacheFactory', 'applicationService', 'alertsService', '$window', function ($scope, $injector, $rootScope, $resource, accountsService, $cookies, $cacheFactory, applicationService, alertsService, $window) {
+    .controller("loginController", ['$scope', '$injector', '$rootScope', '$resource', 'accountsService', '$cookies', '$cacheFactory', 'cacheService', 'applicationService', 'alertsService', '$window', function ($scope, $injector, $rootScope, $resource, cacheService,accountsService, $cookies, $cacheFactory, applicationService, alertsService, $window) {
         var $validationProvider = $injector.get('$validation');
 
         $scope.initializeController = function () {
@@ -76,7 +76,7 @@
                     $cookies.put('authToken', null);
                 } else {
                     $cookies.put('authToken', response.data.Token);
-                    console.log(response.data.Token);
+                    //console.log(response.data.Token);
                     accountsService.getUserClaims($scope.claimsFetchCompleted, $scope.claimsFetchError);
                     $cookies.put('currentUserName', response.data.User.UserName);
                     $cookies.put('isAuthenticated', true);
@@ -86,9 +86,7 @@
         }
 
         $scope.claimsFetchCompleted = function (response) {
-           
-            console.log(response.data);
-           
+           // console.log(response.data);
         }
 
         $scope.claimsFetchError = function (response) {

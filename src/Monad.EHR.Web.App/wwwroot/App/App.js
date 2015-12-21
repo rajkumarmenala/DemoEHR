@@ -1,7 +1,7 @@
 (function() {
     'use strict';
-    var mainModule = angular.module('mainModule', ['interceptorServiceModule', 'tokenHandlerServiceModule', 'applicationServiceModule', 'userServiceModule', 'alertsServiceModule', 'patientServiceModule', 'addressServiceModule', 'medicationsServiceModule', 'problemsServiceModule', 'bPServiceModule', 'patientHeightServiceModule', 'weightServiceModule', 'patientModule', 'addressModule', 'medicationsModule', 'problemsModule', 'bPModule', 'patientHeightModule', 'weightModule', 'angular-loading-bar', 'userModule', 'homeModule', 'ngResource', 'ngCookies', 'ngSanitize']);
-    mainModule.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider, interceptorService, tokenHandlerService) {
+    var mainModule = angular.module('mainModule', ['cacheServiceModule','interceptorServiceModule', 'tokenHandlerServiceModule', 'applicationServiceModule', 'userServiceModule', 'alertsServiceModule', 'patientServiceModule', 'addressServiceModule', 'medicationsServiceModule', 'problemsServiceModule', 'bPServiceModule', 'patientHeightServiceModule', 'weightServiceModule', 'patientModule', 'addressModule', 'medicationsModule', 'problemsModule', 'bPModule', 'patientHeightModule', 'weightModule', 'angular-loading-bar', 'userModule', 'homeModule', 'ngResource', 'ngCookies', 'ngSanitize']);
+    mainModule.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider, cacheService, interceptorService, tokenHandlerService) {
         $routeProvider.when("/Home", {
             templateUrl: '/app/Home/Views/Home.html',
             controllerUrl: '/app/Home/Controllers/HomeController.js',
@@ -48,7 +48,7 @@
         });
         $httpProvider.interceptors.push('tokenHandlerService');
         $httpProvider.interceptors.push('interceptorService');
-    }]).controller("defaultController", function($scope, $rootScope, $http, $q, $routeParams, $window, $location, $resource, $cookies, applicationService, userService) {
+    }]).controller("defaultController", function ($scope, $rootScope, $http, $q, $routeParams, $window, $location, $resource, $cookies, cacheService, applicationService, userService) {
         $scope.initializeController = function() {
             $scope.isAuthenicated = false;
             $scope.UserName = '';
