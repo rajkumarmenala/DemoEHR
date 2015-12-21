@@ -7,20 +7,25 @@
     cacheService.$inject = ['CacheFactory'];
 
     function cacheService($http) {
+        var globalCache = CacheFactory('globalCache');
         var service = {
             getValue: getValue,
-            setValue: setValue,
+            putValue: putValue,
             clearCache: clearCache,
         };
+
         return service;
 
         function getValue(key) {
+            return globalCache.get(key);
         }
 
-        function setValue(key, value) {
+        function putValue(key, value) {
+            globalCache.put(key, value);
         }
 
         function clearCache() {
+            globalCache = CacheFactory('globalCache');
         }
     }
 })();
