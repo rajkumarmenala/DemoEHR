@@ -18,12 +18,12 @@ namespace Monad.EHR.Web.App.Policies
             if (SecurityHelper.SkipRequired(path))
                 return GetSuccessfulResult(authHeader, path);
 
-            if (SecurityHelper.GetUser(this.Context) == null)
-            {
-                this.Context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                this.Context.Response.Headers.Add("WWW-Authenticate", string.Format("Bearer realm=\"{0}\"", 0)); //request.RequestUri.DnsSafeHost
-                return Task.FromResult(AuthenticateResult.Failed("InvalidUser"));
-            }
+            //if (SecurityHelper.GetUser(this.Context) == null)
+            //{
+            //    this.Context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+            //    this.Context.Response.Headers.Add("WWW-Authenticate", string.Format("Bearer realm=\"{0}\"", 0)); //request.RequestUri.DnsSafeHost
+            //    return Task.FromResult(AuthenticateResult.Failed("InvalidUser"));
+            //}
             return GetSuccessfulResult(authHeader, path);
         }
 

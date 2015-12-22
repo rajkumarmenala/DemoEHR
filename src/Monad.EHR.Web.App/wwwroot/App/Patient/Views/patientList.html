@@ -8,45 +8,45 @@
             <div class="x_content">
                 <br />
 
-                    <table st-table="PatientList = $scope.getPatients()" class="table table-striped projects">
-                        <thead>
-                            <tr>
-                                <th> First Name </th>
-<th> Last Name </th>
-<th> Date of Birth </th>
-<th> SSN </th>
-<th> Email </th>
-<th> Phone </th>
+                <table st-table="PatientList = $scope.getPatients()" class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th> First Name </th>
+                            <th> Last Name </th>
+                            <th> Date of Birth </th>
+                            <th> SSN </th>
+                            <th> Email </th>
+                            <th> Phone </th>
 
-                                <th>Modified by</th>
-                                <th>Modified date</th>
-                                <th style="width: 12%"> Action   </th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                            <tr ng-repeat="item in PatientList">
-                                <td>{{item.FirstName}}</td>
-<td>{{item.LastName}}</td>
-<td>{{item.DOB}}</td>
-<td>{{item.SSN}}</td>
-<td>{{item.Email}}</td>
-<td>{{item.Phone}}</td>
+                            <th>Modified by</th>
+                            <th>Modified date</th>
+                            <th style="width: 12%"> Action   </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in PatientList">
+                            <td>{{item.FirstName}}</td>
+                            <td>{{item.LastName}}</td>
+                            <td>{{item.DOB}}</td>
+                            <td>{{item.SSN}}</td>
+                            <td>{{item.Email}}</td>
+                            <td>{{item.Phone}}</td>
 
-                                <td>{{item.LastModifiedBy}}</td>
-                                <td>{{item.LastModifiedDateUtc | date}}</td>
-                                <td>
-                                    <a ng-click="viewPatient(item.Id)" style="cursor: pointer"><i class="fa fa-eye control_icons"></i></a>
-                                    <a ng-click="editPatient(item.Id)" style="cursor: pointer"><i class="fa fa-edit control_icons"></i></a>
-                                    <a ng-click="toggleModal(item.Id,item.Name)" style="cursor: pointer"><i class="fa fa-remove control_icons"></i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <td>{{item.LastModifiedBy}}</td>
+                            <td>{{item.LastModifiedDateUtc | date}}</td>
+                            <td>
+                                <a element-Access="Patient.Read" ng-click="viewPatient(item.Id)" style="cursor: pointer"><i class="fa fa-eye control_icons"></i></a>
+                                <a element-Access="Patient.Edit" ng-click="editPatient(item.Id)" style="cursor: pointer"><i class="fa fa-edit control_icons"></i></a>
+                                <a element-Access="Patient.Delete" ng-click="toggleModal(item.Id,item.Name)" style="cursor: pointer"><i class="fa fa-remove control_icons"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="ln_solid"></div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-9">
                         <button class="btn btn-default" ng-click="addNewPatientCancel()"><i class="fa fa-minus-circle "></i> Cancel</button>
-                        <button class="btn btn-primary" ng-click="addNewPatient('addPatient')"><i class="fa fa-plus-circle "></i> ADD NEW</button>
+                        <button element-Access="Patient.Add" class="btn btn-primary" ng-click="addNewPatient('addPatient')"><i class="fa fa-plus-circle "></i> ADD NEW</button>
                     </div>
                 </div>
                 <!-- home form content 2nd line starts here -->
