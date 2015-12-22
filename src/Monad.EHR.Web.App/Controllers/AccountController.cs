@@ -40,7 +40,7 @@ namespace Monad.EHR.Web.App.Controllers
                     accountsWebApiModel.User.UserName = model.UserName;
                     accountsWebApiModel.Token = token;
                     //  FormsAuthentication.SetAuthCookie(user.UserId.ToString(), createPersistentCookie: false);
-                    return new ObjectResult(accountsWebApiModel);
+                     return new ObjectResult(accountsWebApiModel);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -71,8 +71,8 @@ namespace Monad.EHR.Web.App.Controllers
         [Route("LogOff")]
         public IActionResult LogOff()
         {
-            _accountService.LogOff();
-            return new HttpStatusCodeResult(200);
+             _accountService.LogOff();
+             return new HttpStatusCodeResult(200);
         }
 
         //ForgotPassword
@@ -88,7 +88,6 @@ namespace Monad.EHR.Web.App.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _accountService.Register(model.Email, model.Password);
-
                 if (result.Succeeded)
                 {
                     //TO DO 
@@ -98,11 +97,12 @@ namespace Monad.EHR.Web.App.Controllers
                 {
                     return new ObjectResult(result.Errors);
                 }
+
             }
             return new HttpStatusCodeResult(204);
         }
 
-        [HttpGet]
+		[HttpGet]
         [AllowAnonymous]
 
         [Route("GetClaims")]

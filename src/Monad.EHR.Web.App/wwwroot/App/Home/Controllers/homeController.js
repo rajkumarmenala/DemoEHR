@@ -44,7 +44,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("homeController",  function ($scope, $injector, $routeParams, cacheService, $cookies, userService) {
+    }]).controller("homeController", ['$scope', '$injector', '$routeParams', '$cookies', 'userService', function($scope, $injector, $routeParams, $cookies, userService) {
         $scope.initializeController = function() {
             $scope.getUserProfile($cookies.get('currentUserName'));
         }
@@ -68,5 +68,5 @@
         $scope.getUploadedImageCompleted = function(response) {
             $scope.User.imageData = response.data;
         }
-    });
+    }]);
 })();

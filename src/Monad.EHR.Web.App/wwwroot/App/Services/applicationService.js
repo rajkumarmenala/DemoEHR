@@ -27,9 +27,9 @@
         };
         function logout(successFunction, errorFunction) {
             $http.post('/api/account/LogOff').then(successFunction, errorFunction);
-        }
+        };
         function getUserClaims(successFunction, errorFunction) {
             $http.get('/api/account/GetClaims').then(successFunction, errorFunction);
-        }
+        };
     }
 })();

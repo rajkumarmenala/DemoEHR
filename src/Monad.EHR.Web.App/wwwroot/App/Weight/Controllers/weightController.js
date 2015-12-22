@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('weightModule', [ 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('weightModule', ['homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addWeight", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("weightController", function ($scope, $injector, $routeParams, cacheService, weightService, $cookies, $timeout) {
+    }]).controller("weightController", function($scope, $injector, $routeParams, weightService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var weightId = ($routeParams.weightId || "");
@@ -37,9 +37,7 @@
             $scope.getWeights();
         }
         // *********************** Get Weight data  ************* 
-        $scope.getWeights = function () {
-            //console.log(cacheService.getValue('accessRights'));
-            //alert('Pulled');
+        $scope.getWeights = function() {
             weightService.getWeights($scope.fetchtWeightsComplete, $scope.fetchtWeightsError);
         }
         // *********************** Get Weight data  ************* 
@@ -114,7 +112,6 @@
         }
         $scope.success = function() {
             var updateWeight = $scope.createWeight();
-            console.log(updateWeight);
             if ($scope.editWeight.$valid) {
                 weightService.editWeight(updateWeight, $scope.editWeightCompleted, $scope.editWeightError);
             }

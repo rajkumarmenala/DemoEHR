@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('patientModule', [ 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('patientModule', ['homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addPatient", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("patientController", function ($scope, $injector, $routeParams, cacheService, patientService, addressService, medicationsService, problemsService, bPService, patientHeightService, weightService, $cookies, $timeout) {
+    }]).controller("patientController", function($scope, $injector, $routeParams, patientService, addressService, medicationsService, problemsService, bPService, patientHeightService, weightService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var patientId = ($routeParams.patientId || "");
@@ -37,9 +37,7 @@
             $scope.getPatients();
         }
         // *********************** Get Patient data  ************* 
-        $scope.getPatients = function () {
-            //console.log(cacheService.getValue('accessRights'));
-            //alert('Pulled');
+        $scope.getPatients = function() {
             patientService.getPatients($scope.fetchtPatientsComplete, $scope.fetchtPatientsError);
         }
         // *********************** Get Patient data  ************* 
@@ -122,7 +120,6 @@
         }
         $scope.success = function() {
             var updatePatient = $scope.createPatient();
-            console.log(updatePatient);
             if ($scope.editPatient.$valid) {
                 patientService.editPatient(updatePatient, $scope.editPatientCompleted, $scope.editPatientError);
             }

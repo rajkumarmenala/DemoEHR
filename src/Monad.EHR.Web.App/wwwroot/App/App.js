@@ -1,7 +1,7 @@
 (function() {
     'use strict';
-    var mainModule = angular.module('mainModule', ['cacheServiceModule','interceptorServiceModule', 'tokenHandlerServiceModule', 'applicationServiceModule',   'patientModule', 'addressModule', 'medicationsModule', 'problemsModule', 'bPModule', 'patientHeightModule', 'weightModule', 'angular-loading-bar', 'userModule', 'homeModule', 'ngResource', 'ngCookies', 'ngSanitize']);
-    mainModule.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider, cacheService, interceptorService, tokenHandlerService) {
+    var mainModule = angular.module('mainModule', ['cacheServiceModule', 'interceptorServiceModule', 'tokenHandlerServiceModule', 'applicationServiceModule', 'alertsServiceModule', 'patientModule', 'addressModule', 'medicationsModule', 'problemsModule', 'bPModule', 'patientHeightModule', 'weightModule', 'angular-loading-bar', 'userModule', 'homeModule', 'ngResource', 'ngCookies', 'ngSanitize']);
+    mainModule.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider, cacheService, interceptorService, tokenHandlerService) {
         $routeProvider.when("/Home", {
             templateUrl: '/app/Home/Views/Home.html',
             controllerUrl: '/app/Home/Controllers/HomeController.js',
@@ -48,7 +48,7 @@
         });
         $httpProvider.interceptors.push('tokenHandlerService');
         $httpProvider.interceptors.push('interceptorService');
-    }]).controller("defaultController", function ($scope, $rootScope, $http, $q, $routeParams, $window, $location, $resource, $cookies, cacheService, applicationService, userService) {
+    }]).controller("defaultController", function($scope, $rootScope, $http, $q, $routeParams, $window, $location, $resource, $cookies, cacheService, applicationService, userService) {
         $scope.initializeController = function() {
             $scope.isAuthenicated = false;
             $scope.UserName = '';
@@ -71,28 +71,28 @@
                 10);
             }
         }
-
-        $scope.claimsFetchCompleted = function (response) {
+        $scope.initializeApplicationError = function(response) {}
+        $scope.claimsFetchCompleted = function(response) {
             cacheService.putValue('accessRights', response.data);
-           // console.log(cacheService.getValue('accessRights'));
+            // console.log(cacheService.getValue('accessRights'));
             // console.log(response.data);
         }
-
-        $scope.claimsFetchError = function (response) {
+        $scope.claimsFetchError = function(response) {}
+        $scope.claimsFetchCompleted = function(response) {
+            cacheService.putValue('accessRights', response.data);
+            // console.log(cacheService.getValue('accessRights'));
+            // console.log(response.data);
         }
-
-        $scope.initializeApplicationError = function(response) {}
-        $scope.logout = function () {
-            console.log(cacheService.getValue('accessRights'));
-            alert('Logging out');
+        $scope.claimsFetchError = function(response) {}
+        $scope.logout = function() {
             applicationService.logout($scope.logoutCompleted, $scope.logoutError);
         }
         $scope.logoutCompleted = function(response) {
-            //if (response.status == 200) {
-            //    $cookies.put('currentUserName', null);
-            //    $cookies.put('isAuthenticated', false);
-            //    window.location = "/login";
-            //}
+            if (response.status == 200) {
+                $cookies.put('currentUserName', null);
+                $cookies.put('isAuthenticated', false);
+                window.location = "/login";
+            }
         }
         $scope.logoutError = function(response) {
             $scope.clearValidationErrors();

@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("problemsController", function ($scope, $injector, $routeParams, cacheService, problemsService, $cookies, $timeout) {
+    }]).controller("problemsController", function($scope, $injector, $routeParams, problemsService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var problemsId = ($routeParams.problemsId || "");
@@ -37,9 +37,7 @@
             $scope.getProblemss();
         }
         // *********************** Get Problems data  ************* 
-        $scope.getProblemss = function () {
-            //console.log(cacheService.getValue('accessRights'));
-            //alert('Pulled');
+        $scope.getProblemss = function() {
             problemsService.getProblemss($scope.fetchtProblemssComplete, $scope.fetchtProblemssError);
         }
         // *********************** Get Problems data  ************* 
@@ -114,7 +112,6 @@
         }
         $scope.success = function() {
             var updateProblems = $scope.createProblems();
-            console.log(updateProblems);
             if ($scope.editProblems.$valid) {
                 problemsService.editProblems(updateProblems, $scope.editProblemsCompleted, $scope.editProblemsError);
             }

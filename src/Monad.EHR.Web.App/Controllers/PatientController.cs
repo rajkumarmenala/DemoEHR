@@ -72,5 +72,7 @@ namespace Monad.EHR.Web.App.Controllers
             return _patientService.GetPatientById(patientId);
         }
 
+		
+
     }
 }

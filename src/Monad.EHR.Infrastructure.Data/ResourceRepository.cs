@@ -1,7 +1,7 @@
-using Monad.EHR.Domain.Entities;
-using Monad.EHR.Domain.Interfaces;
+using  Monad.EHR.Domain.Entities;
+using  Monad.EHR.Domain.Interfaces;
 
-namespace Monad.EHR.Infrastructure.Data
+namespace  Monad.EHR.Infrastructure.Data
 {
     public class ResourceRepository : Repository<Resource>, IResourceRepository
     {

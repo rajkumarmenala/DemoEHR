@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('patientHeightModule', [ 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('patientHeightModule', ['homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addPatientHeight", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("patientHeightController", function ($scope, $injector, $routeParams, cacheService, patientHeightService, $cookies, $timeout) {
+    }]).controller("patientHeightController", function($scope, $injector, $routeParams, patientHeightService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var patientHeightId = ($routeParams.patientHeightId || "");
@@ -37,9 +37,7 @@
             $scope.getPatientHeights();
         }
         // *********************** Get PatientHeight data  ************* 
-        $scope.getPatientHeights = function () {
-            //console.log(cacheService.getValue('accessRights'));
-            //alert('Pulled');
+        $scope.getPatientHeights = function() {
             patientHeightService.getPatientHeights($scope.fetchtPatientHeightsComplete, $scope.fetchtPatientHeightsError);
         }
         // *********************** Get PatientHeight data  ************* 
@@ -114,7 +112,6 @@
         }
         $scope.success = function() {
             var updatePatientHeight = $scope.createPatientHeight();
-            console.log(updatePatientHeight);
             if ($scope.editPatientHeight.$valid) {
                 patientHeightService.editPatientHeight(updatePatientHeight, $scope.editPatientHeightCompleted, $scope.editPatientHeightError);
             }
