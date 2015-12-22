@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('addressServiceModule', []).factory('addressService', addressService);
+    angular.module('mainModule').factory('addressService', addressService);
     addressService.$inject = ['$http'];
     function addressService($http) {
         var service = {

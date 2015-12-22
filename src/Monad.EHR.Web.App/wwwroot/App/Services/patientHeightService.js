@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('patientHeightServiceModule', []).factory('patientHeightService', patientHeightService);
+    angular.module('mainModule').factory('patientHeightService', patientHeightService);
     patientHeightService.$inject = ['$http'];
     function patientHeightService($http) {
         var service = {

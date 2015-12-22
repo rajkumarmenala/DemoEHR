@@ -9,7 +9,8 @@
             initializeApplication: initializeApplication,
             logout: logout,
             getAuthenticated: getAuthenticated,
-            setAuthenticated: setAuthenticated
+            setAuthenticated: setAuthenticated,
+            getUserClaims: getUserClaims
         };
         return service;
         function getApplicationTitle() {
@@ -26,6 +27,9 @@
         };
         function logout(successFunction, errorFunction) {
             $http.post('/api/account/LogOff').then(successFunction, errorFunction);
+        }
+        function getUserClaims(successFunction, errorFunction) {
+            $http.get('/api/account/GetClaims').then(successFunction, errorFunction);
         }
     }
 })();

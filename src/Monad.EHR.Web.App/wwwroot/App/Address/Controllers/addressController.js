@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('addressModule', ['addressServiceModule', 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('addressModule', [ 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addAddress", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("addressController", ['$scope', '$injector', '$routeParams', 'addressService', '$cookies', '$timeout', function($scope, $injector, $routeParams, addressService, $cookies, $timeout) {
+    }]).controller("addressController", function ($scope, $injector, $routeParams, cacheService, addressService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var addressId = ($routeParams.addressId || "");
@@ -37,7 +37,9 @@
             $scope.getAddresss();
         }
         // *********************** Get Address data  ************* 
-        $scope.getAddresss = function() {
+        $scope.getAddresss = function () {
+            //console.log(cacheService.getValue('accessRights'));
+            //alert('Pulled');
             addressService.getAddresss($scope.fetchtAddresssComplete, $scope.fetchtAddresssError);
         }
         // *********************** Get Address data  ************* 
@@ -183,5 +185,5 @@
             },
             500);
         }
-    }]);
+    });
 })();

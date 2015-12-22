@@ -2,7 +2,7 @@
     'use strict';
     var image = new Object();
     var userModule = angular
-      .module('userModule', ['interceptorServiceModule', 'tokenHandlerServiceModule', 'userServiceModule', 'applicationServiceModule', 'alertsServiceModule', 'naif.base64',
+      .module('userModule', ['interceptorServiceModule', 'tokenHandlerServiceModule',  'applicationServiceModule', 'alertsServiceModule', 'naif.base64',
           'ngRoute', 'ngResource', 'ngCookies', 'ngSanitize'
           , 'validation', 'validation.rule']);
 

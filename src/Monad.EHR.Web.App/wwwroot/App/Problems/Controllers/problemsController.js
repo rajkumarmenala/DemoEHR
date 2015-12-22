@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('problemsModule', ['problemsServiceModule', 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('problemsModule', ['homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addProblems", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("problemsController", ['$scope', '$injector', '$routeParams', 'problemsService', '$cookies', '$timeout', function($scope, $injector, $routeParams, problemsService, $cookies, $timeout) {
+    }]).controller("problemsController", function ($scope, $injector, $routeParams, cacheService, problemsService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var problemsId = ($routeParams.problemsId || "");
@@ -37,7 +37,9 @@
             $scope.getProblemss();
         }
         // *********************** Get Problems data  ************* 
-        $scope.getProblemss = function() {
+        $scope.getProblemss = function () {
+            //console.log(cacheService.getValue('accessRights'));
+            //alert('Pulled');
             problemsService.getProblemss($scope.fetchtProblemssComplete, $scope.fetchtProblemssError);
         }
         // *********************** Get Problems data  ************* 
@@ -168,5 +170,5 @@
             },
             500);
         }
-    }]);
+    });
 })();

@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('patientModule', ['patientServiceModule', 'addressServiceModule', 'medicationsServiceModule', 'problemsServiceModule', 'bPServiceModule', 'patientHeightServiceModule', 'weightServiceModule', 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('patientModule', [ 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addPatient", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("patientController", ['$scope', '$injector', '$routeParams', 'patientService', 'addressService', 'medicationsService', 'problemsService', 'bPService', 'patientHeightService', 'weightService', '$cookies', '$timeout', function($scope, $injector, $routeParams, patientService, addressService, medicationsService, problemsService, bPService, patientHeightService, weightService, $cookies, $timeout) {
+    }]).controller("patientController", function ($scope, $injector, $routeParams, cacheService, patientService, addressService, medicationsService, problemsService, bPService, patientHeightService, weightService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var patientId = ($routeParams.patientId || "");
@@ -37,7 +37,9 @@
             $scope.getPatients();
         }
         // *********************** Get Patient data  ************* 
-        $scope.getPatients = function() {
+        $scope.getPatients = function () {
+            //console.log(cacheService.getValue('accessRights'));
+            //alert('Pulled');
             patientService.getPatients($scope.fetchtPatientsComplete, $scope.fetchtPatientsError);
         }
         // *********************** Get Patient data  ************* 
@@ -284,5 +286,5 @@
                 'url': "App/" + subForm.formName + "/Views/" + subForm.formName + "List.html"
             };
         }
-    }]);
+    });
 })();

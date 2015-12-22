@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('weightServiceModule', []).factory('weightService', weightService);
+    angular.module('mainModule').factory('weightService', weightService);
     weightService.$inject = ['$http'];
     function weightService($http) {
         var service = {

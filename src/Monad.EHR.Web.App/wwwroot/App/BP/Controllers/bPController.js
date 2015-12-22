@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('bPModule', ['bPServiceModule', 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('bPModule', [ 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addBP", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("bPController", ['$scope', '$injector', '$routeParams', 'bPService', '$cookies', '$timeout', function($scope, $injector, $routeParams, bPService, $cookies, $timeout) {
+    }]).controller("bPController", function ($scope, $injector, $routeParams, cacheService, bPService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var bPId = ($routeParams.bPId || "");
@@ -37,7 +37,9 @@
             $scope.getBPs();
         }
         // *********************** Get BP data  ************* 
-        $scope.getBPs = function() {
+        $scope.getBPs = function () {
+            //console.log(cacheService.getValue('accessRights'));
+            //alert('Pulled');
             bPService.getBPs($scope.fetchtBPsComplete, $scope.fetchtBPsError);
         }
         // *********************** Get BP data  ************* 
@@ -171,5 +173,5 @@
             },
             500);
         }
-    }]);
+    });
 })();

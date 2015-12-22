@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var mainModule = angular.module('mainModule', ['cacheServiceModule','interceptorServiceModule', 'tokenHandlerServiceModule', 'applicationServiceModule', 'userServiceModule', 'alertsServiceModule', 'patientServiceModule', 'addressServiceModule', 'medicationsServiceModule', 'problemsServiceModule', 'bPServiceModule', 'patientHeightServiceModule', 'weightServiceModule', 'patientModule', 'addressModule', 'medicationsModule', 'problemsModule', 'bPModule', 'patientHeightModule', 'weightModule', 'angular-loading-bar', 'userModule', 'homeModule', 'ngResource', 'ngCookies', 'ngSanitize']);
+    var mainModule = angular.module('mainModule', ['cacheServiceModule','interceptorServiceModule', 'tokenHandlerServiceModule', 'applicationServiceModule',   'patientModule', 'addressModule', 'medicationsModule', 'problemsModule', 'bPModule', 'patientHeightModule', 'weightModule', 'angular-loading-bar', 'userModule', 'homeModule', 'ngResource', 'ngCookies', 'ngSanitize']);
     mainModule.config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider, cacheService, interceptorService, tokenHandlerService) {
         $routeProvider.when("/Home", {
             templateUrl: '/app/Home/Views/Home.html',
@@ -59,6 +59,7 @@
             $rootScope.displayContent = true;
             if ($cookies.getObject('isAuthenticated') == true) {
                 $scope.UserName = $cookies.get('currentUserName');
+                applicationService.getUserClaims($scope.claimsFetchCompleted, $scope.claimsFetchError);
                 $scope.getUserProfile();
                 $scope.title = applicationService.getApplicationTitle();
             }
@@ -70,6 +71,16 @@
                 10);
             }
         }
+
+        $scope.claimsFetchCompleted = function (response) {
+            cacheService.putValue('accessRights', response.data);
+           // console.log(cacheService.getValue('accessRights'));
+            // console.log(response.data);
+        }
+
+        $scope.claimsFetchError = function (response) {
+        }
+
         $scope.initializeApplicationError = function(response) {}
         $scope.logout = function () {
             console.log(cacheService.getValue('accessRights'));
@@ -77,11 +88,11 @@
             applicationService.logout($scope.logoutCompleted, $scope.logoutError);
         }
         $scope.logoutCompleted = function(response) {
-            if (response.status == 200) {
-                $cookies.put('currentUserName', null);
-                $cookies.put('isAuthenticated', false);
-                window.location = "/login";
-            }
+            //if (response.status == 200) {
+            //    $cookies.put('currentUserName', null);
+            //    $cookies.put('isAuthenticated', false);
+            //    window.location = "/login";
+            //}
         }
         $scope.logoutError = function(response) {
             $scope.clearValidationErrors();

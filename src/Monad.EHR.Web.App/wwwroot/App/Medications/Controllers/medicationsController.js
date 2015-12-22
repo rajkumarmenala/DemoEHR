@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('medicationsModule', ['medicationsServiceModule', 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
+    var pModule = angular.module('medicationsModule', [ 'homeModule', 'popUpModel', 'ngRoute', 'validation', 'validation.rule', 'smart-table']);
     pModule.config(['$routeProvider', '$validationProvider', function($routeProvider, $validationProvider) {
         $validationProvider.showSuccessMessage = false;
         $routeProvider.when("/addMedications", {
@@ -25,7 +25,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("medicationsController", ['$scope', '$injector', '$routeParams', 'medicationsService', '$cookies', '$timeout', function($scope, $injector, $routeParams, medicationsService, $cookies, $timeout) {
+    }]).controller("medicationsController", function ($scope, $injector, $routeParams, cacheService, medicationsService, $cookies, $timeout) {
         var $validationProvider = $injector.get('$validation');
         $scope.initializeController = function() {
             var medicationsId = ($routeParams.medicationsId || "");
@@ -37,7 +37,9 @@
             $scope.getMedicationss();
         }
         // *********************** Get Medications data  ************* 
-        $scope.getMedicationss = function() {
+        $scope.getMedicationss = function () {
+            //console.log(cacheService.getValue('accessRights'));
+            //alert('Pulled');
             medicationsService.getMedicationss($scope.fetchtMedicationssComplete, $scope.fetchtMedicationssError);
         }
         // *********************** Get Medications data  ************* 
@@ -174,5 +176,5 @@
             },
             500);
         }
-    }]);
+    });
 })();

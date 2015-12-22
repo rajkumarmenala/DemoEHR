@@ -2,44 +2,27 @@
     'use strict';
     angular.module('cacheServiceModule', ['angular-cache']).config(function (CacheFactoryProvider) {
         angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
-    }).factory('cacheService', cacheService);
+    }).factory('cacheService', function (CacheFactory) {
+        
+        var cacheService = {};
+        cacheService.$inject = ['CacheFactory'];
+        cacheService.globalCache = CacheFactory('globalCache');
 
-    cacheService.$inject = ['CacheFactory'];
-
-    function cacheService(CacheFactory) {
-        var globalCache = CacheFactory('globalCache');
-        var instance;
-
-        function createInstance() {
-            
+        cacheService.getValue = function (key) {
+            console.log(cacheService.globalCache);
+            return cacheService.globalCache.get(key);
         }
 
-        getInstance: function () {
-            if (!instance) {
-                instance = createInstance();
-            }
-            return instance;
+        cacheService.putValue = function (key, value) {
+            cacheService.globalCache.put(key, value);
         }
 
-        var service = {
-            getValue: getValue,
-            putValue: putValue,
-            clearCache: clearCache,
-        };
-
-        return service;
-
-        function getValue(key) {
-            return globalCache.get(key);
+        cacheService.clearCache = function () {
+            //this = CacheFactory('globalCache');
         }
+        return cacheService;
+    });
 
-        function putValue(key, value) {
-            console.log('For ' + key + 'Value is ' + value);
-            globalCache.put(key, value);
-        }
-
-        function clearCache() {
-            globalCache = CacheFactory('globalCache');
-        }
-    }
 })();
+
+

@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var pModule = angular.module('homeModule', ['ngRoute', 'userServiceModule']);
+    var pModule = angular.module('homeModule', ['ngRoute']);
     pModule.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when("/viewPatient", {
             templateUrl: '/app/Patient/Views/PatientList.html',
@@ -44,7 +44,7 @@
         }
         $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
         $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
-    }]).controller("homeController", ['$scope', '$injector', '$routeParams', '$cookies', 'userService', function($scope, $injector, $routeParams, $cookies, userService) {
+    }]).controller("homeController",  function ($scope, $injector, $routeParams, cacheService, $cookies, userService) {
         $scope.initializeController = function() {
             $scope.getUserProfile($cookies.get('currentUserName'));
         }
@@ -68,5 +68,5 @@
         $scope.getUploadedImageCompleted = function(response) {
             $scope.User.imageData = response.data;
         }
-    }]);
+    });
 })();

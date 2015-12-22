@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('patientServiceModule', []).factory('patientService', patientService);
+    angular.module('mainModule').factory('patientService', patientService);
     patientService.$inject = ['$http'];
     function patientService($http) {
         var service = {

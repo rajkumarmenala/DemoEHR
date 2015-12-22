@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    angular.module('bPServiceModule', []).factory('bPService', bPService);
+    angular.module('mainModule').factory('bPService', bPService);
     bPService.$inject = ['$http'];
     function bPService($http) {
         var service = {
