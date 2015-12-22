@@ -1,1 +1,0 @@
---INSERT INTO [AspNetRoles]([Id],[Name] ,[NormalizedName])  VALUES ( newid(),'Administrator' ,'Administrator' )

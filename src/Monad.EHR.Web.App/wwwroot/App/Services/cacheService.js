@@ -3,13 +3,12 @@
     angular.module('cacheServiceModule', ['angular-cache']).config(function (CacheFactoryProvider) {
         angular.extend(CacheFactoryProvider.defaults, { maxAge: 15 * 60 * 1000 });
     }).factory('cacheService', function (CacheFactory) {
-        
+
         var cacheService = {};
         cacheService.$inject = ['CacheFactory'];
         cacheService.globalCache = CacheFactory('globalCache');
 
         cacheService.getValue = function (key) {
-            console.log(cacheService.globalCache);
             return cacheService.globalCache.get(key);
         }
 

@@ -9,6 +9,7 @@ using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Services.Interface;
 using System;
 using System.Security.Claims;
+using Monad.EHR.Common.Utility;
 
 namespace Monad.EHR.Services.Business
 {
@@ -21,6 +22,8 @@ namespace Monad.EHR.Services.Business
         private IRoleRightRepository _roleRightRepository;
         private IActivityRepository _activityRepository;
         private IResourceRepository _resourceRepository;
+        private IResourceTypeRepository _resourceTypeRepository;
+
 
         public AccountService(UserManager<User> userManager,
             RoleManager<Role> roleMananager,
@@ -31,7 +34,8 @@ namespace Monad.EHR.Services.Business
             ICustomUserTokenProvider tokenProvider,
             IRoleRightRepository roleRightRepository,
              IActivityRepository activityRepository,
-             IResourceRepository resourceRepository)
+             IResourceRepository resourceRepository,
+             IResourceTypeRepository resourceTypeRepository)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -43,6 +47,8 @@ namespace Monad.EHR.Services.Business
             _roleRightRepository = roleRightRepository;
             _activityRepository = activityRepository;
             _resourceRepository = resourceRepository;
+            _resourceTypeRepository = resourceTypeRepository;
+
             UserManager.RegisterTokenProvider("CustomToken", _tokenProvider as IUserTokenProvider<User>);
         }
 
@@ -89,17 +95,29 @@ namespace Monad.EHR.Services.Business
                 var userRoleResult = await UserManager.AddToRoleAsync(newUser, "Administrator");
                 if (userRoleResult.Succeeded)
                 {
+                   
+                    var formResourceTypeId = _resourceTypeRepository.GetAll().Where(x => string.Equals(x.Name, "Form")).SingleOrDefault().Id;
+                    var URLResourceTypeId = _resourceTypeRepository.GetAll().Where(x => string.Equals(x.Name, "URL")).SingleOrDefault().Id;
+
                     var resultRole = await RoleManager.FindByNameAsync("Administrator");
                     // DONT fire this code if you  dont want activity based security
                     var roleRights = _roleRightRepository.GetAll().Where(x => string.Equals(x.RoleId, resultRole.Id)).ToList();
 
-                    var tobeAddedClaims = from r in _resourceRepository.GetAll()
+                    var formElementsClaims = from r in _resourceRepository.GetAll().Where(x=> x.ResourceTypeId == formResourceTypeId)
                               join rr in roleRights on r.Id equals rr.ResourceId
-                              join a in _activityRepository.GetAll() on rr.ActivityId equals a.Id
+                              join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == formResourceTypeId) on rr.ActivityId equals a.Id 
                               select r.Name+"."+a.Value;
 
                     //// assign claims (activities)  for current role to this user
-                    await UserManager.AddClaimsAsync(newUser, tobeAddedClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
+                    await UserManager.AddClaimsAsync(newUser, formElementsClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
+
+                    var URLElementsClaims = from r in _resourceRepository.GetAll().Where(x => x.ResourceTypeId == URLResourceTypeId)
+                                             join rr in roleRights on r.Id equals rr.ResourceId
+                                             join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == URLResourceTypeId) on rr.ActivityId equals a.Id
+                                             select "/" + a.Value.ToCamelCase() + r.Name;
+
+                    //// assign claims (activities)  for current role to this user
+                    await UserManager.AddClaimsAsync(newUser, URLElementsClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
                 }
             }
            return(createdUser);

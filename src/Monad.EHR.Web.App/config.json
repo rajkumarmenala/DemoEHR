@@ -5,7 +5,7 @@
     },
     "Data": {
         "DefaultConnection": {
-            "ConnectionString": "Data Source=ICSEAB01\\SQLEXPRESS;Initial Catalog=Monad.EHR.Database;User ID=sa;Password=test123#;MultipleActiveResultSets=true;"
+            "ConnectionString": "Data Source=SHISHIR-PC\\MSSQLSERVER2014;Initial Catalog=Monad.EHR.Database;User ID=sa;Password=test123#;MultipleActiveResultSets=true;"
         }
     }
 }

@@ -1,19 +1,13 @@
 ﻿(function () {
     'use strict';
-    angular.module('mainModule').directive('elementAccess', ['cacheService', function (cacheService) {
+    angular.module('mainModule').directive('elementAccess', ['cacheService', 'authService', function (cacheService, authService) {
 
         var elementAccess = {};
         return {
             restrict: 'A',
             link: function (scope, element, attributes) {
-                var hasAccess = false;
-                var claims = cacheService.getValue('accessRights');
-                var accessCondition = attributes.elementAccess.split(" ");
-                var requiredClaim = $.grep(claims, function (c) { return c.ClaimType == accessCondition; })
-                .map(function (c) { return c });
-                console.log(requiredClaim[0].ClaimValue);
-                console.log(element);
-                if (requiredClaim[0].ClaimValue !== 'Allowed') {
+                console.log(authService);
+                if (!authService.isElementAccessibleForUser(attributes)) {
                     angular.forEach(element.children(), function (child) {
                         child && child.remove && child.remove();
                     });
