@@ -103,6 +103,8 @@ namespace Monad.EHR.Web.App.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
+
         [Route("GetClaims")]
         public IList<ClaimViewModel> GetClaims()
         {

@@ -6,8 +6,21 @@
 
     cacheService.$inject = ['CacheFactory'];
 
-    function cacheService($http) {
+    function cacheService(CacheFactory) {
         var globalCache = CacheFactory('globalCache');
+        var instance;
+
+        function createInstance() {
+            
+        }
+
+        getInstance: function () {
+            if (!instance) {
+                instance = createInstance();
+            }
+            return instance;
+        }
+
         var service = {
             getValue: getValue,
             putValue: putValue,
@@ -21,6 +34,7 @@
         }
 
         function putValue(key, value) {
+            console.log('For ' + key + 'Value is ' + value);
             globalCache.put(key, value);
         }
 

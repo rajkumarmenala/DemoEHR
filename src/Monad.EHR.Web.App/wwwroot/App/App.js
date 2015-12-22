@@ -71,7 +71,9 @@
             }
         }
         $scope.initializeApplicationError = function(response) {}
-        $scope.logout = function() {
+        $scope.logout = function () {
+            console.log(cacheService.getValue('accessRights'));
+            alert('Logging out');
             applicationService.logout($scope.logoutCompleted, $scope.logoutError);
         }
         $scope.logoutCompleted = function(response) {

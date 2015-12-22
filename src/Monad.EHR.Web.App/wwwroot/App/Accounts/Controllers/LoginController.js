@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-      .module('loginModule', ['interceptorServiceModule', 'tokenHandlerServiceModule', 'cacheServiceModule','accountServiceModule', 'applicationServiceModule', 'alertsServiceModule',
+      .module('loginModule', ['interceptorServiceModule', 'tokenHandlerServiceModule', 'cacheServiceModule', 'accountServiceModule', 'applicationServiceModule', 'alertsServiceModule',
           'validation', 'validation.rule', 'angular-loading-bar', 'ngRoute', 'ngResource', 'ngCookies', 'ngSanitize'])
 
     .config(['$httpProvider', '$validationProvider', function ($httpProvider, $validationProvider, interceptorService, tokenHandlerService, cacheService) {
@@ -25,7 +25,7 @@
                 }
             });
     }])
-    .controller("loginController", ['$scope', '$injector', '$rootScope', '$resource', 'accountsService', '$cookies', '$cacheFactory', 'cacheService', 'applicationService', 'alertsService', '$window', function ($scope, $injector, $rootScope, $resource, cacheService,accountsService, $cookies, $cacheFactory, applicationService, alertsService, $window) {
+    .controller("loginController", ['$scope', '$injector', '$rootScope', '$resource', '$cookies', '$cacheFactory', 'cacheService', 'accountsService', 'applicationService', 'alertsService', '$window', function ($scope, $injector, $rootScope, $resource, $cookies, $cacheFactory, cacheService, accountsService, applicationService, alertsService, $window) {
         var $validationProvider = $injector.get('$validation');
 
         $scope.initializeController = function () {
@@ -80,13 +80,14 @@
                     accountsService.getUserClaims($scope.claimsFetchCompleted, $scope.claimsFetchError);
                     $cookies.put('currentUserName', response.data.User.UserName);
                     $cookies.put('isAuthenticated', true);
-                   // window.location = "/";
+                    window.location = "/";
                 }
             }
         }
 
         $scope.claimsFetchCompleted = function (response) {
-           // console.log(response.data);
+            cacheService.putValue('accessRights', response.data);
+            // console.log(response.data);
         }
 
         $scope.claimsFetchError = function (response) {
@@ -121,7 +122,6 @@
                 $scope.IsSuccess = false;
                 $scope.errorMessage = response.data[0].Description;
             }
-
         }
 
         $scope.PopUpConfirmation = function () {
