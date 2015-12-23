@@ -13,6 +13,8 @@ using Monad.EHR.Common.Utility;
 using Monad.EHR.Infrastructure.DependencyResolver;
 using Monad.EHR.Web.App.Middlewares;
 using Monad.EHR.Web.App.Policies;
+using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Authentication.JwtBearer;
 
 namespace Monad.EHR.Web.App
 {
@@ -38,6 +40,8 @@ namespace Monad.EHR.Web.App
 
         public IConfiguration Configuration { get; set; }
 
+        // public object JwtBearerDefaults { get; private set; }
+
         // This method gets called by a runtime.
         // Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
@@ -54,11 +58,20 @@ namespace Monad.EHR.Web.App
             {
                 options.Filters.Add(new GlobalExceptionFilter());
             });
+            services.AddInstance<TokenAuthOptions>(TokenAuthOptions.GetInstance());
+            //services.AddAuthorization(auth =>
+            //{
+            //    auth.AddPolicy(TokenAuthOptions.Scheme,
+            //       policy => policy.Requirements.Add(new TokenAuthRequirement()));
+            //});
+
             services.AddAuthorization(auth =>
             {
-                auth.AddPolicy(TokenAuthOptions.Scheme,
-                   policy => policy.Requirements.Add(new TokenAuthRequirement()));
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme??)
+                    .RequireAuthenticatedUser().Build());
             });
+
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             DependencyInstaller.InjectDependencies(services, this.Configuration);
             _logger.LogInformation("Configuring Services");
@@ -68,9 +81,9 @@ namespace Monad.EHR.Web.App
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Configure the HTTP request pipeline.
-            app.Use(new TokenReaderMiddleware().Process);
+           // app.Use(new TokenReaderMiddleware().Process);
             app.UseTokenAuthAuthentication();
-            app.Use(new MessageLoggingMiddleware().Process);
+           // app.Use(new MessageLoggingMiddleware().Process);
             app.UseSession();
             app.UseStaticFiles();
             app.UseIdentity()
