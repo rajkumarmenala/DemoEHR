@@ -39,7 +39,6 @@ namespace Monad.EHR.Web.App.Controllers
                     var token = await _accountService.GetLoginToken(model.UserName, model.Password);
                     accountsWebApiModel.User.UserName = model.UserName;
                     accountsWebApiModel.Token = token;
-                    //  FormsAuthentication.SetAuthCookie(user.UserId.ToString(), createPersistentCookie: false);
                      return new ObjectResult(accountsWebApiModel);
                 }
                 if (result.RequiresTwoFactor)

@@ -12,6 +12,9 @@ namespace Monad.EHR.Common.Utility
         public string SiteTitle { get; set; }
         public string GeneratedCodePath { get; set; }
 		public string ImagePath { get; set; }
+        public string TokenAudience { get; set; }
+        public string TokenIssuer { get; set; }
+
     }
 
     public static class Util

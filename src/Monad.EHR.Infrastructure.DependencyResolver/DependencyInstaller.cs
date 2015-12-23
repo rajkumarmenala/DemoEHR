@@ -64,7 +64,7 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IActivityService, ActivityService>();
             //services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<ICustomUserTokenProvider, CustomUserTokenProvider>();
+           // services.AddTransient<ICustomUserTokenProvider, CustomUserTokenProvider>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IPatientService, PatientService>();
             services.AddTransient<IAddressService, AddressService>();

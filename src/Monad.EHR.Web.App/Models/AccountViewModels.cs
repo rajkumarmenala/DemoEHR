@@ -45,6 +45,7 @@ namespace Monad.EHR.Web.App.Models
             User = new User();
         }
         public string Token { get; set; }
+        public bool Authenticated { get; set; }
     }
 
 	public class ClaimViewModel

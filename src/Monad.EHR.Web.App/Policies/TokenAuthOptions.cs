@@ -1,7 +1,5 @@
 using Microsoft.AspNet.Authentication;
-using Monad.EHR.Web.App.Security;
 using System.IdentityModel.Tokens;
-using System.Security.Cryptography;
 
 namespace Monad.EHR.Web.App.Policies
 {
@@ -12,22 +10,14 @@ namespace Monad.EHR.Web.App.Policies
         public string Issuer { get; set; }
         public SigningCredentials SigningCredentials { get; set; }
 
-        public TokenAuthOptions()
+        public TokenAuthOptions(string audience, string issuer, RsaSecurityKey key)
         {
             AuthenticationScheme = Scheme;
             AutomaticAuthenticate = true;
+            Audience = audience;
+            Issuer = issuer;
+            SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
         }
-
-        public static TokenAuthOptions GetInstance(RsaSecurityKey key)
-        {
-          
-            var tokenOptions = new TokenAuthOptions()
-            {
-                Audience = "ExampleAudience",
-                Issuer = "ExampleIssuer",
-                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature)
-            };
-            return tokenOptions;
-        }
+       
     }
 }

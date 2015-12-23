@@ -10,9 +10,11 @@ namespace Monad.EHR.Services.Interface
     {
         Task<SignInResult> Login(string userName, string password, bool rememberMe);
         Task<string> GetLoginToken(string userName, string password);
-        Task<User> GetUserForLoginToken(string token);
+       // Task<User> GetUserForLoginToken(string token);
         Task<IdentityResult> Register(string user, string password);
         Task< IList<Claim>> GetClaims(User user);
+
+        Task<User> GetUser(string userName);
         void LogOff();
     }
 }

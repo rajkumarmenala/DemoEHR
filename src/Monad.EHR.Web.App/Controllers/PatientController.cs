@@ -9,6 +9,7 @@ using Monad.EHR.Web.App.Models;
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Policy = "Bearer")]
     public class PatientController:Controller
     {
         private IPatientService _patientService;

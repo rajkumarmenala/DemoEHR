@@ -14,7 +14,7 @@
             $http.post('/api/account/Register', user).then(successFunction, errorFunction);
         }
         function login(user, successFunction, errorFunction) {
-            $http.post('/api/account/Login', user).then(successFunction, errorFunction);
+            $http.post('/api/token', user).then(successFunction, errorFunction);
         }
         function getUser(successFunction, errorFunction) {}
         function updateUser(user, successFunction, errorFunction) {}

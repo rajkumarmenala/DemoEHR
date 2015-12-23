@@ -1,11 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace Monad.EHR.Web.App.Security
 {
@@ -43,10 +39,7 @@ namespace Monad.EHR.Web.App.Security
         }
 
 
-        /// <summary>
-        /// Util class to allow restoring RSA parameters from JSON as the normal
-        /// RSA parameters class won't restore private key info.
-        /// </summary>
+        
         private class RSAParametersWithPrivate
         {
             public byte[] D { get; set; }
@@ -86,11 +79,9 @@ namespace Monad.EHR.Web.App.Security
             }
         }
 
-
         public static RsaSecurityKey GetKey()
         {
             RSAParameters keyParams = RSAKeyUtils.GetRandomKey();
-
             var key = new RsaSecurityKey(keyParams);
             return key;
         }
