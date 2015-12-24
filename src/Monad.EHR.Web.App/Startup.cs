@@ -62,11 +62,11 @@ namespace Monad.EHR.Web.App
             key = RSAKeyUtils.GetKey();
             tokenOptions = new TokenAuthOptions("ExampleAudience", "ExampleIssuer", key);
             services.AddInstance<TokenAuthOptions>(tokenOptions);
-
+            var schemes = new string[] { "Bearer" };
             services.AddAuthorization(auth =>
             {
                 auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(new string[] { "Bearer" })
+                    .AddAuthenticationSchemes(schemes)
                     .RequireAuthenticatedUser()
                     .AddRequirements(new TokenAuthRequirement())
                     .Build());

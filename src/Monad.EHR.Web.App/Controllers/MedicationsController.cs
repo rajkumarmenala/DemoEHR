@@ -8,6 +8,7 @@ using Monad.EHR.Web.App.Models;
 
 namespace Monad.EHR.Web.App.Controllers
 {
+    
     [Route("api/[controller]")]
     public class MedicationsController:Controller
     {

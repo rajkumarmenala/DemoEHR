@@ -7,7 +7,6 @@ using Monad.EHR.Domain.Interfaces;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Domain.Entities.Identity;
 using Monad.EHR.Services.Interface;
-using System;
 using System.Security.Claims;
 using Monad.EHR.Common.Utility;
 
@@ -18,7 +17,6 @@ namespace Monad.EHR.Services.Business
         private IUserService _userService;
         private IIdentityRepository _store;
         private IActivityService _activityService;
-       // private ICustomUserTokenProvider _tokenProvider;
         private IRoleRightRepository _roleRightRepository;
         private IActivityRepository _activityRepository;
         private IResourceRepository _resourceRepository;
@@ -30,7 +28,6 @@ namespace Monad.EHR.Services.Business
             IIdentityRepository store,
             IActivityService activityService,
             IUserService userService,
-           // ICustomUserTokenProvider tokenProvider,
             IRoleRightRepository roleRightRepository,
              IActivityRepository activityRepository,
              IResourceRepository resourceRepository,
@@ -42,13 +39,10 @@ namespace Monad.EHR.Services.Business
             _store = store;
             _activityService = activityService;
             _userService = userService;
-           // _tokenProvider = tokenProvider;
             _roleRightRepository = roleRightRepository;
             _activityRepository = activityRepository;
             _resourceRepository = resourceRepository;
             _resourceTypeRepository = resourceTypeRepository;
-
-           // UserManager.RegisterTokenProvider("CustomToken", _tokenProvider as IUserTokenProvider<User>);
         }
 
         public UserManager<User> UserManager { get; private set; }
@@ -67,7 +61,6 @@ namespace Monad.EHR.Services.Business
             var user = UserManager.FindByNameAsync(userName).Result;
             return await UserManager.GenerateUserTokenAsync(user, "CustomToken", "Token Check");
         }
-
       
         public void LogOff()
         {
@@ -76,7 +69,6 @@ namespace Monad.EHR.Services.Business
 
         public async Task<IdentityResult> Register(string user, string password)
         {
-            
             var targetUser = new User { UserName = user, Email = user };
             var createdUser = await UserManager.CreateAsync(targetUser, password);
 
@@ -84,19 +76,15 @@ namespace Monad.EHR.Services.Business
             { 
                 var code = await UserManager.GenerateEmailConfirmationTokenAsync(targetUser);
                 _userService.AddUser(new ApplicationUser() { UserName = user });
-
                 var newUser = UserManager.FindByNameAsync(user).Result;
 
                 var userRoleResult = await UserManager.AddToRoleAsync(newUser, "Administrator");
                 if (userRoleResult.Succeeded)
                 {
-
                     var resourceTypes = _resourceTypeRepository.GetAll().ToList();
                     var formResourceTypeId = resourceTypes.Where(x => string.Equals(x.Name, "Form")).SingleOrDefault().Id;
                     var URLResourceTypeId = resourceTypes.Where(x => string.Equals(x.Name, "URL")).SingleOrDefault().Id;
                     var APIResourceTypeId = resourceTypes.Where(x => string.Equals(x.Name, "API")).SingleOrDefault().Id;
-
-
                     var resultRole = await RoleManager.FindByNameAsync("Administrator");
                     // DONT fire this code if you  dont want activity based security
                     var roleRights = _roleRightRepository.GetAll().Where(x => string.Equals(x.RoleId, resultRole.Id)).ToList();
@@ -107,9 +95,6 @@ namespace Monad.EHR.Services.Business
                               select r.Name+"."+a.Value;
 
                     //// assign claims (activities)  for current role to this user
-
-                  
-
                     await UserManager.AddClaimsAsync(newUser, formElementsClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
 
                     var URLElementsClaims = from r in _resourceRepository.GetAll().Where(x => x.ResourceTypeId == URLResourceTypeId)
@@ -117,18 +102,15 @@ namespace Monad.EHR.Services.Business
                                              join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == URLResourceTypeId) on rr.ActivityId equals a.Id
                                              select "/" + a.Value.ToCamelCase() + r.Name;
 
-                    //// assign claims (activities)  for current role to this user
                     await UserManager.AddClaimsAsync(newUser, URLElementsClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
 
-                    var actions = new string[] { "Add{0}", "Edit{0}", "Delete{0}", "GetAll{0}s", "Get{0}" };
-                    var resources = _resourceRepository.GetAll().Where(x => x.ResourceTypeId == APIResourceTypeId);
 
-                    var formActions = (from resource in resources
-                                       from action in actions
-                                       select resource.Name + "." + string.Format(action, resource.Name));
+                    var apiClaims = from r in _resourceRepository.GetAll().Where(x => x.ResourceTypeId == APIResourceTypeId)
+                                             join rr in roleRights on r.Id equals rr.ResourceId
+                                             join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == APIResourceTypeId) on rr.ActivityId equals a.Id
+                                             select r.Name + "/" + a.Value;
 
-                    await UserManager.AddClaimsAsync(newUser, formActions.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
-
+                    await UserManager.AddClaimsAsync(newUser, apiClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
                 }
             }
            return(createdUser);

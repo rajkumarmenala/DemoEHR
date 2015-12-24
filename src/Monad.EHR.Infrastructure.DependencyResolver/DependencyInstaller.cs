@@ -25,7 +25,6 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
 
         private static void InjectDependenciesForDAL(IServiceCollection services, IConfiguration configuration)
         {
-
             services
               .AddEntityFramework()
               .AddSqlServer()
@@ -45,7 +44,6 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IActivityRepository, ActivityRepository>();
             services.AddTransient<IResourceRepository, ResourceRepository>();
             services.AddTransient<IResourceTypeRepository, ResourceTypeRepository>();
-
             services.AddTransient<IRoleRightRepository, RoleRightRepository>();
 
             services.AddTransient<IPatientRepository, PatientRepository>();
@@ -55,7 +53,6 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IBPRepository, BPRepository>();
             services.AddTransient<IPatientHeightRepository, PatientHeightRepository>();
             services.AddTransient<IWeightRepository, WeightRepository>();
-
         }
 
         private static void InjectDependenciesForBL(IServiceCollection services)
@@ -64,7 +61,6 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IActivityService, ActivityService>();
             //services.AddTransient<IRoleService, RoleService>();
-           // services.AddTransient<ICustomUserTokenProvider, CustomUserTokenProvider>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IPatientService, PatientService>();
             services.AddTransient<IAddressService, AddressService>();
@@ -73,7 +69,6 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IBPService, BPService>();
             services.AddTransient<IPatientHeightService, PatientHeightService>();
             services.AddTransient<IWeightService, WeightService>();
-
         }
     }
 }

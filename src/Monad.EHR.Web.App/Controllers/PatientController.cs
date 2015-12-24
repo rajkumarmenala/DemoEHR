@@ -8,9 +8,9 @@ using Monad.EHR.Web.App.Models;
 
 namespace Monad.EHR.Web.App.Controllers
 {
-    [Route("api/[controller]")]
     [Authorize(Policy = "Bearer")]
-    public class PatientController:Controller
+    [Route("api/[controller]")]
+    public class PatientController : Controller
     {
         private IPatientService _patientService;
         public PatientController(IPatientService patientService)
@@ -24,9 +24,9 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-				var patient = Mapper.Map<PatientViewModel, Patient>(model);
-				patient.CreatedDateUtc = System.DateTime.UtcNow;
-				patient.LastModifiedDateUtc = System.DateTime.UtcNow;
+                var patient = Mapper.Map<PatientViewModel, Patient>(model);
+                patient.CreatedDateUtc = System.DateTime.UtcNow;
+                patient.LastModifiedDateUtc = System.DateTime.UtcNow;
                 patient.LastModifiedBy = 1;
                 _patientService.AddPatient(patient);
             }
@@ -39,8 +39,8 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-				var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
-				patient.LastModifiedDateUtc = System.DateTime.UtcNow;
+                var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
+                patient.LastModifiedDateUtc = System.DateTime.UtcNow;
                 patient.LastModifiedBy = 1;
                 _patientService.EditPatient(patient);
             }
@@ -53,13 +53,13 @@ namespace Monad.EHR.Web.App.Controllers
         {
             if (ModelState.IsValid)
             {
-			    var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
+                var patient = Mapper.Map<EditPatientViewModel, Patient>(model);
                 _patientService.DeletePatient(patient);
             }
             return new HttpStatusCodeResult(200);
         }
 
-		[HttpGet]
+        [HttpGet]
         [Route("GetAllPatients")]
         public IEnumerable<Patient> GetAllPatients()
         {
@@ -73,7 +73,7 @@ namespace Monad.EHR.Web.App.Controllers
             return _patientService.GetPatientById(patientId);
         }
 
-		
+
 
     }
 }

@@ -41,40 +41,33 @@ namespace Monad.EHR.Web.App.Policies
             var httpContext = (context.Resource as ActionContext).HttpContext;
             var cacheInstance = httpContext.ApplicationServices.GetService(typeof(ICacheProvider)) as ICacheProvider;
             var accountService = httpContext.ApplicationServices.GetService(typeof(IAccountService)) as IAccountService;
-
-
             var tokenAuthIdentities = context.User.Identities.Where(x => x.AuthenticationType == TokenAuthOptions.Scheme).FirstOrDefault();
 
-            if (tokenAuthIdentities == null )
-                return false;
+            if (tokenAuthIdentities == null ) return false;
 
             var authHeaderClaim = tokenAuthIdentities.Claims.Where(x => x.Type == ClaimTypes.Authentication).FirstOrDefault();
 
             //context.User.Identities.Select(x=> x.)
             var uriClaim = context.User.Claims.Where(x => x.Type == ClaimTypes.Uri).FirstOrDefault();
-            if (uriClaim == null || authHeaderClaim == null)
-                return false;
+            if (uriClaim == null || authHeaderClaim == null)  return false;
 
             var claimComponents = uriClaim.Value.Split('/').Skip(2).ToList();
-            var tobeMathedClaim = claimComponents[0] + "." + claimComponents[1]; // CONTROLLER.ACTION
+            var tobeMathedClaim = claimComponents[0].ToLower() + "/" + claimComponents[1].ToLower(); // CONTROLLER.ACTION
             var currentCacheKey = string.Format("User-{0}-{1}", context.User.GetUserId(), tobeMathedClaim);
-
          
             if (!cacheInstance.Contains(currentCacheKey))
             {
                 var handler = new JwtSecurityTokenHandler();
                 var securityToken = handler.ReadJwtToken(Convert.ToString(httpContext.Items["AuthToken"]));
                 var clm = securityToken.Claims.Where(x => string.Equals(x.Type, "unique_name", StringComparison.CurrentCultureIgnoreCase)).SingleOrDefault();
-
                 var usr = accountService.GetUser(clm.Value).Result;
                 var claims = accountService.GetClaims(usr).Result;
-
-                var permission = claims.Where(x => string.Equals(x.Type, tobeMathedClaim, System.StringComparison.CurrentCultureIgnoreCase))
+                var permission = claims.Where(x => tobeMathedClaim.Contains(x.Type.ToLower()))
                                 .Select(y => y.Value).SingleOrDefault();
                 cacheInstance.Set<string>(currentCacheKey, permission, 300);// set for 5 minutes, change this according to project requirement
             }
             var result = cacheInstance.Get<string>(currentCacheKey); 
-            return ((!string.IsNullOrWhiteSpace(result)) && (result.ToUpper() == "ALLOWED"));
+            return ((!string.IsNullOrWhiteSpace(result)) && (result.ToLower() == "allowed"));
         }
        
     }

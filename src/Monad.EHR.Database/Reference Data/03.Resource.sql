@@ -56,18 +56,18 @@
 
 
 
-----INSERT INTO [dbo].[RoleRight]
-----           ([RoleId]
-----           ,[ActivityId]
-----           ,[ResourceId]
-----           ,[CreatedDateUtc]
-----           ,[LastModifiedDateUtc]
-----           ,[LastModifiedBy])
+--INSERT INTO [dbo].[RoleRight]
+--           ([RoleId]
+--           ,[ActivityId]
+--           ,[ResourceId]
+--           ,[CreatedDateUtc]
+--           ,[LastModifiedDateUtc]
+--           ,[LastModifiedBy])
 
-----           select role.Id as RoleId ,
-----		   a.ActivityID as ActivityId,
-----		   r.ResourceID as ResourceId ,
-----		   GETUTCDATE() as reatedDateUtc, 
-----		   GETUTCDATE() as LastModifiedDateUtc, -1 as  LastModifiedBy 
-----		   from AspNetRoles role , Activity a  , [Resource] r 
-----		   where a.ResourceTypeId = r.ResourceTypeId
+--           select role.Id as RoleId ,
+--		   a.ActivityID as ActivityId,
+--		   r.ResourceID as ResourceId ,
+--		   GETUTCDATE() as reatedDateUtc, 
+--		   GETUTCDATE() as LastModifiedDateUtc, -1 as  LastModifiedBy 
+--		   from AspNetRoles role , Activity a  , [Resource] r 
+--		   where a.ResourceTypeId = r.ResourceTypeId

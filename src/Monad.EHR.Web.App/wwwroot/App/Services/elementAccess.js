@@ -6,7 +6,6 @@
         return {
             restrict: 'A',
             link: function (scope, element, attributes) {
-                console.log(authService);
                 if (!authService.isElementAccessibleForUser(attributes)) {
                     angular.forEach(element.children(), function (child) {
                         child && child.remove && child.remove();
