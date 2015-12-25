@@ -17,6 +17,8 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Authentication.JwtBearer;
 using Monad.EHR.Web.App.Security;
 using System.IdentityModel.Tokens;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace Monad.EHR.Web.App
 {
@@ -62,16 +64,15 @@ namespace Monad.EHR.Web.App
             key = RSAKeyUtils.GetKey();
             tokenOptions = new TokenAuthOptions("ExampleAudience", "ExampleIssuer", key);
             services.AddInstance<TokenAuthOptions>(tokenOptions);
-            var schemes = new string[] { "Bearer" };
             services.AddAuthorization(auth =>
             {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(schemes)
+                auth.AddPolicy(TokenAuthOptions.Scheme, new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(TokenAuthOptions.Scheme)
                     .RequireAuthenticatedUser()
                     .AddRequirements(new TokenAuthRequirement())
                     .Build());
             });
-           
+
             DependencyInstaller.InjectDependencies(services, this.Configuration);
             _logger.LogInformation("Configuring Services");
         }
@@ -100,6 +101,26 @@ namespace Monad.EHR.Web.App
                 // machines which should have synchronised time, this can be set to zero. Where external tokens are
                 // used, some leeway here could be useful.
                 options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(0);
+                options.AuthenticationScheme = TokenAuthOptions.Scheme;
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnReceivingToken = context =>
+                         {
+                             context.Token = Convert.ToString(context.HttpContext.Items["AuthToken"]);
+                             return Task.FromResult(0);
+                         },
+                    OnValidatedToken = context =>
+                    {
+                        string authHeader = context.HttpContext.Request.Headers["Authorization"];
+                        authHeader = authHeader ?? "";
+                        string path = context.HttpContext.Request.Path.ToString() ?? "";
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Authentication, authHeader), new Claim(ClaimTypes.Uri, path) },
+                                               TokenAuthOptions.Scheme);
+                        context.AuthenticationTicket.Principal.AddIdentity(identity);
+                        return Task.FromResult(0);
+                    }
+                };
             });
             app.UseSession();
             app.UseStaticFiles();

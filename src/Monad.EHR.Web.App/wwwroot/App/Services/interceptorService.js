@@ -16,9 +16,9 @@
         if (response && response.status === 404) {
             window.location = "#/notFound";
         }
-        if (response && response.status === 401 ||response && response.status === 403 ) {
+        if (response && response.status === 401 || response && response.status === 403) {
             window.location = "#/accessDenied";
-
+        }
         if (response && response.status >= 500) {
             window.location = "#/internalServerError";
         }
