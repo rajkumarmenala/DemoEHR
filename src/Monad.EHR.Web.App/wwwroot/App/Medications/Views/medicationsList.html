@@ -1,4 +1,4 @@
-<div class="row" ng-controller="medicationsController" ng-init="initializeController()" ng-cloak>
+<div element-Access="Medications.View" class="row" ng-controller="medicationsController" ng-init="initializeController()" ng-cloak>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
@@ -31,9 +31,9 @@
                                 <td>{{item.LastModifiedBy}}</td>
                                 <td>{{item.LastModifiedDateUtc | date}}</td>
                                 <td>
-                                    <a ng-click="viewMedications(item.Id)" style="cursor: pointer"><i class="fa fa-eye control_icons"></i></a>
-                                    <a ng-click="editMedications(item.Id)" style="cursor: pointer"><i class="fa fa-edit control_icons"></i></a>
-                                    <a ng-click="toggleModal(item.Id,item.Name)" style="cursor: pointer"><i class="fa fa-remove control_icons"></i></a>
+                                    <a element-Access="Medications.View" ng-click="viewMedications(item.Id)" style="cursor: pointer"><i class="fa fa-eye control_icons"></i></a>
+                                    <a element-Access="Medications.Edit" ng-click="editMedications(item.Id)" style="cursor: pointer"><i class="fa fa-edit control_icons"></i></a>
+                                    <a element-Access="Medications.Delete" ng-click="toggleModal(item.Id,item.Name)" style="cursor: pointer"><i class="fa fa-remove control_icons"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-9">
                         <button class="btn btn-default" ng-click="addNewMedicationsCancel()"><i class="fa fa-minus-circle "></i> Cancel</button>
-                        <button class="btn btn-primary" ng-click="addNewMedications('addMedications')"><i class="fa fa-plus-circle "></i> ADD NEW</button>
+                        <button element-Access="Medications.Add" class="btn btn-primary" ng-click="addNewMedications('addMedications')"><i class="fa fa-plus-circle "></i> ADD NEW</button>
                     </div>
                 </div>
                 <!-- home form content 2nd line starts here -->

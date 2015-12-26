@@ -61,7 +61,7 @@ namespace Monad.EHR.Services.Business
             var user = UserManager.FindByNameAsync(userName).Result;
             return await UserManager.GenerateUserTokenAsync(user, "CustomToken", "Token Check");
         }
-      
+
         public void LogOff()
         {
             SignInManager.SignOutAsync();
@@ -73,7 +73,7 @@ namespace Monad.EHR.Services.Business
             var createdUser = await UserManager.CreateAsync(targetUser, password);
 
             if (createdUser.Succeeded)
-            { 
+            {
                 var code = await UserManager.GenerateEmailConfirmationTokenAsync(targetUser);
                 _userService.AddUser(new ApplicationUser() { UserName = user });
                 var newUser = UserManager.FindByNameAsync(user).Result;
@@ -89,31 +89,31 @@ namespace Monad.EHR.Services.Business
                     // DONT fire this code if you  dont want activity based security
                     var roleRights = _roleRightRepository.GetAll().Where(x => string.Equals(x.RoleId, resultRole.Id)).ToList();
 
-                    var formElementsClaims = from r in _resourceRepository.GetAll().Where(x=> x.ResourceTypeId == formResourceTypeId)
-                              join rr in roleRights on r.Id equals rr.ResourceId
-                              join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == formResourceTypeId) on rr.ActivityId equals a.Id 
-                              select r.Name+"."+a.Value;
+                    var formElementsClaims = from r in _resourceRepository.GetAll().Where(x => x.ResourceTypeId == formResourceTypeId)
+                                             join rr in roleRights on r.Id equals rr.ResourceId
+                                             join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == formResourceTypeId) on rr.ActivityId equals a.Id
+                                             select r.Name + "." + a.Value;
 
                     //// assign claims (activities)  for current role to this user
                     await UserManager.AddClaimsAsync(newUser, formElementsClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
 
                     var URLElementsClaims = from r in _resourceRepository.GetAll().Where(x => x.ResourceTypeId == URLResourceTypeId)
-                                             join rr in roleRights on r.Id equals rr.ResourceId
-                                             join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == URLResourceTypeId) on rr.ActivityId equals a.Id
-                                             select "/" + a.Value.ToCamelCase() + r.Name;
+                                            join rr in roleRights on r.Id equals rr.ResourceId
+                                            join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == URLResourceTypeId) on rr.ActivityId equals a.Id
+                                            select "/" + a.Value.ToCamelCase() + r.Name;
 
                     await UserManager.AddClaimsAsync(newUser, URLElementsClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
 
 
                     var apiClaims = from r in _resourceRepository.GetAll().Where(x => x.ResourceTypeId == APIResourceTypeId)
-                                             join rr in roleRights on r.Id equals rr.ResourceId
-                                             join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == APIResourceTypeId) on rr.ActivityId equals a.Id
-                                             select r.Name + "/" + a.Value;
+                                    join rr in roleRights on r.Id equals rr.ResourceId
+                                    join a in _activityRepository.GetAll().Where(x => x.ResourceTypeId == APIResourceTypeId) on rr.ActivityId equals a.Id
+                                    select r.Name + "/" + a.Value;
 
                     await UserManager.AddClaimsAsync(newUser, apiClaims.Select(x => new System.Security.Claims.Claim(x, "Allowed")));
                 }
             }
-           return(createdUser);
+            return (createdUser);
         }
 
         public async Task<IList<Claim>> GetClaims(User user)
@@ -124,7 +124,7 @@ namespace Monad.EHR.Services.Business
         public async Task<User> GetUser(string userName)
         {
             var user = UserManager.FindByNameAsync(userName).Result;
-            return  await Task.FromResult<User>(user);
+            return await Task.FromResult<User>(user);
         }
     }
 }

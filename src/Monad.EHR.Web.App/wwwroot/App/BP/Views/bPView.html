@@ -1,4 +1,4 @@
-<div class="row" ng-controller="bPController" ng-init="initializeController()" ng-cloak>
+<div element-Access="BP.View" class="row" ng-controller="bPController" ng-init="initializeController()" ng-cloak>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -47,8 +47,8 @@
                             </table>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
-                                    <button type="button" class="btn btn-danger " confirm="Are you sure , you want to delete?" ng-click="deleteBP(bPId)">Delete</button>
-                                    <button type="submit" class="btn btn-primary" ng-click="editBP(bPId) ">Edit</button>
+                                    <button type="button" element-Access="BP.Delete" class="btn btn-danger " confirm="Are you sure , you want to delete?" ng-click="deleteBP(bPId)">Delete</button>
+                                    <button element-Access="BP.Edit" type="submit" class="btn btn-primary" ng-click="editBP(bPId) ">Edit</button>
                                     <button type="button" class="btn btn-primary" id="cancelView" ng-click="bPCancel()">Cancel</button>
                                 </div>
                             </div>

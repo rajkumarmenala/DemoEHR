@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
 using System.IdentityModel.Tokens;
@@ -24,7 +24,6 @@ namespace Monad.EHR.Web.App.Controllers
             this.tokenOptions = tokenOptions;
             _accountService = accountService;
         }
-
 
         [HttpGet]
         [Authorize("Bearer")]

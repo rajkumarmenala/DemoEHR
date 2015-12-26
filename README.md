@@ -1,1 +1,0 @@
-Application to demonstrate ASP.NET identity based security in dummy EHR

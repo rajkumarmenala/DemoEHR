@@ -12,7 +12,6 @@
         return response || $q.when(response);
     };
     function responseError(response) {
-        
         if (response && response.status === 404) {
             window.location = "#/notFound";
         }

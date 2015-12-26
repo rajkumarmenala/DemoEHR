@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System.IdentityModel.Tokens;
 using System.IO;
 using System.Security.Cryptography;

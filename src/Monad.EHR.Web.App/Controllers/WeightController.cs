@@ -5,10 +5,12 @@ using AutoMapper;
 using Monad.EHR.Domain.Entities;
 using Monad.EHR.Services.Interface;
 using Monad.EHR.Web.App.Models;
+using Microsoft.AspNet.Mvc;
 
 namespace Monad.EHR.Web.App.Controllers
 {
     [Route("api/[controller]")]
+	[Authorize(Policy = "Bearer")]
     public class WeightController:Controller
     {
         private IWeightService _weightService;

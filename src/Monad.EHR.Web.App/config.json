@@ -1,13 +1,11 @@
 {
-  "AppSettings": {
-    "SiteTitle": "EHR",
-    "ImagePath": "D:\\EAB\\Output\\EHR\\PIC",
-    "TokenAudience": "ExampleAudience",
-    "TokenIssuer": "ExampleIssuer"
-  },
-  "Data": {
-    "DefaultConnection": {
-      "ConnectionString": "Data Source=SHISHIR-PC\\MSSQLSERVER2014;Initial Catalog=Monad.EHR.Database;User ID=sa;Password=test123#;MultipleActiveResultSets=true;"
+    "AppSettings": {
+        "SiteTitle": "EHR",
+        "ImagePath": "D:\\EAB\\Output\\EHR\\PIC"
+    },
+    "Data": {
+        "DefaultConnection": {
+            "ConnectionString": "Data Source=SHISHIR-PC\\MSSQLSERVER2014;Initial Catalog=Monad.EHR.Database;User ID=sa;Password=test123#;MultipleActiveResultSets=true;"
+        }
     }
-  }
 }

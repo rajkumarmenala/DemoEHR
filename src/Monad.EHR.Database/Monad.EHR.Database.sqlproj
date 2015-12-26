@@ -7,7 +7,7 @@
     <Name>Monad.EHR.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{9d35639f-9e6d-4986-9854-8d7e6c6b70cb}</ProjectGuid>
+    <ProjectGuid>a4225924-1cf1-47b1-a910-cfc1dbeea32f</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>

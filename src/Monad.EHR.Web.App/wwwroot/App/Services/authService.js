@@ -14,7 +14,7 @@
 
         authService.isUrlAccessibleForUser = function (url) {
             var claims = cacheService.getValue('accessRights');
-            if ((!claims) || (!claims.length > 0)) {
+            if ((!claims) || (claims.length > 0)) {
                 return true;
             }
             var requiredClaim = $.grep(claims, function (c) { return c.ClaimType == url })
@@ -27,5 +27,4 @@
         return authService;
     }
     ])
-
 })();

@@ -25,6 +25,7 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
 
         private static void InjectDependenciesForDAL(IServiceCollection services, IConfiguration configuration)
         {
+
             services
               .AddEntityFramework()
               .AddSqlServer()
@@ -41,18 +42,19 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IActivityRepository, ActivityRepository>();
             services.AddTransient<IActivityRoleRepository, ActivityRoleRepository>();
             services.AddTransient<IIdentityRepository, CustomUserStore>();
-            services.AddTransient<IActivityRepository, ActivityRepository>();
+			services.AddTransient<IActivityRepository, ActivityRepository>();
             services.AddTransient<IResourceRepository, ResourceRepository>();
-            services.AddTransient<IResourceTypeRepository, ResourceTypeRepository>();
+			services.AddTransient<IResourceTypeRepository, ResourceTypeRepository>();
             services.AddTransient<IRoleRightRepository, RoleRightRepository>();
 
-            services.AddTransient<IPatientRepository, PatientRepository>();
+			            services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IAddressRepository, AddressRepository>();
             services.AddTransient<IMedicationsRepository, MedicationsRepository>();
             services.AddTransient<IProblemsRepository, ProblemsRepository>();
             services.AddTransient<IBPRepository, BPRepository>();
             services.AddTransient<IPatientHeightRepository, PatientHeightRepository>();
             services.AddTransient<IWeightRepository, WeightRepository>();
+
         }
 
         private static void InjectDependenciesForBL(IServiceCollection services)
@@ -61,14 +63,15 @@ namespace Monad.EHR.Infrastructure.DependencyResolver
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IActivityService, ActivityService>();
             //services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IRoleService, RoleService>();
-            services.AddTransient<IPatientService, PatientService>();
+			services.AddTransient<IRoleService, RoleService>();
+			            services.AddTransient<IPatientService, PatientService>();
             services.AddTransient<IAddressService, AddressService>();
             services.AddTransient<IMedicationsService, MedicationsService>();
             services.AddTransient<IProblemsService, ProblemsService>();
             services.AddTransient<IBPService, BPService>();
             services.AddTransient<IPatientHeightService, PatientHeightService>();
             services.AddTransient<IWeightService, WeightService>();
+
         }
     }
 }

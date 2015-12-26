@@ -39,7 +39,7 @@ namespace Monad.EHR.Web.App.Controllers
                     var token = await _accountService.GetLoginToken(model.UserName, model.Password);
                     accountsWebApiModel.User.UserName = model.UserName;
                     accountsWebApiModel.Token = token;
-                     return new ObjectResult(accountsWebApiModel);
+                    return new ObjectResult(accountsWebApiModel);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -70,8 +70,8 @@ namespace Monad.EHR.Web.App.Controllers
         [Route("LogOff")]
         public IActionResult LogOff()
         {
-             _accountService.LogOff();
-             return new HttpStatusCodeResult(200);
+            _accountService.LogOff();
+            return new HttpStatusCodeResult(200);
         }
 
         //ForgotPassword
@@ -101,15 +101,13 @@ namespace Monad.EHR.Web.App.Controllers
             return new HttpStatusCodeResult(204);
         }
 
-		[HttpGet]
+        [HttpGet]
         [AllowAnonymous]
 
         [Route("GetClaims")]
         public IList<ClaimViewModel> GetClaims()
         {
-           // var user = Security.SecurityHelper.GetUser(this.HttpContext);
             return this.HttpContext.User.Claims.Select(x => new ClaimViewModel { ClaimType = x.Type, ClaimValue = x.Value }).ToList();
-           // return _accountService.GetClaims(user).Result.Select(x => new ClaimViewModel { ClaimType = x.Type, ClaimValue = x.Value }).ToList();
         }
     }
 }

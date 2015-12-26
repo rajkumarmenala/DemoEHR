@@ -1,4 +1,4 @@
-<div element-Access="Patient.Add"  class="row" ng-controller="patientController" ng-init="initializeController()" ng-cloak>
+<div element-Access="Patient.Add" class="row" ng-controller="patientController" ng-init="initializeController()" ng-cloak>
     <div class="col-md-12 col-sm-12 col-xs-12">
         <!-- home form blocks content is added here -->
         <div class="row">
@@ -12,92 +12,69 @@
                         <br />
                         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" name="AddPatient" novalidate>
                             <table style="width:100%">
-                                <tr>
-                                    <td colspan="1">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstName">
-                                                First Name  <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="firstName" name="firstNameWatch" validator="required" ng-model="FirstName"
-                                                       valid-method="blur" placeholder="First Name" class="form-control col-md-7 col-xs-12"></input>
-                                            </div>
-                                        </div>
+                                <tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstName">
+        First Name  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="firstName" name = "firstNameWatch" validator="required"   ng-model="FirstName"
+                        valid-method="blur"  placeholder="First Name" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastName">
-                                                Last Name  <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="lastName" name="lastNameWatch" validator="required" ng-model="LastName"
-                                                       valid-method="blur" placeholder="Last Name" class="form-control col-md-7 col-xs-12"></input>
-                                            </div>
-                                        </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastName">
+        Last Name  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="lastName" name = "lastNameWatch" validator="required"   ng-model="LastName"
+                        valid-method="blur"  placeholder="Last Name" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dOB">
-                                                Date of Birth  <span class="required">*</span>
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="date" id="dOB" name="dOBWatch" validator="required" ng-model="DOB"
-                                                       valid-method="blur" placeholder="Date of Birth" class="form-control col-md-7 col-xs-12"></input>
-                                            </div>
-                                        </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dOB">
+        Date of Birth  <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="dOB" name = "dOBWatch" validator="required"   ng-model="DOB"
+                        valid-method="blur"  placeholder="Date of Birth" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sSN">
-                                                SSN
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="sSN" ng-model="SSN"
-                                                       placeholder="SSN" class="form-control col-md-7 col-xs-12"></input>
-                                            </div>
-                                        </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sSN">
+        SSN  
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="sSN"     ng-model="SSN"
+                          placeholder="SSN" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
-                                                Email
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="email" ng-model="Email"
-                                                       placeholder="Email" class="form-control col-md-7 col-xs-12"></input>
-                                            </div>
-                                        </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">
+        Email  
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="email"     ng-model="Email"
+                          placeholder="Email" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">
-                                                Phone
-                                            </label>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="text" id="phone" ng-model="Phone"
-                                                       placeholder="Phone" class="form-control col-md-7 col-xs-12"></input>
-                                            </div>
-                                        </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">
+        Phone  
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="phone"     ng-model="Phone"
+                          placeholder="Phone" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
-                                    </td>
-                                </tr>
+</td></tr>
                             </table>
-
+                           
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">

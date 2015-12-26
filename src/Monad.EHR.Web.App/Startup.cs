@@ -106,10 +106,10 @@ namespace Monad.EHR.Web.App
                 options.Events = new JwtBearerEvents
                 {
                     OnReceivingToken = context =>
-                         {
-                             context.Token = Convert.ToString(context.HttpContext.Items["AuthToken"]);
-                             return Task.FromResult(0);
-                         },
+                    {
+                        context.Token = Convert.ToString(context.HttpContext.Items["AuthToken"]);
+                        return Task.FromResult(0);
+                    },
                     OnValidatedToken = context =>
                     {
                         string authHeader = context.HttpContext.Request.Headers["Authorization"];

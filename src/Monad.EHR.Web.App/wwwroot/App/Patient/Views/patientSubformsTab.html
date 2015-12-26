@@ -3,154 +3,131 @@
         <h2>View Patient</h2>
         <br />
         <div class="row" ng-controller="patientController" ng-init="initializeController()" ng-cloak>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_content">
-                                <br />
-                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                                    <table style="width:100%">
-                                        <tr>
-                                            <td colspan="1">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                                        First Name
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" id="firstName" disabled="disabled" ng-model="FirstName"
-                                                               placeholder="First Name" class="form-control col-md-7 col-xs-12"></input>
-                                                    </div>
-                                                </div>
+                <div class="x_panel">
+                    <div class="x_content">
+                        <br />
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <table style="width:100%">
+                                <tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        First Name
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="firstName" disabled="disabled" ng-model="FirstName"
+                          placeholder="First Name" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="1">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                                        Last Name
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" id="lastName" disabled="disabled" ng-model="LastName"
-                                                               placeholder="Last Name" class="form-control col-md-7 col-xs-12"></input>
-                                                    </div>
-                                                </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        Last Name
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="lastName" disabled="disabled" ng-model="LastName"
+                          placeholder="Last Name" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="1">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                                        Date of Birth
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="date" id="dOB" disabled="disabled" ng-model="DOB"
-                                                               placeholder="Date of Birth" class="form-control col-md-7 col-xs-12"></input>
-                                                    </div>
-                                                </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        Date of Birth
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "date" id="dOB" disabled="disabled" ng-model="DOB"
+                          placeholder="Date of Birth" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="1">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                                        SSN
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" id="sSN" disabled="disabled" ng-model="SSN"
-                                                               placeholder="SSN" class="form-control col-md-7 col-xs-12"></input>
-                                                    </div>
-                                                </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        SSN
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="sSN" disabled="disabled" ng-model="SSN"
+                          placeholder="SSN" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="1">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                                        Email
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" id="email" disabled="disabled" ng-model="Email"
-                                                               placeholder="Email" class="form-control col-md-7 col-xs-12"></input>
-                                                    </div>
-                                                </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        Email
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="email" disabled="disabled" ng-model="Email"
+                          placeholder="Email" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="1">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                                        Phone
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <input type="text" id="phone" disabled="disabled" ng-model="Phone"
-                                                               placeholder="Phone" class="form-control col-md-7 col-xs-12"></input>
-                                                    </div>
-                                                </div>
+</td></tr><tr><td colspan="1"><div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+        Phone
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input   type = "text" id="phone" disabled="disabled" ng-model="Phone"
+                          placeholder="Phone" class="form-control col-md-7 col-xs-12"></input>
+    </div>
+</div>
 
 
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <div class="form-group">
-                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
-                                            <button type="button" class="btn btn-danger " confirm="Are you sure , you want to delete?" ng-click="deletePatient(patientId)">Delete</button>
-                                            <button type="submit" class="btn btn-primary" ng-click="editPatient(patientId) ">Edit</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-
-                                <div class="ln_solid"></div>
-                                <div>
-
-                                    <div class="x_panel no_border_forTABs">
-                                        <div class="x_content tabsDiv" id="tabsDiv" ng-model="template">
-                                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init="PatientSubFormList = getPatientSubForms()">
-                                                    <li role="presentation" ng-repeat="subform in PatientSubFormList" ng-class="{active: $index == selected}">
-                                                        <a id='home-tab' role='tab' ng-model='template' aria-expanded='true' ng-click='onPatientSubForm(subform,$index)'>{{subform.title}}</a>
-
-                                                    </li>
-                                                </ul>
-                                                <div id="tabcontainer" ng-include="template.url"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+</td></tr>
+                            </table>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-7">
+                                    <button type="button" class="btn btn-danger " confirm="Are you sure , you want to delete?" ng-click="deletePatient(patientId)">Delete</button>
+                                    <button type="submit" class="btn btn-primary" ng-click="editPatient(patientId) ">Edit</button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
+
+
+        <div class="ln_solid"></div>
+        <div>
+
+            <div class="x_panel no_border_forTABs">
+                <div class="x_content tabsDiv" id="tabsDiv" ng-model="template">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" ng-init="PatientSubFormList = getPatientSubForms()">
+                            <li role="presentation" ng-repeat="subform in PatientSubFormList" ng-class="{active: $index == selected}">
+                                <a id = 'home-tab' role = 'tab' ng-model = 'template' aria-expanded = 'true' ng-click ='onPatientSubForm(subform,$index)'>{{subform.title}}</a>
+
+                            </li>
+                        </ul>
+                        <div id="tabcontainer" ng-include="template.url"></div>
                     </div>
                 </div>
-                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel2">Delete Confirmation</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to demolish the company which was constructed in the year 2003?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary yea_delete">OK</button>
-                            </div>
-                        </div>
+            </div>
+        </div>
+    </div>
+</div>
                     </div>
                 </div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to demolish the company which was constructed in the year 2003?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary yea_delete">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
 

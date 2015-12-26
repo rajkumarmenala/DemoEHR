@@ -18,6 +18,6 @@ namespace Monad.EHR.Web.App.Policies
             Issuer = issuer;
             SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
         }
-       
+
     }
 }
